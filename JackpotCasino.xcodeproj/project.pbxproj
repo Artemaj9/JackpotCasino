@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D152B32292700872C51 /* StrokedNeonText.swift */; };
-		ACA32D182B3229EE00872C51 /* StrokeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D172B3229EE00872C51 /* StrokeText.swift */; };
+		ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D192B32322F00872C51 /* OutlinedText.swift */; };
+		ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D1B2B32345400872C51 /* View+Border.swift */; };
 		ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */; };
 		ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2912B32256C00F41761 /* ContentView.swift */; };
 		ACB8B2942B32256D00F41761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2932B32256D00F41761 /* Assets.xcassets */; };
@@ -37,7 +38,8 @@
 
 /* Begin PBXFileReference section */
 		ACA32D152B32292700872C51 /* StrokedNeonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokedNeonText.swift; sourceTree = "<group>"; };
-		ACA32D172B3229EE00872C51 /* StrokeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeText.swift; sourceTree = "<group>"; };
+		ACA32D192B32322F00872C51 /* OutlinedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedText.swift; sourceTree = "<group>"; };
+		ACA32D1B2B32345400872C51 /* View+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Border.swift"; sourceTree = "<group>"; };
 		ACB8B28C2B32256C00F41761 /* JackpotCasino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JackpotCasino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackpotCasinoApp.swift; sourceTree = "<group>"; };
 		ACB8B2912B32256C00F41761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -153,7 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */,
-				ACA32D172B3229EE00872C51 /* StrokeText.swift */,
+				ACA32D1B2B32345400872C51 /* View+Border.swift */,
+				ACA32D192B32322F00872C51 /* OutlinedText.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -255,11 +258,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */,
 				ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */,
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
+				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,
 				ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */,
-				ACA32D182B3229EE00872C51 /* StrokeText.swift in Sources */,
 				ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

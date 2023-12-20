@@ -17,21 +17,7 @@ struct StrokedNeonText: View {
                 .viewBorder(color: .white, radius: 0.15, outline: false)
                 .drawingGroup()
                 .shadow(color: shadowColor, radius: 8)
-
-// Stroke with shadows!
-//            Text("GOOD JOB!")
-//                .font(Font.custom("RobotoCondensed-Bold", size: 64))
-//
-//                .viewBorder(color: .white, radius: 0.8, outline: false)
-//                .overlay(content: {
-//                    Text("GOOD JOB!")
-//                        .font(Font.custom("RobotoCondensed-Bold", size: 64))
-//                        .foregroundColor(Color("cherryText"))
-//                })
-//                .compositingGroup()
-//                .shadow(color: shadowColor, radius: 6)
         }
-        
     }
 }
 

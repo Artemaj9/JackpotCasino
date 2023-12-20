@@ -8,37 +8,46 @@
 import SwiftUI
 
 struct DashedButton: View {
+    
+    var color: Color
+    var dash: [CGFloat] = [60, 30, 100, 20]
+    @State var dashPhase: CGFloat = 0
+    
     var body: some View {
-     
+        
         VStack {
             RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0))
+                .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
                 .overlay(content: {
                     RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0))
+                        .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase))
                         .foregroundColor(.blue)
-                        .blur(radius: 12)
+                        .blur(radius: 2)
                         .mask(RoundedRectangle(cornerRadius: 10)
-                            .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0)))
+                            .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase)))
                 })
                 .overlay(content: {
                     RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0))
+                        .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase))
                 })
                 .foregroundColor(.white)
-               // .innerShadow(color: .black)
-            
+                .neonInnerShadow(1, opacity: 0.8)
+                .background {
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(Color.white.opacity(0.02))
+                }
               
-            
-            
-           
-                .shadow(color: Color( "lightBlueNeon"), radius: 4)
-                .shadow(color: Color( "lightBlueNeon"), radius: 4)
-                .shadow(color: Color( "lightBlueNeon"), radius: 1)
+                .shadow(color: color, radius: 4)
+                .shadow(color: color, radius: 4)
+                .shadow(color: color, radius: 1)
             
                 .shadow(color: Color.black.opacity(0.25), radius: 4)
-                .frame(width: 300, height: 150)
                 
+        }
+        .onAppear {
+            withAnimation(Animation.linear(duration: 120)) {
+                dashPhase = 1500
+            }
         }
              
     }
@@ -47,8 +56,18 @@ struct DashedButton: View {
 struct DashedButton_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
-            DashedButton()
+            Color.purple.ignoresSafeArea()
+            VStack(spacing: 50) {
+                DashedButton(color: Color( "lightBlueNeon"))
+                    .frame(width: 300, height: 150)
+                DashedButton(color: Color( "lightGreenNeon"))
+                    .frame(width: 300, height: 150)
+                Spacer()
+                DashedButton(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10])
+                    .frame(width: 100, height: 30)
+                DashedButton(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10])
+                    .frame(width: 194, height: 50)
+            }
         }
     }
 }

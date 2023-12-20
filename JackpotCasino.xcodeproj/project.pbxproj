@@ -17,6 +17,9 @@
 		ACA32D402B32687100872C51 /* View+Neon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D3F2B32687100872C51 /* View+Neon.swift */; };
 		ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */; };
 		ACA6350F2B3341DA001FCDE4 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */; };
+		ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635112B334FDD001FCDE4 /* WelcomeView.swift */; };
+		ACA635142B33569D001FCDE4 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635132B33569D001FCDE4 /* BackgroundView.swift */; };
+		ACA635162B3361D1001FCDE4 /* PieShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635152B3361D1001FCDE4 /* PieShape.swift */; };
 		ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */; };
 		ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2912B32256C00F41761 /* ContentView.swift */; };
 		ACB8B2942B32256D00F41761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2932B32256D00F41761 /* Assets.xcassets */; };
@@ -54,6 +57,9 @@
 		ACA32D3F2B32687100872C51 /* View+Neon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Neon.swift"; sourceTree = "<group>"; };
 		ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InnerNeonShadow.swift"; sourceTree = "<group>"; };
 		ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		ACA635112B334FDD001FCDE4 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		ACA635132B33569D001FCDE4 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		ACA635152B3361D1001FCDE4 /* PieShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieShape.swift; sourceTree = "<group>"; };
 		ACB8B28C2B32256C00F41761 /* JackpotCasino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JackpotCasino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackpotCasinoApp.swift; sourceTree = "<group>"; };
 		ACB8B2912B32256C00F41761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ACA635102B334FBD001FCDE4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				ACA635112B334FDD001FCDE4 /* WelcomeView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		ACB8B2832B32256B00F41761 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +129,7 @@
 				ACB8B2C32B3225F900F41761 /* Info.plist */,
 				ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */,
 				ACB8B2912B32256C00F41761 /* ContentView.swift */,
+				ACA635102B334FBD001FCDE4 /* Screens */,
 				ACB8B2C72B32268600F41761 /* Components */,
 				ACB8B2C42B32261600F41761 /* Extensions */,
 				ACB8B2932B32256D00F41761 /* Assets.xcassets */,
@@ -184,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
+				ACA635152B3361D1001FCDE4 /* PieShape.swift */,
+				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
 				ACA32D3B2B3256CB00872C51 /* NeonRectangle.swift */,
 				ACA32D3D2B3265DA00872C51 /* DashedButton.swift */,
 				ACA32D152B32292700872C51 /* StrokedNeonText.swift */,
@@ -289,6 +306,9 @@
 				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,
 				ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */,
 				ACA32D382B324CF600872C51 /* View+InnerShadow2.swift in Sources */,
+				ACA635142B33569D001FCDE4 /* BackgroundView.swift in Sources */,
+				ACA635162B3361D1001FCDE4 /* PieShape.swift in Sources */,
+				ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,
 				ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */,
 				ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */,

@@ -15,6 +15,8 @@
 		ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D3B2B3256CB00872C51 /* NeonRectangle.swift */; };
 		ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D3D2B3265DA00872C51 /* DashedButton.swift */; };
 		ACA32D402B32687100872C51 /* View+Neon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA32D3F2B32687100872C51 /* View+Neon.swift */; };
+		ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */; };
+		ACA6350F2B3341DA001FCDE4 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */; };
 		ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */; };
 		ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2912B32256C00F41761 /* ContentView.swift */; };
 		ACB8B2942B32256D00F41761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2932B32256D00F41761 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		ACA32D3B2B3256CB00872C51 /* NeonRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRectangle.swift; sourceTree = "<group>"; };
 		ACA32D3D2B3265DA00872C51 /* DashedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedButton.swift; sourceTree = "<group>"; };
 		ACA32D3F2B32687100872C51 /* View+Neon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Neon.swift"; sourceTree = "<group>"; };
+		ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InnerNeonShadow.swift"; sourceTree = "<group>"; };
+		ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		ACB8B28C2B32256C00F41761 /* JackpotCasino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JackpotCasino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackpotCasinoApp.swift; sourceTree = "<group>"; };
 		ACB8B2912B32256C00F41761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 			children = (
 				ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */,
 				ACA32D3F2B32687100872C51 /* View+Neon.swift */,
+				ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */,
+				ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */,
 				ACA32D1B2B32345400872C51 /* View+Border.swift */,
 				ACA32D392B324EAE00872C51 /* View+Glow.swift */,
 				ACA32D192B32322F00872C51 /* OutlinedText.swift */,
@@ -274,11 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACA32D402B32687100872C51 /* View+Neon.swift in Sources */,
+				ACA6350F2B3341DA001FCDE4 /* Color+Ext.swift in Sources */,
 				ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */,
 				ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */,
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,
+				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,
 				ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */,
 				ACA32D382B324CF600872C51 /* View+InnerShadow2.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,

@@ -20,6 +20,8 @@
 		ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635112B334FDD001FCDE4 /* WelcomeView.swift */; };
 		ACA635142B33569D001FCDE4 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635132B33569D001FCDE4 /* BackgroundView.swift */; };
 		ACA635162B3361D1001FCDE4 /* PieShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635152B3361D1001FCDE4 /* PieShape.swift */; };
+		ACA635182B33845F001FCDE4 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACA635172B33845F001FCDE4 /* Roboto-Bold.ttf */; };
+		ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA635192B3386D2001FCDE4 /* TriangleShape.swift */; };
 		ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */; };
 		ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2912B32256C00F41761 /* ContentView.swift */; };
 		ACB8B2942B32256D00F41761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2932B32256D00F41761 /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 		ACA635112B334FDD001FCDE4 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		ACA635132B33569D001FCDE4 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		ACA635152B3361D1001FCDE4 /* PieShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieShape.swift; sourceTree = "<group>"; };
+		ACA635172B33845F001FCDE4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		ACA635192B3386D2001FCDE4 /* TriangleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleShape.swift; sourceTree = "<group>"; };
 		ACB8B28C2B32256C00F41761 /* JackpotCasino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JackpotCasino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackpotCasinoApp.swift; sourceTree = "<group>"; };
 		ACB8B2912B32256C00F41761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				ACB8B29F2B3225C700F41761 /* RobotoCondensed-Thin.ttf */,
 				ACB8B2A02B3225C700F41761 /* RobotoCondensed-Bold.ttf */,
 				ACB8B2A12B3225C700F41761 /* RobotoCondensed-SemiBoldItalic.ttf */,
+				ACA635172B33845F001FCDE4 /* Roboto-Bold.ttf */,
 				ACB8B2A22B3225C700F41761 /* RobotoCondensed-Light.ttf */,
 				ACB8B2A32B3225C700F41761 /* RobotoCondensed-ExtraBoldItalic.ttf */,
 				ACB8B2A42B3225C700F41761 /* RobotoCondensed-ThinItalic.ttf */,
@@ -199,8 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
-				ACA635152B3361D1001FCDE4 /* PieShape.swift */,
 				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
+				ACA635152B3361D1001FCDE4 /* PieShape.swift */,
+				ACA635192B3386D2001FCDE4 /* TriangleShape.swift */,
 				ACA32D3B2B3256CB00872C51 /* NeonRectangle.swift */,
 				ACA32D3D2B3265DA00872C51 /* DashedButton.swift */,
 				ACA32D152B32292700872C51 /* StrokedNeonText.swift */,
@@ -280,6 +286,7 @@
 				ACB8B2C02B3225C700F41761 /* RobotoCondensed-ExtraBold.ttf in Resources */,
 				ACB8B2B92B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				ACB8B2B42B3225C700F41761 /* RobotoCondensed-Light.ttf in Resources */,
+				ACA635182B33845F001FCDE4 /* Roboto-Bold.ttf in Resources */,
 				ACB8B2B12B3225C700F41761 /* RobotoCondensed-Thin.ttf in Resources */,
 				ACB8B2BC2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf in Resources */,
 				ACB8B2BF2B3225C700F41761 /* RobotoCondensed-ExtraLightItalic.ttf in Resources */,
@@ -301,6 +308,7 @@
 				ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */,
 				ACB8B2922B32256C00F41761 /* ContentView.swift in Sources */,
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
+				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,
 				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,

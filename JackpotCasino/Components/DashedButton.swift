@@ -12,9 +12,22 @@ struct DashedButton: View {
      
         VStack {
             RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20]))
+                .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0))
+                .overlay(content: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0))
+                        .foregroundColor(.blue)
+                        .blur(radius: 12)
+                        .mask(RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0)))
+                })
+                .overlay(content: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(style: StrokeStyle(lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20], dashPhase: 0))
+                })
                 .foregroundColor(.white)
-                .innerShadow3(using: RoundedRectangle(cornerRadius: 10),with: StrokeStyle( lineWidth: 8, lineCap: .round, dash: [60, 20, 100, 20]), angle: .zero, color: .black, width: 2, blur: 3)
+               // .innerShadow(color: .black)
+            
               
             
             
@@ -27,6 +40,7 @@ struct DashedButton: View {
             
                 .shadow(color: Color.black.opacity(0.25), radius: 4)
                 .frame(width: 300, height: 150)
+                
         }
              
     }

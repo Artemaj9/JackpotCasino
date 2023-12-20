@@ -31,9 +31,7 @@ struct DashedButton: View {
               
             
             
-            // .neonGlow()
-            
-            //.glow(color: Color( "lightBlueNeon"), radius: 2)
+           
                 .shadow(color: Color( "lightBlueNeon"), radius: 4)
                 .shadow(color: Color( "lightBlueNeon"), radius: 4)
                 .shadow(color: Color( "lightBlueNeon"), radius: 1)

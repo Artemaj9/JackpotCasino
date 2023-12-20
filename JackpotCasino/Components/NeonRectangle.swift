@@ -10,24 +10,28 @@ import SwiftUI
 struct NeonRectangle: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 12)
+            .stroke(Color("neonRect"))
+         
             .overlay {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color("neonRect"), lineWidth: 2)
-                   // .blur(radius: 6)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.white, lineWidth: 4)
+                            .stroke(Color.white.opacity(0.7), lineWidth: 4)
                             .glow(color: Color("neonRect"), radius: 2.6)
+                           
 
                             .shadow(color: .black.opacity(0.2), radius: 13)
                         .innerShadow(using:  RoundedRectangle(cornerRadius: 12), color: .black.opacity(0.36),width: 8, blur: 3)
+                        
+                      
                         //.innerShadow(using:  RoundedRectangle(cornerRadius: 12), color: .black.opacity(0.24), blur: 2)
                             //.blur(radius: 1)
                     )
             }
-          // .shadow(color: Color("neonRectShadow"), radius: 4)
+          //.shadow(color: Color("neonRectShadow"), radius: 4)
             .shadow(color: Color("neonRectShadow"), radius: 12)
-          //  .shadow(color: Color("neonRectShadow"), radius: 4)
+           // .shadow(color: Color("neonRectShadow"), radius: 4)
             //.shadow(color: Color("neonRectShadow"), radius: 12, x: 10, y: 10)
            //.shadow(color: Color("neonRectShadow"), radius: 2)
             .frame(width: 200, height: 200)

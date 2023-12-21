@@ -8,7 +8,7 @@ struct RewardShape: Shape {
     func path(in rect: CGRect) -> Path {
      var path = Path()
         
-        let hR = 0.55
+        let hR = 0.52
         let wR = 0.25
         let radius: CGFloat = 10
         let bottomLeft = CGPoint(x: rect.minX + radius, y: rect.maxY)

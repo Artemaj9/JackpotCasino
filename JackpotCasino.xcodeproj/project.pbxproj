@@ -49,6 +49,8 @@
 		ACB8B2C22B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2B02B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf */; };
 		ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */; };
 		ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2C82B32269C00F41761 /* BrightButton.swift */; };
+		ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */; };
+		ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20602B34F95600FDA48C /* RewardCell.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,8 @@
 		ACB8B2C32B3225F900F41761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+InnerShadow.swift"; sourceTree = "<group>"; };
 		ACB8B2C82B32269C00F41761 /* BrightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightButton.swift; sourceTree = "<group>"; };
+		ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRewardsView.swift; sourceTree = "<group>"; };
+		ACBF20602B34F95600FDA48C /* RewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardCell.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +132,7 @@
 			children = (
 				AC874F262B345ADF00036B28 /* SplashView.swift */,
 				ACA635112B334FDD001FCDE4 /* WelcomeView.swift */,
+				ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */,
 				AC874F212B33B18200036B28 /* RewardsView.swift */,
 			);
 			path = Screens;
@@ -227,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
+				ACBF20602B34F95600FDA48C /* RewardCell.swift */,
 				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
 				ACF44CD02B34970F00626B74 /* ProAnimation.swift */,
 				AC874F252B33C2E900036B28 /* CustomShapes */,
@@ -353,6 +359,8 @@
 				ACA635162B3361D1001FCDE4 /* PieShape.swift in Sources */,
 				ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,
+				ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */,
+				ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */,
 				ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */,
 				ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */,
 				ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */,

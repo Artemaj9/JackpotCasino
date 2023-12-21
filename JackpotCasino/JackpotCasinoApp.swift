@@ -11,7 +11,7 @@ import SwiftUI
 struct JackpotCasinoApp: App {
     var body: some Scene {
         WindowGroup {
-            RewardsView(rewardScreen: 8)
+           AllRewardsView()
         }
     }
 }

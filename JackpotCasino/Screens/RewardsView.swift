@@ -7,6 +7,8 @@ import SwiftUI
 struct RewardsView: View {
     
     @State var shapeWidth: CGFloat = 0
+    @State var lineOpacity: CGFloat = 0.08
+    @Environment(\.dismiss) var dismiss
     let rewardScreen: Int
    
     var body: some View {
@@ -14,7 +16,7 @@ struct RewardsView: View {
             BackgroundView()
             ForEach(-2..<4) { index in
                 Rectangle()
-                    .fill(Color("r\(rewardScreen)Bg").opacity(0.08))
+                    .fill(Color("r\(rewardScreen)Bg").opacity(lineOpacity))
                     .frame(width: 6)
                     .scaleEffect(4)
                     .rotationEffect(Angle.radians(-.pi/6))
@@ -25,7 +27,8 @@ struct RewardsView: View {
                 HStack {
                     Spacer()
                     Button {
-                        
+                        lineOpacity = 0
+                        dismiss()
                     } label: {
                         ZStack {
                             Circle()
@@ -89,6 +92,7 @@ struct RewardsView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .navigationBarHidden(true)
     }
 }
 

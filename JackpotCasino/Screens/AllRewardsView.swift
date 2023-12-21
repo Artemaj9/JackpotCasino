@@ -5,8 +5,9 @@
 import SwiftUI
 
 struct AllRewardsView: View {
-    
+
     @State var record: Int = 12
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -28,7 +29,7 @@ struct AllRewardsView: View {
                             )
                             
                         Button {
-                            
+
                         } label: {
                             ZStack {
                                 Circle()
@@ -53,26 +54,20 @@ struct AllRewardsView: View {
                             .foregroundColor(.white.opacity(0.7))
                     }
                     VStack {
-                        HStack(spacing: 8) {
-                            RewardCell(index: 1)
-                            RewardCell(index: 2)
-                            RewardCell(index: 3)
-                        }
-                        .padding(8)
-                        HStack(spacing: 8) {
-                            RewardCell(index: 4)
-                            RewardCell(index: 5)
-                            RewardCell(index: 6)
-                        }
-                        .padding(8)
-                        HStack(spacing: 8) {
-                            RewardCell(index: 7)
-                            RewardCell(index: 8)
-                            RewardCell(index: 9)
-                        }
-                        .padding(8)
+                        ForEach (1..<4) { h in
+                            HStack(spacing: 8) {
+                                ForEach (1..<4) { w in
+                                    NavigationLink {
+                                        RewardsView(rewardScreen: w+(h - 1)*3)
+                                    } label: {
+                                        RewardCell(index: w+(h - 1)*3)
+                                    }
+                                }
+                            }
+                                .padding(8)
+                            }
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, 12)
                     .padding(.bottom, 20)
                     Spacer()
                 }

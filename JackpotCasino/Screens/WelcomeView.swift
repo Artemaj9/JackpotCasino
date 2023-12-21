@@ -100,12 +100,12 @@ struct WelcomeView: View {
                     withAnimation(.spring(response: 4, dampingFraction: 0.7)) {
                         spin = Double.random(in: 360...360*2)
                     }
-                    print("Spin:\(spin)")
+                    print("Spin: " + String(format: "%.1f",spin))
                 let index = (Int(spin) % 360)/36
                 let text = index == 0 ?
                     "250" : index == 9 ? "5000" : String(500*index)
                     
-                    print("Ваш выигрыш " + text)
+                    print("Ваш выигрыш: " + text)
                 }  label: {
                     BrightButton(text: "SPIN", fontSize: 34)
                         .padding(.horizontal, 64)

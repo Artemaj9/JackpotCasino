@@ -7,36 +7,41 @@ import SwiftUI
 struct WelcomeView: View {
     
     @State var count = 10
-    @State var spin: Double = 0
+    @State private var spin: Double = 0
+    @State private var wheelSize: CGSize = .zero
     
     var body: some View {
         ZStack {
             BackgroundView()
+            
             VStack {
+                Spacer()
                 StrokedNeonText(text: "WELCOME!", color: Color("purpleText"), shadowColor: Color("purpleText"), size: 77)
                     .padding(.top)
-               
+
                 ZStack {
                     Triangle()
                         .rotationEffect(.degrees(180), anchor: .center)
                         .shadow(color: Color("blueTextShadow"), radius: 4)
                         .shadow(color: Color("blueTextShadow"), radius: 4)
-                    .frame(width: 60, height: 20)
-                    .offset(x: 30, y: -184)
+                        .frame(width: 60, height: 20)
+                        .offset(x: 30, y: (-wheelSize.width - 4)/2)
+                    
                     Triangle()
                         .rotationEffect(.degrees(180), anchor: .center)
                         .shadow(color: Color("blueTextShadow"), radius: 4)
                         .shadow(color: Color("blueTextShadow"), radius: 4)
-                    .frame(width: 60, height: 20)
-                    .offset(x: -30, y: -184)
+                        .frame(width: 60, height: 20)
+                        .offset(x: -30, y: (-wheelSize.width - 4) / 2)
+                    
                     ZStack {
                         ForEach(0..<count, id: \.self) { index in
-                            
                             let angle1 = Angle(degrees: Double(index * 360) / Double(count))
                             let angle2 = Angle(degrees: Double((index + 1) * 360) / Double(count))
-                            let angle3 = Angle(degrees: (angle1.degrees + angle2.degrees) / 2)
+                            
                             Pie(startAngle: angle1, endAngle: angle2)
                                 .fill(Color("wheelColor"))
+                            
                             Pie(startAngle: angle1, endAngle: angle2)
                                 .stroke(lineWidth: 4)
                                 .fill(.white)
@@ -55,13 +60,14 @@ struct WelcomeView: View {
                         
                         ForEach(0..<count, id: \.self) { index in
                             HStack {
-                                let text = index == 0 ?
-                                "250" : index == 9 ? "5000" : String(500*index)
+                                let text = index == 0 ? "250" :
+                                index == 9 ? "5000" : String(500*index)
+                                
                                 Text(text)
-                                    .font(Font.custom("Roboto-Bold", size:  24))
+                                    .font(Font.custom("Roboto-Bold", size: 24))
                                     .shadow(color: Color("blueTextShadow"), radius: 2)
                                     .shadow(color: Color("blueTextShadow"), radius: 1)
-                                    .overlay(   Text(text)
+                                    .overlay(Text(text)
                                         .font(Font.custom("Roboto-Bold", size:  24)))
                                 
                                 Image("coin")
@@ -69,31 +75,43 @@ struct WelcomeView: View {
                                     .frame(width: 24, height: 24)
                             }
                             .rotationEffect(Angle(radians:  Double(2 * index + 1) * .pi/Double(count)), anchor: .center)
-                            .offset(x: 130 * cos( Double(2 * index + 1) * .pi/Double(count)), y: 130 * sin(Double(2 * index + 1) * .pi/Double(count)))
+                            .offset(x: wheelSize.width / 3 * cos( Double(2 * index + 1) * .pi/Double(count)), y: wheelSize.width / 3 * sin(Double(2 * index + 1) * .pi/Double(count)))
                         }
                     }
+                    .background(
+                        GeometryReader { geo in
+                            Color.clear.onAppear {
+                                self.wheelSize = geo.size
+                            }
+                        }
+                    )
                     .padding(.horizontal)
-                    // .compositingGroup()
                     .rotationEffect(.radians(-.pi/2))
-                    .rotationEffect(.degrees(spin), anchor: .center)
-                   
+                    .rotationEffect(-.degrees(spin), anchor: .center)
+                    
                     Triangle()
-                    .shadow(color: Color("blueTextShadow"), radius: 4)
-                    .shadow(color: Color("blueTextShadow"), radius: 4)
+                        .shadow(color: Color("blueTextShadow"), radius: 4)
+                        .shadow(color: Color("blueTextShadow"), radius: 4)
                         .frame(width: 60, height: 50)
-                        .offset(y: -170)
+                        .offset(y: (-wheelSize.width + 24)/2)
                 }
                 
                 Button {
                     withAnimation(.spring(response: 4, dampingFraction: 0.7)) {
-                        spin += Double.random(in: 360...360*2)
+                        spin = Double.random(in: 360...360*2)
                     }
+                    print("Spin:\(spin)")
+                let index = (Int(spin) % 360)/36
+                let text = index == 0 ?
+                    "250" : index == 9 ? "5000" : String(500*index)
+                    
+                    print("Ваш выигрыш " + text)
                 }  label: {
                     BrightButton(text: "SPIN", fontSize: 34)
                         .padding(.horizontal, 64)
                         .padding(.bottom, 32)
                 }
-              
+                Spacer()
             }
         }
         .preferredColorScheme(.dark)

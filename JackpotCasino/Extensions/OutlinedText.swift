@@ -37,10 +37,12 @@ struct OutlinedText: View {
             }
             .foregroundColor(color)
             .font(font)
+            .multilineTextAlignment(.center)
             
             Text(text)
                 .foregroundColor(mainColor)
                 .font(font)
+                .multilineTextAlignment(.center)
             
         }
         .padding()

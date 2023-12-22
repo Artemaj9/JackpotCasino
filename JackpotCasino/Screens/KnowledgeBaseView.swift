@@ -68,7 +68,6 @@ struct KnowledgeBaseView: View {
             .preferredColorScheme(.dark)
         }
         .navigationViewStyle(.stack)
-        
     }
 }
 

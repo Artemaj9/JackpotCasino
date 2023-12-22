@@ -59,6 +59,7 @@
 		ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20712B35D31A00FDA48C /* WinView.swift */; };
 		ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20732B35D96100FDA48C /* CoinAnimation.swift */; };
 		ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */; };
+		ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939712B35FBE7002BC3A9 /* MenuView.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		ACBF20712B35D31A00FDA48C /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
 		ACBF20732B35D96100FDA48C /* CoinAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimation.swift; sourceTree = "<group>"; };
 		ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimatableProperties.swift; sourceTree = "<group>"; };
+		ACC939712B35FBE7002BC3A9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				ACBF20652B350B5800FDA48C /* SplashView.swift */,
+				ACC939712B35FBE7002BC3A9 /* MenuView.swift */,
 				ACA635112B334FDD001FCDE4 /* WelcomeView.swift */,
 				ACBF20712B35D31A00FDA48C /* WinView.swift */,
 				ACBF206F2B35A74000FDA48C /* KnowledgeBaseView.swift */,
@@ -395,6 +398,7 @@
 				ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */,
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
 				AC874F222B33B18200036B28 /* RewardsView.swift in Sources */,
+				ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */,
 				ACBF20662B350B5800FDA48C /* SplashView.swift in Sources */,
 				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,

@@ -21,3 +21,8 @@ enum Tutorial {
     
     static let casinoText = "In Jackpot Casino, a dealer's finesse extends beyond the shuffle and deal to the crucial moments after the final card reveal. Ensuring a seamless transition from anticipation to result, you dispense winnings with precision based on the sacred payout table. A Blackjack earns a joyous 3 to 2 payout, a tie returns the bet, and a bust is collected with silent respect. In this ten-second window, your skill is measured, turning each action into a choreographed dance to the ticking clock. Player’s eyes follow your hands, and you become the embodiment of the casino's spirit, dispensing fate's decree."
 }
+
+
+enum KnowledgeBase {
+    static let sections = ["about", "strategy", "payout", "history", "lifehacks", "math", "kinds", "psychology" ]
+}

@@ -11,10 +11,11 @@ struct StrokedNeonText: View {
     let shadowColor: Color
     let size: CGFloat
     var shadowRadius: CGFloat = 8
+    var stroke: CGFloat = 1
     
     var body: some View {
         VStack {
-            OutlinedText(text: text, width: 1, color: .white, mainColor: color, font: Font.custom("RobotoCondensed-Bold", size:  size))
+            OutlinedText(text: text, width: stroke, color: .white, mainColor: color, font: Font.custom("RobotoCondensed-Bold", size:  size))
                 .viewBorder(color: .white, radius: 0.15, outline: false)
                 .drawingGroup()
                 .shadow(color: shadowColor, radius: shadowRadius)

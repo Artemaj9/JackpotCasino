@@ -20,6 +20,7 @@ struct MenuView: View {
                 HStack(spacing: 20) {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(lineWidth: 4)
+                        .foregroundColor(.white)
                         .innerShadow(using:    RoundedRectangle(cornerRadius: 8), angle: .radians(0), color: .black.opacity(0.25), width: 1, blur: 1)
                         .shadow(color: .black.opacity(0.25), radius: 1)
                         .shadow(color: Color("menuRectShadow"), radius: 4)
@@ -31,6 +32,8 @@ struct MenuView: View {
                             HStack {
                                 Text("5000")
                                     .font(Font.custom("RobotoCondensed-Bold",size: 27))
+                                    .foregroundColor(.white)
+                                
                                 Image("coin")
                                     .resizable()
                                     .scaledToFit()

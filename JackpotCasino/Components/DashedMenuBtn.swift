@@ -15,28 +15,30 @@ struct DashedMenuBtn: View {
     var padding: CGFloat = 8
     var fontSize: CGFloat = 21
     
-    @State var dashPhase: CGFloat = CGFloat(Int.random(in: 10...100))
+    @State var dashPhase: CGFloat = CGFloat(Int.random(in: -50...50))
     
     var body: some View {
-        StrokedNeonText(text: text, color: Color("greenMenu"), shadowColor: Color("greenMenuShadow"), size: 30)
+        StrokedNeonText(text: text, color: Color("greenMenu"), shadowColor: Color("greenMenuShadow"), size: 32, stroke: 0.1)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 12)
-                    .strokeBorder(style: StrokeStyle(lineWidth: 2, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
+                    .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
                     .foregroundColor(.white)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.white.opacity(0.02))
+                            .fill(Color.black.opacity(0.06))
                     }
-                    .shadow(color: Color.black.opacity(0.25), radius: 4)
-                    .shadow(color: color, radius: 4)
-                    .shadow(color: color, radius: 4)
+                    .compositingGroup()
+                    .shadow(color: Color.black.opacity(0.25), radius: 8)
+                    .shadow(color: color, radius: 8)
+                    .shadow(color: color, radius: 8)
+                 //   .shadow(color: color, radius: 4)
             }
-            .onAppear {
-                withAnimation(Animation.linear(duration: 120)) {
-                    dashPhase = 1500
-                }
-            }
+//            .onAppear {
+//                withAnimation(Animation.linear(duration: 60)) {
+//                    dashPhase = 200
+//                }
+//            }
     }
 }
 

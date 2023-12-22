@@ -11,45 +11,53 @@ struct DashedButton: View {
     
     var color: Color
     var dash: [CGFloat] = [60, 30, 100, 20]
+    var text: String = "OK"
+    var padding: CGFloat = 8
+    
     @State var dashPhase: CGFloat = 0
     
     var body: some View {
         
-        VStack {
-            RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
-                .overlay(content: {
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase))
-                        .foregroundColor(.blue)
-                        .blur(radius: 2)
-                        .mask(RoundedRectangle(cornerRadius: 10)
-                            .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase)))
-                })
-                .overlay(content: {
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase))
-                })
-                .foregroundColor(.white)
-                .neonInnerShadow(1, opacity: 0.8)
-                .background {
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.white.opacity(0.02))
-                }
-              
-                .shadow(color: color, radius: 4)
-                .shadow(color: color, radius: 4)
-                .shadow(color: color, radius: 1)
-            
-                .shadow(color: Color.black.opacity(0.25), radius: 4)
+        Text(text)
+            .foregroundColor(.white)
+            .font(Font.custom("RobotoCondensed-Medium", size: 21))
+            .padding(.vertical, padding)
+            .frame(maxWidth: .infinity)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
+                    .overlay(content: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase))
+                            .foregroundColor(.blue)
+                            .blur(radius: 2)
+                            .mask(RoundedRectangle(cornerRadius: 10)
+                                .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase)))
+                    })
+                    .overlay(content: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: dash, dashPhase: dashPhase))
+                    })
+                    .foregroundColor(.white)
+                    .neonInnerShadow(1, opacity: 0.8)
+                    .background {
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color.white.opacity(0.02))
+                    }
                 
-        }
-        .onAppear {
-            withAnimation(Animation.linear(duration: 120)) {
-                dashPhase = 1500
+                    .shadow(color: color, radius: 4)
+                    .shadow(color: color, radius: 4)
+                    .shadow(color: color, radius: 1)
+                
+                    .shadow(color: Color.black.opacity(0.25), radius: 4)
+                
             }
-        }
-             
+        
+            .onAppear {
+                withAnimation(Animation.linear(duration: 120)) {
+                    dashPhase = 1500
+                }
+            }
     }
 }
 

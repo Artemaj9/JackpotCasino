@@ -10,13 +10,14 @@ struct BrightButton: View {
     
     let text: String
     let fontSize: CGFloat
+    var padding: CGFloat = 8
     
     var body: some View {
         
         Text(text)
             .font(Font.custom("RobotoCondensed-Bold", size: fontSize))
             .foregroundColor(.white)
-            .padding(.vertical, 16)
+            .padding(.vertical, padding)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 8)

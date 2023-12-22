@@ -15,7 +15,7 @@ struct DashedButton: View {
     var padding: CGFloat = 8
     var fontSize: CGFloat = 21
     
-    @State var dashPhase: CGFloat = 0
+    @State var dashPhase: CGFloat = CGFloat(Int.random(in: 0...100))
     
     var body: some View {
         

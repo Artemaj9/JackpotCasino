@@ -60,6 +60,8 @@
 		ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20732B35D96100FDA48C /* CoinAnimation.swift */; };
 		ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */; };
 		ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939712B35FBE7002BC3A9 /* MenuView.swift */; };
+		ACC939742B360A03002BC3A9 /* LightningRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939732B360A03002BC3A9 /* LightningRect.swift */; };
+		ACC939762B361570002BC3A9 /* DashedMenuBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -120,6 +122,8 @@
 		ACBF20732B35D96100FDA48C /* CoinAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimation.swift; sourceTree = "<group>"; };
 		ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimatableProperties.swift; sourceTree = "<group>"; };
 		ACC939712B35FBE7002BC3A9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		ACC939732B360A03002BC3A9 /* LightningRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningRect.swift; sourceTree = "<group>"; };
+		ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedMenuBtn.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,7 +264,9 @@
 				ACF44CD02B34970F00626B74 /* ProAnimation.swift */,
 				AC874F252B33C2E900036B28 /* CustomShapes */,
 				ACA32D3B2B3256CB00872C51 /* NeonRectangle.swift */,
+				ACC939732B360A03002BC3A9 /* LightningRect.swift */,
 				ACA32D3D2B3265DA00872C51 /* DashedButton.swift */,
+				ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */,
 				ACA32D152B32292700872C51 /* StrokedNeonText.swift */,
 			);
 			path = Components;
@@ -399,6 +405,7 @@
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
 				AC874F222B33B18200036B28 /* RewardsView.swift in Sources */,
 				ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */,
+				ACC939742B360A03002BC3A9 /* LightningRect.swift in Sources */,
 				ACBF20662B350B5800FDA48C /* SplashView.swift in Sources */,
 				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
@@ -422,6 +429,7 @@
 				ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */,
 				ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */,
 				ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */,
+				ACC939762B361570002BC3A9 /* DashedMenuBtn.swift in Sources */,
 				ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */,
 				AC874F272B345ADF00036B28 /* LogoView.swift in Sources */,
 				ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */,

@@ -56,6 +56,9 @@
 		ACBF206B2B3589A800FDA48C /* MenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF206A2B3589A800FDA48C /* MenView.swift */; };
 		ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF206C2B3591D900FDA48C /* TaskTutorialView.swift */; };
 		ACBF20702B35A74000FDA48C /* KnowledgeBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF206F2B35A74000FDA48C /* KnowledgeBaseView.swift */; };
+		ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20712B35D31A00FDA48C /* WinView.swift */; };
+		ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20732B35D96100FDA48C /* CoinAnimation.swift */; };
+		ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +115,9 @@
 		ACBF206A2B3589A800FDA48C /* MenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenView.swift; sourceTree = "<group>"; };
 		ACBF206C2B3591D900FDA48C /* TaskTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTutorialView.swift; sourceTree = "<group>"; };
 		ACBF206F2B35A74000FDA48C /* KnowledgeBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeBaseView.swift; sourceTree = "<group>"; };
+		ACBF20712B35D31A00FDA48C /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
+		ACBF20732B35D96100FDA48C /* CoinAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimation.swift; sourceTree = "<group>"; };
+		ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimatableProperties.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +148,7 @@
 			children = (
 				ACBF20652B350B5800FDA48C /* SplashView.swift */,
 				ACA635112B334FDD001FCDE4 /* WelcomeView.swift */,
+				ACBF20712B35D31A00FDA48C /* WinView.swift */,
 				ACBF206F2B35A74000FDA48C /* KnowledgeBaseView.swift */,
 				ACBF20692B35897E00FDA48C /* Tutorial */,
 				ACBF20642B350A0B00FDA48C /* Info */,
@@ -286,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				ACF44CD32B34E09600626B74 /* RewardsModel.swift */,
+				ACBF20732B35D96100FDA48C /* CoinAnimation.swift */,
+				ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +399,7 @@
 				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
 				ACBF20632B350A0600FDA48C /* InfoWelcome.swift in Sources */,
+				ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */,
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,
 				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,
 				ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */,
@@ -400,7 +410,9 @@
 				ACBF20702B35A74000FDA48C /* KnowledgeBaseView.swift in Sources */,
 				ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */,
 				ACBF20682B350D0C00FDA48C /* TextData.swift in Sources */,
+				ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,
+				ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */,
 				ACBF206B2B3589A800FDA48C /* MenView.swift in Sources */,
 				ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */,
 				ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */,

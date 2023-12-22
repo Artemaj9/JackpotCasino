@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "task1Hit.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

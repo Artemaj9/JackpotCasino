@@ -51,6 +51,7 @@
 		ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2C82B32269C00F41761 /* BrightButton.swift */; };
 		ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */; };
 		ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20602B34F95600FDA48C /* RewardCell.swift */; };
+		ACBF20632B350A0600FDA48C /* InfoWelcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20622B350A0600FDA48C /* InfoWelcome.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		ACB8B2C82B32269C00F41761 /* BrightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightButton.swift; sourceTree = "<group>"; };
 		ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRewardsView.swift; sourceTree = "<group>"; };
 		ACBF20602B34F95600FDA48C /* RewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardCell.swift; sourceTree = "<group>"; };
+		ACBF20622B350A0600FDA48C /* InfoWelcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWelcome.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				AC874F262B345ADF00036B28 /* SplashView.swift */,
+				ACBF20642B350A0B00FDA48C /* Info */,
 				ACA635112B334FDD001FCDE4 /* WelcomeView.swift */,
 				ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */,
 				AC874F212B33B18200036B28 /* RewardsView.swift */,
@@ -243,6 +246,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		ACBF20642B350A0B00FDA48C /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				ACBF20622B350A0600FDA48C /* InfoWelcome.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		ACF44CD22B34E07900626B74 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +361,7 @@
 				AC874F222B33B18200036B28 /* RewardsView.swift in Sources */,
 				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
+				ACBF20632B350A0600FDA48C /* InfoWelcome.swift in Sources */,
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,
 				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,
 				ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */,

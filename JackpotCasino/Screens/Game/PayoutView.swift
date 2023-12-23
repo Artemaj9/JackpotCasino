@@ -68,6 +68,7 @@ struct PayoutView: View {
                             Image(chip.image)
                                 .resizable()
                                 .scaledToFit()
+                                .offset(y: 100)
                         }
                     }
                     )

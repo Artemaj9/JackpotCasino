@@ -46,14 +46,15 @@ struct PlayView: View {
                     .frame(width: size.height * 0.23, height: size.height * 0.23)
                     .rotationEffect(Angle(degrees: 15))
                     .offset(x: size.width * 0.19)
-                    .overlay {
-                        HStack {
-                            ForEach(vm.draggedCards) { card in
-                                CardView(image: card.image, width: 70, height: 100)
-                                
+
+                        ZStack {
+                            ForEach(vm.draggedCards.indices, id: \.self) { i in
+                                CardView(needToRotate: true,image: vm.draggedCards[i].image, width: 80, height: 120)
+                                 .rotationEffect(Angle(degrees: CGFloat(2)), anchor: .topLeading)
+                                 .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .topLeading)
+                                    .offset(x: size.width * 0.31)
                             }
                         }
-                    }
             }
                 .onDrop(of: [UTType.url], delegate: vm)
             
@@ -72,16 +73,16 @@ struct PlayView: View {
             
             
             ZStack {
-                ForEach(vm.allDeckCards) { card in
+                //ForEach(1..<3) { i in
             
-                    CardView(image: card.image, width: 70, height: 100)
+                    CardView(image: "CardBack", width: 70, height: 100)
                         .onDrag {
-                            NSItemProvider(item: .some(URL(string: card.image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
+                            NSItemProvider(item: .some(URL(string: vm.allDeckCards[0].image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
                         }
                         .rotationEffect(Angle(degrees: 30))
                         .offset(x: -size.width * 0.33, y: size.height * 0.15)
                         
-                }
+               // }
             }
                 
         }

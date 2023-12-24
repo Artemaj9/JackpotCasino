@@ -20,4 +20,5 @@ struct CardModel: Identifiable {
         default: return 0
         }
     }
+    var isFlipped = false
 }

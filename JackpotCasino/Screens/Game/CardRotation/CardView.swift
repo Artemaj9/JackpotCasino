@@ -12,8 +12,10 @@ struct CardView: View {
     @State var backDegree = 0.0
     @State var frontDegree = -90.0
     @State var isFlipped = false
-    let image: String
 
+    var needToRotate = false
+    
+    let image: String
     let width : CGFloat
     let height : CGFloat
     let durationAndDelay : CGFloat = 0.3
@@ -44,6 +46,13 @@ struct CardView: View {
             BackView(width: width, height: height, degree: $backDegree)
         }.onTapGesture {
             flipCard ()
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                if needToRotate {
+                    flipCard()
+                }
+            }
         }
     }
 }

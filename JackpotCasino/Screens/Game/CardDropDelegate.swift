@@ -17,7 +17,7 @@ class CardDropDelegate: ObservableObject, DropDelegate {
     let shortCards = ["Jack"]
     
     func addCards() {
-        for cardName in shortCards {
+        for cardName in cardNames {
             allDeckCards.append(CardModel(image: cardName + "s"))
             allDeckCards.append(CardModel(image: cardName + "d"))
             allDeckCards.append(CardModel(image: cardName + "h"))
@@ -31,8 +31,9 @@ class CardDropDelegate: ObservableObject, DropDelegate {
                 let _ = provider.loadObject(ofClass: URL.self) { (url, error) in
                         DispatchQueue.main.async {
                             withAnimation(.easeOut) {
-                                self.draggedCards.append(CardModel(id: UUID(), image: "\(url!)"))
+                                self.draggedCards.append(CardModel(id: UUID(), image: "\(url!)", isFlipped: false))
                                 self.sum += self.draggedCards.last?.number ?? 0
+                                self.allDeckCards.shuffle()
                             }
                         }
                     }

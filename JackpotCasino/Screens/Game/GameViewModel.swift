@@ -14,6 +14,7 @@ class GameViewModel: ObservableObject, DropDelegate {
     @Published var sum = 0
     @Published var draggedChips = [ChipModel]()
     var initialChips: [ChipModel] = [ChipModel(id: UUID(), image: "chip1"), ChipModel(id: UUID(), image: "chip5"), ChipModel(id: UUID(), image: "chip100"), ChipModel(id: UUID(), image: "chip500")]
+    
     func performDrop(info: DropInfo) -> Bool {
    
         for provider in info.itemProviders(for: [UTType.url]) {

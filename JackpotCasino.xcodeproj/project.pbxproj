@@ -14,6 +14,11 @@
 		AC8022B42B37758400715F1D /* ChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022B32B37758400715F1D /* ChipModel.swift */; };
 		AC8022D82B38262A00715F1D /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022D72B38262A00715F1D /* PlayView.swift */; };
 		AC8022DA2B3830F500715F1D /* StatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022D92B3830F500715F1D /* StatCell.swift */; };
+		AC8022DC2B38346100715F1D /* CardDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022DB2B38346100715F1D /* CardDropDelegate.swift */; };
+		AC8022DE2B3834E600715F1D /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022DD2B3834E600715F1D /* CardModel.swift */; };
+		AC8022E12B38764B00715F1D /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022E02B38764B00715F1D /* PictureView.swift */; };
+		AC8022E32B38766800715F1D /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022E22B38766800715F1D /* BackView.swift */; };
+		AC8022E52B38771400715F1D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022E42B38771400715F1D /* CardView.swift */; };
 		AC874F222B33B18200036B28 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F212B33B18200036B28 /* RewardsView.swift */; };
 		AC874F242B33C2C000036B28 /* RewardShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F232B33C2C000036B28 /* RewardShape.swift */; };
 		AC874F272B345ADF00036B28 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F262B345ADF00036B28 /* LogoView.swift */; };
@@ -81,6 +86,11 @@
 		AC8022B32B37758400715F1D /* ChipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipModel.swift; sourceTree = "<group>"; };
 		AC8022D72B38262A00715F1D /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		AC8022D92B3830F500715F1D /* StatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCell.swift; sourceTree = "<group>"; };
+		AC8022DB2B38346100715F1D /* CardDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDropDelegate.swift; sourceTree = "<group>"; };
+		AC8022DD2B3834E600715F1D /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		AC8022E02B38764B00715F1D /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
+		AC8022E22B38766800715F1D /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
+		AC8022E42B38771400715F1D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		AC874F212B33B18200036B28 /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
 		AC874F232B33C2C000036B28 /* RewardShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardShape.swift; sourceTree = "<group>"; };
 		AC874F262B345ADF00036B28 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -156,12 +166,25 @@
 		AC8022AA2B3761F800715F1D /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
 				AC8022D72B38262A00715F1D /* PlayView.swift */,
+				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
+				AC8022DF2B38762D00715F1D /* CardRotation */,
 				AC8022AF2B37731F00715F1D /* GameViewModel.swift */,
+				AC8022DB2B38346100715F1D /* CardDropDelegate.swift */,
 				AC8022B32B37758400715F1D /* ChipModel.swift */,
+				AC8022DD2B3834E600715F1D /* CardModel.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		AC8022DF2B38762D00715F1D /* CardRotation */ = {
+			isa = PBXGroup;
+			children = (
+				AC8022E02B38764B00715F1D /* PictureView.swift */,
+				AC8022E22B38766800715F1D /* BackView.swift */,
+				AC8022E42B38771400715F1D /* CardView.swift */,
+			);
+			path = CardRotation;
 			sourceTree = "<group>";
 		};
 		AC874F252B33C2E900036B28 /* CustomShapes */ = {
@@ -440,6 +463,7 @@
 				ACBF20662B350B5800FDA48C /* SplashView.swift in Sources */,
 				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
+				AC8022DE2B3834E600715F1D /* CardModel.swift in Sources */,
 				AC8022DA2B3830F500715F1D /* StatCell.swift in Sources */,
 				ACBF20632B350A0600FDA48C /* InfoWelcome.swift in Sources */,
 				ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */,
@@ -449,6 +473,7 @@
 				AC874F242B33C2C000036B28 /* RewardShape.swift in Sources */,
 				ACA32D382B324CF600872C51 /* View+InnerShadow2.swift in Sources */,
 				ACA635142B33569D001FCDE4 /* BackgroundView.swift in Sources */,
+				AC8022DC2B38346100715F1D /* CardDropDelegate.swift in Sources */,
 				ACA635162B3361D1001FCDE4 /* PieShape.swift in Sources */,
 				ACBF20702B35A74000FDA48C /* KnowledgeBaseView.swift in Sources */,
 				AC8022D82B38262A00715F1D /* PlayView.swift in Sources */,
@@ -457,10 +482,12 @@
 				AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */,
 				ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */,
 				AC8022B02B37731F00715F1D /* GameViewModel.swift in Sources */,
+				AC8022E12B38764B00715F1D /* PictureView.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,
 				ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */,
 				ACBF206B2B3589A800FDA48C /* MenView.swift in Sources */,
 				ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */,
+				AC8022E32B38766800715F1D /* BackView.swift in Sources */,
 				ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */,
 				ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */,
 				ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */,
@@ -468,6 +495,7 @@
 				AC8022B42B37758400715F1D /* ChipModel.swift in Sources */,
 				ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */,
 				AC874F272B345ADF00036B28 /* LogoView.swift in Sources */,
+				AC8022E52B38771400715F1D /* CardView.swift in Sources */,
 				ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

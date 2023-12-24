@@ -42,26 +42,10 @@ struct PlayView: View {
                 .frame(width: size.height * 0.23, height: size.height * 0.23)
                 .rotationEffect(Angle(degrees: 15))
                 .offset(x: -size.width * 0.08, y: size.height*0.38)
-            VStack(alignment: .leading) {
-                Text("Player's Hand")
-                    .foregroundColor(.white)
-              
-                    RoundedRectangle(cornerRadius: 6)
-                    .fill(Color("statBg").opacity(0.5))
-                        .frame(width: 58, height: 36)
-                        .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color("redNeon"), lineWidth: 2)
-                    )
-            }
+            StatCell(title: "Player's Hand", color: Color("redNeon"), num: 7)
             .offset(x: -size.width * 0.34, y: -size.height*0.07)
-            
-            VStack(alignment: .trailing) {
-                Text("Your's Hand")
-                    .foregroundColor(.white)
-            }
-            
-         
+            StatCell(title: "Your's Hand", color: Color("freshBlueNeon"), num: 21, alignment: .trailing)
+            .offset(x: size.width * 0.34, y: size.height*0.25)
                 
         }
     }

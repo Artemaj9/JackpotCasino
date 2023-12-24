@@ -13,6 +13,7 @@
 		AC8022B02B37731F00715F1D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AF2B37731F00715F1D /* GameViewModel.swift */; };
 		AC8022B42B37758400715F1D /* ChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022B32B37758400715F1D /* ChipModel.swift */; };
 		AC8022D82B38262A00715F1D /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022D72B38262A00715F1D /* PlayView.swift */; };
+		AC8022DA2B3830F500715F1D /* StatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022D92B3830F500715F1D /* StatCell.swift */; };
 		AC874F222B33B18200036B28 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F212B33B18200036B28 /* RewardsView.swift */; };
 		AC874F242B33C2C000036B28 /* RewardShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F232B33C2C000036B28 /* RewardShape.swift */; };
 		AC874F272B345ADF00036B28 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F262B345ADF00036B28 /* LogoView.swift */; };
@@ -79,6 +80,7 @@
 		AC8022AF2B37731F00715F1D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		AC8022B32B37758400715F1D /* ChipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipModel.swift; sourceTree = "<group>"; };
 		AC8022D72B38262A00715F1D /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
+		AC8022D92B3830F500715F1D /* StatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCell.swift; sourceTree = "<group>"; };
 		AC874F212B33B18200036B28 /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
 		AC874F232B33C2C000036B28 /* RewardShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardShape.swift; sourceTree = "<group>"; };
 		AC874F262B345ADF00036B28 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				AC874F262B345ADF00036B28 /* LogoView.swift */,
+				AC8022D92B3830F500715F1D /* StatCell.swift */,
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
 				ACBF20602B34F95600FDA48C /* RewardCell.swift */,
 				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
@@ -437,6 +440,7 @@
 				ACBF20662B350B5800FDA48C /* SplashView.swift in Sources */,
 				ACA6351A2B3386D2001FCDE4 /* TriangleShape.swift in Sources */,
 				ACA32D1A2B32322F00872C51 /* OutlinedText.swift in Sources */,
+				AC8022DA2B3830F500715F1D /* StatCell.swift in Sources */,
 				ACBF20632B350A0600FDA48C /* InfoWelcome.swift in Sources */,
 				ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */,
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,

@@ -13,6 +13,7 @@ struct PlayView: View {
     
     @State var size: CGSize = .zero
     @StateObject var vm = CardDropDelegate()
+    @StateObject var dillerDrop = DillerDropDelegate()
     let tableRatio = 0.2
     
     var body: some View {
@@ -37,10 +38,10 @@ struct PlayView: View {
                     }
             .offset(x: -size.width*0.25,y: size.height * 0.1)
           
-          
-        
             ZStack {
-                Rectangle().frame(width:300, height: 500).opacity(0.001)
+                Rectangle().frame(width:300, height: 300)
+                    .opacity(0.001)
+                    .offset(x: 100)
                     .layoutPriority(-1)
                 NeonRect(color: Color("redNeon"), shadow: Color("redNeon"), strokeCoeff: 0.5)
                     .frame(width: size.height * 0.23, height: size.height * 0.23)
@@ -57,27 +58,40 @@ struct PlayView: View {
                         }
             }
                 .onDrop(of: [UTType.url], delegate: vm)
+        
+            ZStack {
+               Rectangle().frame(width:300, height: 500).opacity(0.001)
+                    .offset(y: 500)
+                   .layoutPriority(-1)
+                NeonRect(color: Color("freshBlueNeon"), shadow: Color("freshBlueNeon"), strokeCoeff: 0.5)
+                    .frame(width: size.height * 0.23, height: size.height * 0.23)
+                    .rotationEffect(Angle(degrees: 15))
+                    .offset(x: -size.width * 0.08, y: size.height*0.38)
+                ZStack {
+                    ForEach(dillerDrop.draggedCards.indices, id: \.self) { i in
+                        CardView(needToRotate: i == 0 ? false : true,image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
+                         .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
+                         .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .bottomTrailing)
+                         .offset(x: size.width * -0.08, y: size.height*0.4)
+                    }
+                }
+            }
+            .onDrop(of: [UTType.url], delegate: dillerDrop)
             
-       
             
-            NeonRect(color: Color("freshBlueNeon"), shadow: Color("freshBlueNeon"), strokeCoeff: 0.5)
-                .frame(width: size.height * 0.23, height: size.height * 0.23)
-                .rotationEffect(Angle(degrees: 15))
-                .offset(x: -size.width * 0.08, y: size.height*0.38)
-            StatCell(title: "Player's Hand", color: Color("redNeon"), num: 7)
+            StatCell(title: "Player's Hand", color: Color("redNeon"), num: vm.botSum)
             .offset(x: -size.width * 0.34, y: -size.height*0.07)
             
-            StatCell(title: "Your's Hand", color: Color("freshBlueNeon"), num: 21, alignment: .trailing)
+            StatCell(title: "Your's Hand", color: Color("freshBlueNeon"), num: dillerDrop.dillerSum, alignment: .trailing)
+            
             .offset(x: size.width * 0.34, y: size.height*0.25)
-            
-            
-            
+        
             ZStack {
                 //ForEach(1..<3) { i in
             
                     CardView(image: "CardBack", width: 70, height: 100)
                         .onDrag {
-                            NSItemProvider(item: .some(URL(string: vm.allDeckCards[0].image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
+                            NSItemProvider(item: .some(URL(string:  vm.allDeckCards[0].image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
                         }
                         .rotationEffect(Angle(degrees: 30))
                         .offset(x: -size.width * 0.33, y: size.height * 0.15)
@@ -89,6 +103,8 @@ struct PlayView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             vm.addCards()
+            dillerDrop.addCards()
+            dillerDrop.allDeckCards.shuffle()
             vm.allDeckCards.shuffle()
         }
     }

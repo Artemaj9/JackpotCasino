@@ -28,7 +28,7 @@ struct StatCell: View {
                             .stroke(color, lineWidth: 2)
                     )
                 Text(String(num))
-                    .foregroundColor(.white)
+                    .foregroundColor(num <= 21 ? .white : .red)
                     .font(Font.custom("RobotoCondensed-Bold", size: 21))
             }
         }

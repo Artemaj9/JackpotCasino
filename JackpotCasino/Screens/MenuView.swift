@@ -7,6 +7,9 @@ import SwiftUI
 private let gradient  = LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
 
 struct MenuView: View {
+    
+    @State var opacity: Double = 0.4
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -109,6 +112,12 @@ struct MenuView: View {
                     .padding(.top, 40)
                     
                     Spacer()
+                }
+                }
+            .opacity(opacity)
+            .onAppear {
+                withAnimation {
+                    opacity = 1
                 }
             }
             .preferredColorScheme(.dark)

@@ -13,6 +13,7 @@ struct InfoWelcome: View {
     var body: some View {
         ZStack {
             BackgroundView()
+            
             Rectangle()
                 .fill(Color("infoRibbon").opacity(0.08))
                 .frame(width: 25)
@@ -20,54 +21,57 @@ struct InfoWelcome: View {
                 .rotationEffect(Angle.radians(-.pi/4))
                 .offset(y: -100)
             
-            if screen == 1 {
-                VStack(spacing: width < 380 ? 8 : 24) {
-                    StrokedNeonText(text: "WELCOME TO", color: Color("purpleText"), shadowColor: Color("purpleText"), size: width < 380 ? 58 : 60)
-                    
-                    LogoView()
-                        .background(
-                            GeometryReader() { geo in
-                                Color.clear.onAppear {
-                                    self.width = geo.size.width
-                                    print(width)
-                                }
-                            }
-                        )
-                    
-                    VStack {
-                        Text(Info.welcomeText)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.white)
-                            .font(Font.custom("RobotoCondensed-Bold", size: width < 380 ? 18 : 22))
-                            .padding()
+            VStack {
+                if screen == 1 {
+                    VStack(spacing: width < 380 ? 8 : 24) {
+                        StrokedNeonText(text: "WELCOME TO", color: Color("purpleText"), shadowColor: Color("purpleText"), size: width < 380 ? 58 : 60)
                         
-                        HStack(spacing: 24) {
-                            Button {
-                                dismiss()
-                            } label: {
-                                DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: width < 380 ? 8 : 16 )
-                            }
+                        LogoView()
+                            .background(
+                                GeometryReader() { geo in
+                                    Color.clear.onAppear {
+                                        self.width = geo.size.width
+                                        print(width)
+                                    }
+                                })
+                        
+                        VStack {
+                            Text(Info.welcomeText)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.white)
+                                .font(Font.custom("RobotoCondensed-Bold", size: width < 380 ? 18 : 22))
+                                .padding()
                             
-                            Button {
-                                withAnimation {
-                                    screen += 1
+                            HStack(spacing: 24) {
+                                Button {
+                                    dismiss()
+                                } label: {
+                                    DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: width < 380 ? 8 : 16 )
                                 }
-                            } label: {
-                                BrightButton(text: "NEXT", fontSize: 24, padding: width < 380 ? 8 : 16)
+                                
+                                Button {
+                                    withAnimation {
+                                        screen += 1
+                                    }
+                                } label: {
+                                    BrightButton(text: "NEXT", fontSize: 24, padding: width < 380 ? 8 : 16)
+                                }
                             }
-                            
+                            .padding(width < 380 ? 8 : 16)
                         }
-                        .padding(width < 380 ? 8 : 16)
                     }
+                } else {
+                    MenTypeView(
+                        screen: $screen,
+                        text: infoScreens[screen - 2].text,
+                        image: infoScreens[screen - 2].image,
+                        isTitle: screen < 5 ? false : true )
+                    .id(screen)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading))
+                    )
                 }
-              //  .transition(.move(edge: .trailing))
-            } else {
-                MenTypeView(
-                    screen: $screen,
-                    text: infoScreens[screen-2].text,
-                    image: infoScreens[screen-2].image,
-                    isTitle: screen < 5 ? false : true )
-                .transition(.move(edge: .trailing))
             }
         }
         .preferredColorScheme(.dark)

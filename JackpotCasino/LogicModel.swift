@@ -10,4 +10,5 @@ import SwiftUI
 class LogicModel: ObservableObject {
     
     @Published var isSplash = true
+    @AppStorage("firstStart") var firstStart = true
 }

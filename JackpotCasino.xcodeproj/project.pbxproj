@@ -82,6 +82,7 @@
 		ACE4E99A2B39E11A005C2872 /* GameHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */; };
 		ACE4E99C2B39E5F1005C2872 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */; };
 		ACE4E99E2B39F3C8005C2872 /* PauseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */; };
+		ACE4E9A02B3A17C8005C2872 /* GameModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99F2B3A17C8005C2872 /* GameModeView.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -164,6 +165,7 @@
 		ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderCell.swift; sourceTree = "<group>"; };
 		ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCell.swift; sourceTree = "<group>"; };
+		ACE4E99F2B3A17C8005C2872 /* GameModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeView.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -345,6 +347,7 @@
 			children = (
 				AC874F262B345ADF00036B28 /* LogoView.swift */,
 				ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */,
+				ACE4E99F2B3A17C8005C2872 /* GameModeView.swift */,
 				ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */,
 				AC8022D92B3830F500715F1D /* StatCell.swift */,
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
@@ -525,6 +528,7 @@
 				AC8022D82B38262A00715F1D /* PlayView.swift in Sources */,
 				ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */,
 				ACE4E99C2B39E5F1005C2872 /* CornerRadiusStyle.swift in Sources */,
+				ACE4E9A02B3A17C8005C2872 /* GameModeView.swift in Sources */,
 				AC8022F02B39783300715F1D /* LogicModel.swift in Sources */,
 				ACBF20682B350D0C00FDA48C /* TextData.swift in Sources */,
 				AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */,

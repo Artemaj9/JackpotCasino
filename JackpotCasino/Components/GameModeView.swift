@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct GameModeView: View {
-    @State var selected = 1
+    
+    @Binding var selected: Int
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 6)
@@ -27,19 +29,29 @@ struct GameModeView: View {
                             .foregroundColor(.white)
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
+                    .onTapGesture {
+                        withAnimation {
+                            selected = 1
+                        }
+                    }
                 
                 Rectangle()
-                    .fill((Color("pinkBg")))
+                    .fill(Color(selected == 2 ? "orangeBtn" : "pinkBg"))
                     .border(Color("lavandBord"), width: 2)
                     .overlay(
                         Text("Hit")
                             .foregroundColor(.white)
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
+                    .onTapGesture {
+                        withAnimation {
+                            selected = 2
+                        }
+                    }
                     .offset(x: -2)
                 
                 Rectangle()
-                    .fill((Color("pinkBg")))
+                    .fill(Color(selected == 3 ? "orangeBtn" : "pinkBg"))
                     .border(Color("lavandBord"), width: 2)
                     .overlay(
                         Text("Stand")
@@ -47,8 +59,13 @@ struct GameModeView: View {
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
                     .offset(x: -4)
+                    .onTapGesture {
+                        withAnimation {
+                            selected = 3
+                        }
+                    }
                 Rectangle()
-                    .fill((Color("pinkBg")))
+                    .fill(Color(selected == 4 ? "orangeBtn" : "pinkBg"))
                     .border(Color("lavandBord"), width: 2)
                     .cornerRadius(6, corners: [.bottomRight, .topRight])
                     .overlay(
@@ -56,6 +73,11 @@ struct GameModeView: View {
                             .foregroundColor(.white)
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
+                    .onTapGesture {
+                        withAnimation {
+                            selected = 4
+                        }
+                    }
                     .offset(x: -6)
                 Color.clear
                     .frame(width: 18)
@@ -63,8 +85,6 @@ struct GameModeView: View {
             .offset(x: 9)
             .frame(width: 339, height: 42)
             .padding()
-            //.compositingGroup()
-            
         }
         
     }
@@ -74,7 +94,7 @@ struct GameModeView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             BackgroundView()
-                GameModeView()
+            GameModeView(selected: .constant(1))
         }
     }
 }

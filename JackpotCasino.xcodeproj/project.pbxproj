@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC43BD332B3A2EDB008EE66D /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD322B3A2EDB008EE66D /* GameMode.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC43BD322B3A2EDB008EE66D /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */,
 				ACBF20732B35D96100FDA48C /* CoinAnimation.swift */,
 				ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */,
+				AC43BD322B3A2EDB008EE66D /* GameMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */,
 				AC874F272B345ADF00036B28 /* LogoView.swift in Sources */,
 				AC8022E52B38771400715F1D /* CardView.swift in Sources */,
+				AC43BD332B3A2EDB008EE66D /* GameMode.swift in Sources */,
 				ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

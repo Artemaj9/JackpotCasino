@@ -1,8 +1,5 @@
 //
 //  PlayView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 24.12.2023.
 //
 
 import SwiftUI
@@ -16,6 +13,8 @@ struct PlayView: View {
     @StateObject var dillerDrop = DillerDropDelegate()
     @EnvironmentObject var gm: LogicModel
     let tableRatio = 0.2
+    
+    @State var gameMode = 1
     
     var body: some View {
         ZStack {
@@ -49,9 +48,9 @@ struct PlayView: View {
                                     .foregroundColor(.white)
                                     .font(Font.custom("RobotoCondensed-Bold",size: 36))
                             }
-                            
+
                             )
-                
+                GameModeView(selected: $gameMode)
             }
             .offset(y: -size.height * 0.4)
           
@@ -84,6 +83,15 @@ struct PlayView: View {
                                     .offset(x: size.width * 0.31)
                             }
                         }
+                        .onChange(of: vm.draggedCards.count) { newValue in
+                            if gm.isDeal {
+                                if newValue == 2 && dillerDrop.draggedCards.count == 2 {
+                                    print("Success")
+                                    gm.isDeal = false
+                                    gameMode = 2
+                                }
+                            }
+                        }
             }
                 .onDrop(of: [UTType.url], delegate: vm)
         
@@ -105,6 +113,13 @@ struct PlayView: View {
                 }
                 .onChange(of: dillerDrop.draggedCards.count) { newValue in
                     vm.allDeckCards.shuffle()
+                    if gm.isDeal {
+                        if newValue == 2 && vm.draggedCards.count == 2 {
+                            print("Success")
+                            gm.isDeal = false
+                            gameMode = 2
+                        }
+                    }
                 }
             }
             .onDrop(of: [UTType.url], delegate: dillerDrop)
@@ -118,25 +133,22 @@ struct PlayView: View {
             .offset(x: size.width * 0.34, y: size.height*0.25)
         
             ZStack {
-                //ForEach(1..<3) { i in
-            
                     CardView(image: "CardBack", width: 70, height: 100)
                         .onDrag {
                             NSItemProvider(item: .some(URL(string:  vm.allDeckCards[0].image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
                         }
                         .rotationEffect(Angle(degrees: 30))
                         .offset(x: -size.width * 0.33, y: size.height * 0.15)
-                        
-               // }
             }
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
         .onAppear {
             vm.addCards()
-            dillerDrop.addCards()
-            dillerDrop.allDeckCards.shuffle()
             vm.allDeckCards.shuffle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                gm.stake()
+            }
         }
     }
 }
@@ -145,8 +157,9 @@ struct PlayView: View {
 private let gradient  =
 LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
 
-struct PlayView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayView()
-    }
-}
+//struct PlayView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlayView()
+//            .environmentObject(GameL)
+//    }
+//}

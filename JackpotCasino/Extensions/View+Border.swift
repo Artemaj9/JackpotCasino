@@ -1,8 +1,5 @@
 //
 //  View+Border.swift
-//  JackpotCasino
-//
-//  Created by Artem on 19.12.2023.
 //
 
 import SwiftUI
@@ -27,7 +24,6 @@ extension View {
                 .shadow(color: color, radius: radius, x: 1, y: 0)
                 .shadow(color: color, radius: radius, x: -1, y: 0)
         }
-        
     }
 }
 

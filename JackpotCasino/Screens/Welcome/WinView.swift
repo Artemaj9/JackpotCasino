@@ -7,6 +7,7 @@ import SwiftUI
 struct WinView: View {
     
     @StateObject var vm = CoinAnimation()
+    @EnvironmentObject var logicModel: LogicModel
     @State var radians: Double = 0.5
     @State var saturation: Double = 0
     @State var textOpacity: Double = 0
@@ -37,7 +38,7 @@ struct WinView: View {
                     .padding()
                     .overlay(
                         HStack() {
-                            Text("5000")
+                            Text(String(logicModel.balance))
                                 .font(Font.custom("RobotoCondensed-Bold",size: 66))
                                 .foregroundColor(.white)
                             Image("coin")
@@ -48,7 +49,9 @@ struct WinView: View {
                             .offset(x: 16)
                     )
                 Button {
-                    
+                    withAnimation {
+                        logicModel.firstStart = false
+                    }
                 }  label: {
                     BrightButton(text: "CLAIM", fontSize: 34)
                         .padding(.horizontal, 64)

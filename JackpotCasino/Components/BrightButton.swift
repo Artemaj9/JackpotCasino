@@ -11,6 +11,8 @@ struct BrightButton: View {
     let text: String
     let fontSize: CGFloat
     var padding: CGFloat = 8
+    var color = Color("orangeBtn")
+    var shadowColor = Color("orangeBtnShadow").opacity(0.8)
     
     var body: some View {
         
@@ -21,11 +23,11 @@ struct BrightButton: View {
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 8)
-                .fill(Color("orangeBtn"))}
+                .fill(color)}
             .innerShadow(using: RoundedRectangle(cornerRadius: 8), angle: .zero, color: .white, width: 6, blur: 6)
             .compositingGroup()
-            .shadow(color: Color("orangeBtnShadow").opacity(0.8), radius: 8)
-            .shadow(color: Color("orangeBtnShadow").opacity(0.8), radius: 8)
+            .shadow(color: shadowColor, radius: 8)
+            .shadow(color: shadowColor, radius: 8)
     }
 }
 

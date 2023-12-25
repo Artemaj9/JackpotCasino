@@ -1,8 +1,5 @@
 //
 //  View+Glow.swift
-//  JackpotCasino
-//
-//  Created by Artem on 20.12.2023.
 //
 
 import SwiftUI

@@ -11,13 +11,8 @@ struct JackpotCasinoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if gameLogic.isSplash {
-                SplashView()
-                    .environmentObject(gameLogic)
-            } else {
-                MenuView()
-                    .environmentObject(gameLogic)
-            }
+           ContentView()
+                .environmentObject(gameLogic)
         }
     }
 }

@@ -13,7 +13,7 @@ extension View {
 private struct InnerShadow: ViewModifier {
     var color: Color = .gray
     var radius: CGFloat = 0.1
-
+    
     private var colors: [Color] {
         [color.opacity(0.75), color.opacity(0.0), .clear]
     }

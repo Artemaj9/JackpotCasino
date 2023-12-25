@@ -4,12 +4,10 @@
 
 import SwiftUI
 
-private let gradient  = LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
-
 struct MenuView: View {
     
-    @State var opacity: Double = 0.4
-
+    @EnvironmentObject var vm: LogicModel
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -20,6 +18,7 @@ struct MenuView: View {
                     .scaleEffect(4)
                     .rotationEffect(Angle.radians(-.pi/4))
                     .offset(y: -100)
+                
                 VStack(spacing: 40) {
                     HStack(spacing: 20) {
                         RoundedRectangle(cornerRadius: 8)
@@ -29,12 +28,10 @@ struct MenuView: View {
                             .shadow(color: .black.opacity(0.25), radius: 1)
                             .shadow(color: Color("menuRectShadow"), radius: 4)
                             .shadow(color: Color("menuRectShadow"), radius: 2)
-                        
-                        
                             .frame(height: 50)
                             .overlay {
                                 HStack {
-                                    Text("5000")
+                                    Text(String(vm.balance))
                                         .font(Font.custom("RobotoCondensed-Bold",size: 27))
                                         .foregroundColor(.white)
                                     
@@ -105,8 +102,6 @@ struct MenuView: View {
                         } label: {
                             DashedMenuBtn(color: Color( "lightGreenNeon"), dash: [40, 30, 25, 10], text: "REWARDS")
                         }
-                      
-                        
                     }
                     .padding(.horizontal, 64)
                     .padding(.top, 40)
@@ -114,17 +109,14 @@ struct MenuView: View {
                     Spacer()
                 }
                 }
-            .opacity(opacity)
-            .onAppear {
-                withAnimation {
-                    opacity = 1
-                }
-            }
             .preferredColorScheme(.dark)
         }
         .navigationViewStyle(.stack)
     }
 }
+
+private let gradient  =
+LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {

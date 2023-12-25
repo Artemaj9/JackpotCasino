@@ -14,6 +14,7 @@ struct PlayView: View {
     @State var size: CGSize = .zero
     @StateObject var vm = CardDropDelegate()
     @StateObject var dillerDrop = DillerDropDelegate()
+    @EnvironmentObject var gm: LogicModel
     let tableRatio = 0.2
     
     var body: some View {
@@ -27,6 +28,33 @@ struct PlayView: View {
                             print("height: \(size.height)")
                         }
                         })
+            VStack(spacing: 40) {
+                HStack(spacing: 30) {
+                    GameHeaderCell(image: "heart", text: .constant("10"))
+                    GameHeaderCell(image: "watches", text: .constant("03:00"), dashPhase: 22)
+                    PauseCell()
+                }
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
+                    .foregroundColor(Color("whitePink"))
+                    .frame(width: 200, height: 50)
+                    .shadow(color: Color("lightPinkNeon"), radius: 4)
+                    .shadow(color: Color("lightPinkNeon"), radius: 4)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color("pinkBg"))
+                            .shadow(color: Color("lightPinkNeon"), radius: 1, x: -5)
+                            .overlay {
+                                Text(String(gm.bet))
+                                    .foregroundColor(.white)
+                                    .font(Font.custom("RobotoCondensed-Bold",size: 36))
+                            }
+                            
+                            )
+                
+            }
+            .offset(y: -size.height * 0.4)
+          
             Image("table")
                 .resizable()
                 .offset(y: tableRatio * size.height)
@@ -101,7 +129,6 @@ struct PlayView: View {
                         
                // }
             }
-                
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
@@ -113,6 +140,10 @@ struct PlayView: View {
         }
     }
 }
+
+
+private let gradient  =
+LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
 
 struct PlayView_Previews: PreviewProvider {
     static var previews: some View {

@@ -7,13 +7,16 @@ import Combine
 
 class LogicModel: ObservableObject {
     
-    @AppStorage("firstStart") var firstStart = false
+    @AppStorage("firstStart") var firstStart = true
     @Published var isSplash = true
     @Published var balance = 0
-    @AppStorage("level") var level = 21
+    @AppStorage("level") var level = 0
     @Published var count = 0
     @Published var isRotating = false
     @Published var rotationIsOver = false
+    
+    // Игра
+    @Published var bet = 2500
     
     private var cancellables = Set<AnyCancellable>()
     

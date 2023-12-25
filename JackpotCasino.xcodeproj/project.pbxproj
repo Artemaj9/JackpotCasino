@@ -79,6 +79,9 @@
 		ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939712B35FBE7002BC3A9 /* MenuView.swift */; };
 		ACC939742B360A03002BC3A9 /* LightningRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939732B360A03002BC3A9 /* LightningRect.swift */; };
 		ACC939762B361570002BC3A9 /* DashedMenuBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */; };
+		ACE4E99A2B39E11A005C2872 /* GameHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */; };
+		ACE4E99C2B39E5F1005C2872 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */; };
+		ACE4E99E2B39F3C8005C2872 /* PauseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */; };
 		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
@@ -158,6 +161,9 @@
 		ACC939712B35FBE7002BC3A9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		ACC939732B360A03002BC3A9 /* LightningRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningRect.swift; sourceTree = "<group>"; };
 		ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedMenuBtn.swift; sourceTree = "<group>"; };
+		ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderCell.swift; sourceTree = "<group>"; };
+		ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
+		ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCell.swift; sourceTree = "<group>"; };
 		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -322,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */,
+				ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */,
 				ACA32D3F2B32687100872C51 /* View+Neon.swift */,
 				ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */,
 				ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */,
@@ -337,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				AC874F262B345ADF00036B28 /* LogoView.swift */,
+				ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */,
+				ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */,
 				AC8022D92B3830F500715F1D /* StatCell.swift */,
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
 				ACBF20602B34F95600FDA48C /* RewardCell.swift */,
@@ -486,6 +495,7 @@
 				AC80230C2B39A75D00715F1D /* ContentView.swift in Sources */,
 				ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */,
 				ACA32D402B32687100872C51 /* View+Neon.swift in Sources */,
+				ACE4E99A2B39E11A005C2872 /* GameHeaderCell.swift in Sources */,
 				ACA6350F2B3341DA001FCDE4 /* Color+Ext.swift in Sources */,
 				ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */,
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
@@ -511,8 +521,10 @@
 				AC8022DC2B38346100715F1D /* CardDropDelegate.swift in Sources */,
 				ACA635162B3361D1001FCDE4 /* PieShape.swift in Sources */,
 				ACBF20702B35A74000FDA48C /* KnowledgeBaseView.swift in Sources */,
+				ACE4E99E2B39F3C8005C2872 /* PauseCell.swift in Sources */,
 				AC8022D82B38262A00715F1D /* PlayView.swift in Sources */,
 				ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */,
+				ACE4E99C2B39E5F1005C2872 /* CornerRadiusStyle.swift in Sources */,
 				AC8022F02B39783300715F1D /* LogicModel.swift in Sources */,
 				ACBF20682B350D0C00FDA48C /* TextData.swift in Sources */,
 				AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */,

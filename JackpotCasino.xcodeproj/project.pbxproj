@@ -22,6 +22,7 @@
 		AC8022E72B388DAC00715F1D /* DillerDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022E62B388DAC00715F1D /* DillerDropDelegate.swift */; };
 		AC8022EC2B38E79B00715F1D /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022EB2B38E79B00715F1D /* ArticleView.swift */; };
 		AC8022EE2B396C7600715F1D /* InfoScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */; };
+		AC8022F02B39783300715F1D /* LogicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022EF2B39783300715F1D /* LogicModel.swift */; };
 		AC874F222B33B18200036B28 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F212B33B18200036B28 /* RewardsView.swift */; };
 		AC874F242B33C2C000036B28 /* RewardShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F232B33C2C000036B28 /* RewardShape.swift */; };
 		AC874F272B345ADF00036B28 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC874F262B345ADF00036B28 /* LogoView.swift */; };
@@ -97,6 +98,7 @@
 		AC8022E62B388DAC00715F1D /* DillerDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DillerDropDelegate.swift; sourceTree = "<group>"; };
 		AC8022EB2B38E79B00715F1D /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoScreenModel.swift; sourceTree = "<group>"; };
+		AC8022EF2B39783300715F1D /* LogicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicModel.swift; sourceTree = "<group>"; };
 		AC874F212B33B18200036B28 /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
 		AC874F232B33C2C000036B28 /* RewardShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardShape.swift; sourceTree = "<group>"; };
 		AC874F262B345ADF00036B28 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				ACB8B2C32B3225F900F41761 /* Info.plist */,
 				ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */,
+				AC8022EF2B39783300715F1D /* LogicModel.swift */,
 				ACF44CD22B34E07900626B74 /* Models */,
 				ACA635102B334FBD001FCDE4 /* Screens */,
 				ACB8B2C72B32268600F41761 /* Components */,
@@ -498,6 +501,7 @@
 				ACBF20702B35A74000FDA48C /* KnowledgeBaseView.swift in Sources */,
 				AC8022D82B38262A00715F1D /* PlayView.swift in Sources */,
 				ACA635122B334FDD001FCDE4 /* WelcomeView.swift in Sources */,
+				AC8022F02B39783300715F1D /* LogicModel.swift in Sources */,
 				ACBF20682B350D0C00FDA48C /* TextData.swift in Sources */,
 				AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */,
 				ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */,

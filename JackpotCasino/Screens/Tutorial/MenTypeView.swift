@@ -71,7 +71,9 @@ struct MenTypeView: View {
                         }
                         
                         Button {
-                            screen < 7 ? screen += 1 : dismiss()
+                            withAnimation {
+                                screen < 7 ? screen += 1 : dismiss()
+                            }
                         } label: {
                             BrightButton(text: "NEXT", fontSize: width < 380 ? 20 : 24, padding: 8)
                         }

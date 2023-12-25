@@ -6,9 +6,18 @@ import SwiftUI
 
 @main
 struct JackpotCasinoApp: App {
+    
+    @StateObject var gameLogic = LogicModel()
+    
     var body: some Scene {
         WindowGroup {
-           MenuView()
+            if gameLogic.isSplash {
+                SplashView()
+                    .environmentObject(gameLogic)
+            } else {
+                MenuView()
+                    .environmentObject(gameLogic)
+            }
         }
     }
 }

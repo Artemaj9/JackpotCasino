@@ -33,9 +33,10 @@ struct PayoutView: View {
                     .padding()
                 DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
                     .padding(.horizontal, 84)
-                Text("\(gameLogic.sum)")
-                    .font(Font.custom("RobotoCondensed-Bold",size: 44))
+                Text("DEBUG: \(gameLogic.sum)")
+                    .font(Font.custom("RobotoCondensed-Bold",size: 34))
                     .foregroundColor(.white)
+                    .offset(y: 40)
             
                   
                 Spacer()

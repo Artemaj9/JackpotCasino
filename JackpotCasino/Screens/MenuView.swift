@@ -55,7 +55,8 @@ struct MenuView: View {
                                         .padding(10))
                         }
                     }
-                    .padding(20)
+                    .padding(16)
+                    .offset(y: 20)
                     
                     ZStack {
                         LightningRect()
@@ -75,6 +76,7 @@ struct MenuView: View {
                             }
                             .offset(y: -104)
                     }
+                    .offset(y: 20)
                     
                     NavigationLink {
                         PlayView()
@@ -82,9 +84,14 @@ struct MenuView: View {
                         BrightButton(text: "PLAY", fontSize: 34)
                             .padding(.horizontal, 64)
                     }
+                    .offset(y: 20)
                     
                     VStack(spacing: 34) {
-                        DashedMenuBtn(color: Color( "lightGreenNeon"), dash: [40, 30, 25, 10], text: "TRAINING MODE")
+                        NavigationLink {
+                         PayoutView()
+                        } label: {
+                            DashedMenuBtn(color: Color( "lightGreenNeon"), dash: [40, 30, 25, 10], text: "TRAINING MODE")
+                        }
                         NavigationLink {
                            KnowledgeBaseView()
                         } label: {

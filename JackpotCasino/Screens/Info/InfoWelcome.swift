@@ -49,7 +49,9 @@ struct InfoWelcome: View {
                             }
                             
                             Button {
-                                screen += 1
+                                withAnimation {
+                                    screen += 1
+                                }
                             } label: {
                                 BrightButton(text: "NEXT", fontSize: 24, padding: width < 380 ? 8 : 16)
                             }
@@ -58,13 +60,14 @@ struct InfoWelcome: View {
                         .padding(width < 380 ? 8 : 16)
                     }
                 }
+              //  .transition(.move(edge: .trailing))
             } else {
                 MenTypeView(
                     screen: $screen,
                     text: infoScreens[screen-2].text,
                     image: infoScreens[screen-2].image,
                     isTitle: screen < 5 ? false : true )
-                .transition(.opacity)
+                .transition(.move(edge: .trailing))
             }
         }
         .preferredColorScheme(.dark)

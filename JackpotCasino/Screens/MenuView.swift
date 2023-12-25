@@ -40,18 +40,20 @@ struct MenuView: View {
                                         .scaledToFit()
                                 }
                             }
-                        
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(gradient)
-                            .shadow(color: Color("questGradBright"), radius: 8)
-                        
-                            .frame(width: 50,height: 50)
-                            .overlay(
-                                Image("quest")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(10))
-                        
+                        NavigationLink {
+                            InfoWelcome()
+                        } label: {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(gradient)
+                                .shadow(color: Color("questGradBright"), radius: 8)
+                            
+                                .frame(width: 50,height: 50)
+                                .overlay(
+                                    Image("quest")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding(10))
+                        }
                     }
                     .padding(20)
                     

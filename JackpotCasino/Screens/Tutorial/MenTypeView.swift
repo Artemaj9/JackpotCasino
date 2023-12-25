@@ -4,8 +4,16 @@
 
 import SwiftUI
 
-struct MenView: View {
+struct MenTypeView: View {
+    
     @State private var width: CGFloat = 0
+    @Binding var screen: Int
+    @Environment(\.dismiss) var dismiss
+    
+    let text: String
+    let image: String
+    var showX: Bool = false
+    var isTitle: Bool = false
     
     var body: some View {
         ZStack {
@@ -19,7 +27,14 @@ struct MenView: View {
                     }
                 )
             VStack (spacing: width > 400 ? 24 : 8) {
-                Image("men")
+                if isTitle {
+                    Text("GAME MECHANICS")
+                        .font(Font.custom("RobotoCondensed-BoldItalic",size: width < 380 ? 38 : 42))
+                        .foregroundColor(Color("taskBlue"))
+                        .padding(.bottom, -12)
+                }
+                
+                Image(image)
                     .resizable()
                     .scaledToFit()
                     .overlay(alignment: .topTrailing) {
@@ -36,23 +51,33 @@ struct MenView: View {
                             }
                             .padding(24)
                         }
+                        .opacity(showX ? 1 : 0)
                     }
                     .padding(.horizontal, 8)
                     .padding(.top, 8)
                 
                 VStack() {
-                    Text(Tutorial.welcomeText)
+                    Text(text)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                         .font(Font.custom("RobotoCondensed-Bold",size: width < 380 ? 16 : 20))
                         .padding(.horizontal)
                     
                     HStack(spacing: 24) {
-                        DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: 8, fontSize: width < 380 ? 18 : 21 )
-                        BrightButton(text: "NEXT", fontSize: width < 380 ? 20 : 24, padding: 8)
+                        Button {
+                            dismiss()
+                        } label: {
+                            DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: 8, fontSize: width < 380 ? 18 : 21 )
+                        }
+                        
+                        Button {
+                            screen < 7 ? screen += 1 : dismiss()
+                        } label: {
+                            BrightButton(text: "NEXT", fontSize: width < 380 ? 20 : 24, padding: 8)
+                        }
                     }
                     .padding()
-                    .offset(y: width > 400 ? 16 : 0)//.padding(.top)
+                    .offset(y: width > 400 ? 16 : 0)
                 }
             }
             .offset(y: -8)
@@ -61,8 +86,8 @@ struct MenView: View {
     }
 }
 
-struct MenView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenView()
-    }
-}
+//struct MenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MenView()
+//    }
+//}

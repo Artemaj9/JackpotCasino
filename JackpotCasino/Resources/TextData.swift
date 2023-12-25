@@ -6,6 +6,19 @@ import Foundation
 
 enum Info {
     static let welcomeText = "Embark on an exhilarating journey as a blackjack dealer in the most prestigious casino in town. In Career Mode, the stakes are high, and every choice you make could spell triumph or trouble. With only ten chances to prove your worth, every move is a delicate dance on the wire of fortune."
+    
+    
+    static let career = "Career Mode: Step behind the table, don the dealer’s visor, and shuffle up a storm in Jackpot Casino: High-Stakes. Your mission is clear: navigate through the bustling casino life, dealing cards, calculating winnings, and keeping the game on track. But beware, the margin for error is thin, and the cost of mistakes is high."
+    
+    static let challenge = "In this high-stakes blackjack challenge, each incorrect decision chips away at your credibility. With ten lives at the start, you're faced with a choice: play it safe or take calculated risks to become a legendary dealer. The twist? Time is limited to 3 minutes, intensifying the pressure. Will you deal your way to legendary status, or will the clock run out on your career?"
+    
+    static let rewards = "Survive the Odds: Your journey will be fraught with challenges as you aim to survive as many days as possible in the fast-paced world of casino dealing. Sharpen your skills, keep your cool, and maybe you'll outlast them all, becoming the most respected dealer in Jackpot Casino: High-Stakes."
+    
+    static let cardDistribution = "Card Distribution: Deal with precision and speed. Keep up with the bot's actions and respond accurately within seconds."
+    
+    static let payoutCalculation = "Payout Calculation: Pay close attention to the outcome of each hand. A quick and correct calculation of payouts is essential to keep your job."
+    
+    static let mistakeManagement = "Mistake Management: Each wrong move counts as a strike against your record. Ten strikes, and your career is on the line. See how many days you can last in this high-pressure environment."
 }
 
 enum Tutorial {

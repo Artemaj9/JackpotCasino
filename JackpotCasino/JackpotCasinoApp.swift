@@ -8,7 +8,7 @@ import SwiftUI
 struct JackpotCasinoApp: App {
     var body: some Scene {
         WindowGroup {
-           PlayView()
+           MenuView()
         }
     }
 }

@@ -90,10 +90,12 @@ struct RewardsView: View {
             }
                 Spacer()
             }
+            .navigationBarHidden(true)
         }
         .preferredColorScheme(.dark)
-        .navigationBarHidden(true)
+       
     }
+      
 }
 
 struct AwardsView_Previews: PreviewProvider {

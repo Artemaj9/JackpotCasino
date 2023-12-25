@@ -75,6 +75,9 @@ struct PlayView: View {
                          .offset(x: size.width * -0.08, y: size.height*0.4)
                     }
                 }
+                .onChange(of: dillerDrop.draggedCards.count) { newValue in
+                    vm.allDeckCards.shuffle()
+                }
             }
             .onDrop(of: [UTType.url], delegate: dillerDrop)
             
@@ -100,6 +103,7 @@ struct PlayView: View {
             }
                 
         }
+        .navigationBarHidden(true)
         .preferredColorScheme(.dark)
         .onAppear {
             vm.addCards()

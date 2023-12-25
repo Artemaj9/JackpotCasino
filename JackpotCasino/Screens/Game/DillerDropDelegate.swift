@@ -37,8 +37,8 @@ class DillerDropDelegate: ObservableObject,DropDelegate {
                         withAnimation(.easeOut) {
                             self.draggedCards.append(CardModel(id: UUID(), image: "\(url!)", isFlipped: false))
                             self.dillerSum += self.draggedCards.last?.number ?? 0
-                            self.allDeckCards.shuffle()
-                            if ["Acec", "Aceb", "Aced", "Aces"].contains("\(url!)") {
+                          //  self.allDeckCards.shuffle()
+                            if ["Acec", "Aceh", "Aced", "Aces"].contains("\(url!)") {
                                 self.aces += 1
                             }
                             if self.dillerSum > 21 && self.aces >= 1 {

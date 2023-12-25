@@ -1,8 +1,5 @@
 //
 //  KnowledgeBaseView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 22.12.2023.
 //
 
 import SwiftUI
@@ -10,9 +7,9 @@ import SwiftUI
 struct KnowledgeBaseView: View {
     
     @State private var width: CGFloat = 0
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView {
             ZStack {
                 BackgroundView()
                     .background(
@@ -32,9 +29,13 @@ struct KnowledgeBaseView: View {
                                     Circle()
                                         .fill( Color.purple.opacity(0.001))
                                         .frame(width: 50, height: 50)
-                                    Image("back")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
+                                    Button {
+                                        dismiss()
+                                    } label: {
+                                        Image("back")
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                    }
                                 }
                                 .padding([.trailing], width < 380 ? 8 : 16)
                             }
@@ -44,12 +45,13 @@ struct KnowledgeBaseView: View {
                             Text("KNOWLEDGE BASE")
                                 .foregroundColor(.white)
                                 .font(Font.custom("RobotoCondensed-Medium",size: width < 380 ? 35 : 36))
+                            
                             ScrollView(showsIndicators: false) {
                                 ForEach (1..<5) { h in
                                     HStack(spacing: 8) {
                                         ForEach (1..<3) { w in
                                             NavigationLink {
-                                                RewardsView(rewardScreen: 1)
+                                                ArticleView(article:article[w+(h - 1)*2 - 1])
                                             } label: {
                                                 Image(KnowledgeBase.sections[w+(h - 1)*2 - 1])
                                                     .resizable()
@@ -64,12 +66,12 @@ struct KnowledgeBaseView: View {
                             }
                         }
                     }
+                
             }
             .preferredColorScheme(.dark)
+            .navigationBarHidden(true)
         }
-        .navigationViewStyle(.stack)
     }
-}
 
 struct KnowledgeBaseView_Previews: PreviewProvider {
     static var previews: some View {

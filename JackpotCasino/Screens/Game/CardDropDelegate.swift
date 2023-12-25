@@ -14,16 +14,6 @@ class CardDropDelegate: ObservableObject, DropDelegate {
     @Published var allDeckCards = [CardModel]()
     @Published var aces = 0
     
-    @ObservedObject var dillerDropDelegate: DillerDropDelegate
-    
-    init(draggedCards: [CardModel] = [CardModel](), botSum: Int = 0, allDeckCards: [CardModel] = [CardModel](), aces: Int = 0, dillerDropDelegate: DillerDropDelegate) {
-        self.draggedCards = draggedCards
-        self.botSum = botSum
-        self.allDeckCards = allDeckCards
-        self.aces = aces
-        self.dillerDropDelegate = dillerDropDelegate
-    }
-    
     let cardNames = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
     let shortCards = ["Jack"]
     
@@ -45,7 +35,7 @@ class CardDropDelegate: ObservableObject, DropDelegate {
                                 self.draggedCards.append(CardModel(id: UUID(), image: "\(url!)", isFlipped: false))
                                 self.botSum += self.draggedCards.last?.number ?? 0
                                 self.allDeckCards.shuffle()
-                                if ["Acec", "Aceb", "Aced", "Aces"].contains("\(url!)") {
+                                if ["Acec", "Aceh", "Aced", "Aces"].contains("\(url!)") {
                                     self.aces += 1
                                 }
                                 if self.botSum > 21 && self.aces >= 1 {

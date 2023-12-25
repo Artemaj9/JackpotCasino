@@ -6,8 +6,9 @@ import SwiftUI
 
 struct AllRewardsView: View {
 
-    @State var record: Int = 12
+   // @State var record: Int = 12
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var vm: LogicModel
  
     var body: some View {
         ZStack {
@@ -23,7 +24,7 @@ struct AllRewardsView: View {
                     
                         .frame(height: 48)
                         .overlay(
-                            Text("CURRENT RECORD: \(record)")
+                            Text("CURRENT RECORD: \(vm.level)")
                                 .font(Font.custom("RobotoCondensed-Medium", size: 27))
                                 .foregroundColor(.white)
                         )
@@ -57,11 +58,19 @@ struct AllRewardsView: View {
                     ForEach (1..<4) { h in
                         HStack(spacing: 8) {
                             ForEach (1..<4) { w in
+                                let i = w+(h - 1)*3
+                                let lock = (i == 1) ?
+                                vm.level < i : vm.level < (i - 1) * 5
+                                
                                 NavigationLink {
-                                    RewardsView(rewardScreen: w+(h - 1)*3)
+                                    if !lock {
+                                        RewardsView(rewardScreen: i)
+                                    }
                                 } label: {
-                                    RewardCell(index: w+(h - 1)*3)
+                                    
+                                    RewardCell(index: i, isLocked: lock)
                                 }
+                                .allowsHitTesting(!lock)
                             }
                         }
                         .padding(8)

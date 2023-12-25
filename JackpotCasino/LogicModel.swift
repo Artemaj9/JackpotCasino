@@ -7,10 +7,10 @@ import Combine
 
 class LogicModel: ObservableObject {
     
-    @AppStorage("firstStart") var firstStart = true
+    @AppStorage("firstStart") var firstStart = false
     @Published var isSplash = true
     @Published var balance = 0
-    @AppStorage("level") var level = 1
+    @AppStorage("level") var level = 21
     @Published var count = 0
     @Published var isRotating = false
     @Published var rotationIsOver = false

@@ -70,7 +70,7 @@ struct MenuView: View {
                             .resizable()
                             .scaleEffect(0.3)
                             .overlay {
-                                Text("12")
+                                Text(String(vm.level))
                                     .font(Font.custom("RobotoCondensed-Bold",size: 30))
                                     .foregroundColor(Color("cloudNum"))
                             }

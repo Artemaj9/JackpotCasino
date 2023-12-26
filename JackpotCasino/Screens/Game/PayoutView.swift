@@ -54,11 +54,7 @@ struct PayoutView: View {
                                 .font(Font.custom("RobotoCondensed-Bold",size: 64))
                                 .foregroundColor(.white.opacity(0.3))
                                 .offset(y: 35)
-                               // .padding(100)
-                   
                 }
-               // .contentShape(Rectangle())
-                
                 .onDrop(of: [UTType.url], delegate: gameLogic)
                 .overlay(
                     LazyVGrid(

@@ -16,15 +16,20 @@ class LogicModel: ObservableObject {
     @Published var rotationIsOver = false
     
     
+    
     // Игра
-    @Published var bet = 2500
+    @Published var bet = 0
     @Published var gameMode: GameMode = .Deal
     @Published var isDeal = false
     @Published var isGame = false
     @Published var isStand = false
+    @Published var isDouble = false
     @Published var playerWin = false
     @Published var remainingTime = 180
-    
+    @Published var lives = 10
+    @Published var isWinEnd = false
+    @Published var isFired = false
+    @Published var timerStopflag = false
     
     // hit, stand or double 0, 1, 2
     @Published var decision = -1
@@ -46,7 +51,7 @@ class LogicModel: ObservableObject {
                     count = 0
                 }
                 
-                if count >= 15 && isDeal  {
+                if count >= 15 && isDeal {
                     isDeal = false
                     for item in cancellables {
                         item.cancel()
@@ -62,9 +67,13 @@ class LogicModel: ObservableObject {
         bet = [100, 500, 1000, 1500, 2000, 2500, 3000].randomElement()!
         isGame = true
         isDeal = true
-        
     }
     
+    func restartGame() {
+        bet = 0
+        isStand = false
+        stake()
+    }
     
     func countdown() {
         Timer
@@ -72,22 +81,24 @@ class LogicModel: ObservableObject {
             .autoconnect()
             .sink { [unowned self] _ in
                 remainingTime -= 1
-                if remainingTime <= 0 && isGame  {
+                if (remainingTime <= 0 && isGame && lives > 0)  || timerStopflag {
+                    
                     print("TIME IS OVER!")
                     isGame = false
                     isDeal = false
+                    isWinEnd = true
+                    level += 1
                     bet = 0
+                    count = 0
                     // GAME OVER
                     for item in cancellables {
                         item.cancel()
                     }
-                    count = 0
+             
                 }
             }
             .store(in: &cancellables)
     }
-    
-    
     
     func randomNumber(probabilities: [Double]) -> Int {
 

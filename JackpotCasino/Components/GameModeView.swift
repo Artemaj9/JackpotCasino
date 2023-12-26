@@ -34,6 +34,7 @@ struct GameModeView: View {
                             selected = 1
                         }
                     }
+                    .animation(.easeInOut, value: selected)
                 
                 Rectangle()
                     .fill(Color(selected == 2 ? "orangeBtn" : "pinkBg"))

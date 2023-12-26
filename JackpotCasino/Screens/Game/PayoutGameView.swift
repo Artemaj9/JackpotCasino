@@ -26,7 +26,9 @@ private let chips = [1, 5, 100, 500]
 struct PayoutGameView: View {
     
     @StateObject var gameLogic = GameViewModel()
-    var userMoney: Int
+    @EnvironmentObject var gm: LogicModel
+    @Binding var userMoney: Int
+    @Binding var endFlag: Bool
     
     var body: some View {
         ZStack {
@@ -38,7 +40,7 @@ struct PayoutGameView: View {
                 BrightButton(text: "CONTINUE", fontSize: 28)
                     .padding(.horizontal, 64)
                     .padding()
-                DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
+             //   DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
                     .padding(.horizontal, 84)
                 Text("DEBUG: \(gameLogic.sum)")
                     .font(Font.custom("RobotoCondensed-Bold",size: 34))
@@ -121,6 +123,6 @@ struct PayoutGameView: View {
 
 struct PayoutGameView_Previews: PreviewProvider {
     static var previews: some View {
-        PayoutGameView(userMoney: 100)
+        PayoutGameView(userMoney: .constant(100), endFlag: .constant(false))
     }
 }

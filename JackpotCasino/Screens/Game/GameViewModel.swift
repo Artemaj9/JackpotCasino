@@ -14,9 +14,10 @@ class GameViewModel: ObservableObject, DropDelegate {
     @Published var sum = 0
     @Published var aces = 0
     @Published var draggedChips = [ChipModel]()
-    
+    @Published var endFlag = false
     @Published var userMoney = 0
-    var initialChips: [ChipModel] = [ChipModel(id: UUID(), image: "chip1"), ChipModel(id: UUID(), image: "chip5"), ChipModel(id: UUID(), image: "chip100"), ChipModel(id: UUID(), image: "chip500")]
+    
+    var initialChips = [ChipModel(image: "chip1"), ChipModel(image: "chip5"), ChipModel(image: "chip100"), ChipModel(image: "chip500")]
     
     func performDrop(info: DropInfo) -> Bool {
    
@@ -38,8 +39,6 @@ class GameViewModel: ObservableObject, DropDelegate {
                     }
                 }
         }
-        
         return true
-    }
-    
+    }    
 }

@@ -12,9 +12,11 @@ struct PlayView: View {
     @StateObject var vm = CardDropDelegate()
     @StateObject var dillerDrop = DillerDropDelegate()
     @EnvironmentObject var gm: LogicModel
+    @State var bet = 0
     let tableRatio = 0.2
     
-    @State var gameMode = 1
+    @State var gameMode = -1
+    @State var endFlag = false
     
     var body: some View {
         ZStack {
@@ -51,6 +53,13 @@ struct PlayView: View {
                                         Text(String(gm.bet))
                                             .foregroundColor(.white)
                                             .font(Font.custom("RobotoCondensed-Bold",size: 36))
+                                            .animation(.easeInOut, value: gm.bet)
+                                            .onChange(of: gm.bet, perform: { newValue in
+                                                gameMode = 1
+                                            })
+                                            .onTapGesture {
+                                                startGame()
+                                            }
                                     }
                                 
                             )
@@ -131,6 +140,7 @@ struct PlayView: View {
                     }
                     .onChange(of: dillerDrop.draggedCards.count) { newValue in
                         vm.allDeckCards.shuffle()
+                        dillerDrop.draggedCards.reverse()
                         if gm.isDeal {
                             if newValue == 2 && vm.draggedCards.count == 2 {
                                 print("Success")
@@ -178,7 +188,12 @@ struct PlayView: View {
                         .offset(x: -size.width * 0.33, y: size.height * 0.15)
                 }
             } else {
-                PayoutGameView(userMoney: gm.bet * 2)
+                PayoutGameView(userMoney: $bet, endFlag: $endFlag)
+                    .environmentObject(gm)
+                    .transition(.move(edge: .bottom))
+                    .onChange(of: endFlag) { newValue in
+                        print("OK")
+                    }
             }
         }
         .navigationBarHidden(true)
@@ -190,8 +205,22 @@ struct PlayView: View {
             gm.countdown()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 gm.stake()
+                bet = gm.bet
             }
         }
+    }
+    
+    
+    func startGame() {
+        vm.draggedCards = []
+        dillerDrop.draggedCards = []
+        vm.botSum = 0
+        dillerDrop.dillerSum = 0
+        gameMode = 1
+        withAnimation { gm.playerWin = false }
+        gm.remainingTime = 180
+        gm.countdown()
+        gm.restartGame()
     }
     
     func checkWinner() {
@@ -207,12 +236,32 @@ struct PlayView: View {
     
     
     func standOrHit()  {
-      
-        if vm.botSum <= 11 {
-            gm.decision = 0
-            print("I have \(vm.botSum) and prefer HIT!!!")
-            gameMode = 2
+        
+        if vm.botSum < 9 {
+            gm.decision = gm.randomNumber(probabilities: [0.1, 0.9])
+            if gm.decision == 0 {
+                print("I prefer to surrender!")
+                gameMode = 0
+            } else {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            }
         }
+        
+        if vm.botSum >= 9 && vm.botSum < 12 {
+            gm.decision = gm.randomNumber(probabilities: [0.35, 0.65])
+            if gm.decision == 0 {
+                print("I prefer to Double!")
+                gameMode = 4
+                withAnimation {
+                    gm.bet = gm.bet * 2
+                }
+            } else {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            }
+        }
+        
         
         if vm.botSum >= 12 && vm.botSum <= 13 {
             gm.decision = gm.randomNumber(probabilities: [0.8, 0.2])

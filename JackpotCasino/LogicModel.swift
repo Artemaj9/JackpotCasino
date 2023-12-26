@@ -23,9 +23,9 @@ class LogicModel: ObservableObject {
     
     @Published var isRotating = false
     @Published var rotationIsOver = false
+    
     // Игра
     @Published var bet = 0
-   // @Published var gameMode: GameMode = .Deal
     @Published var isDeal = false
     @Published var isGame = false
     @Published var isStand = false
@@ -42,12 +42,17 @@ class LogicModel: ObservableObject {
     @Published var isBlackJack = false
     @Published var openDillerCards = false
     
+    //Live таймер
+    @Published var liveTimerCount = 0
+    
+    
     // hit, stand or double 0, 1, 2
     @Published var decision = -1
     
     private var cancellables = Set<AnyCancellable>()
     
     private var animTimer: AnyCancellable?
+    var liveTimer: AnyCancellable?
     
     func setupTimer() {
         Timer
@@ -104,6 +109,26 @@ class LogicModel: ObservableObject {
         stake()
     }
     
+    
+    func setUpLiveTimer() {
+        liveTimerCount = 0
+         liveTimer = Timer
+            .publish(every: 0.1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [unowned self] _ in
+                self.liveTimerCount += 1
+                if self.liveTimerCount >= 150 {
+                    if self.lives > 1 {
+                        self.lives -= 1
+                    } else {
+                        self.isFired = true
+                    }
+                    self.liveTimer?.cancel()
+                }
+            }
+        }
+    
+    
     func countdown() {
         Timer
             .publish(every: 1, on: .main, in: .common)
@@ -129,11 +154,13 @@ class LogicModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func setUpAnimation(whoWin: String) {
+    func setUpAnimation(whoWin: String, isTimeOut: Bool = false) {
+        liveTimer?.cancel()
+        liveTimerCount = 0
         isAnimationRound = true
         bet = 0
         result = whoWin
-        praiseEndGame = praise.randomElement() ?? "Great job!"
+        praiseEndGame = isTimeOut ? "" : (praise.randomElement() ?? "Great job!")
          animTimer = Timer
             .publish(every: 0.2, on: .main, in: .common)
             .autoconnect()

@@ -1,14 +1,5 @@
 //
 //  PayoutGameView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 26.12.2023.
-//
-//
-//  PayoutView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 23.12.2023.
 //
 
 import SwiftUI
@@ -55,10 +46,7 @@ struct PayoutGameView: View {
                         })
                     
             }
-//
-//                .onChange(of: gameLogic.state) { newValue in
-//                    endFlag = true
-//                }
+            
             VStack(spacing: 50) {
                 Spacer()
                 Spacer()
@@ -72,8 +60,6 @@ struct PayoutGameView: View {
                                 .foregroundColor(.white.opacity(0.3))
                                 .offset(y: 35)
                 }
-               // .contentShape(Rectangle())
-                
                 .onDrop(of: [UTType.url], delegate: gameLogic)
                 .overlay(
                     LazyVGrid(
@@ -119,17 +105,6 @@ struct PayoutGameView: View {
                 }
                 .offset(y: -50)
             }
-            
-            Image("timer")
-                .resizable()
-                .scaledToFit()
-                .scaleEffect(0.3)
-                .overlay {
-                    Text("10")
-                        .foregroundColor(.white)
-                        .font(Font.custom("RobotoCondensed-Bold",size: 33))
-                }
-                .offset(x: 158, y: -75)
     
         }
         .onAppear {

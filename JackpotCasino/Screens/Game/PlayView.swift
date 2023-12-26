@@ -32,7 +32,9 @@ struct PlayView: View {
             
                 VStack(spacing: 16) {
                     HStack(spacing: 30) {
-                        GameHeaderCell(image: "heart", text: "10")
+                        GameHeaderCell(image: "heart", text: String(gm.lives))
+                            .hueRotation(Angle(degrees: gm.liveTimerCount < 120 ? 0 : (2 * Double(gm.liveTimerCount) - 240)))
+                            .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
                         GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
                         PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
                     }
@@ -120,7 +122,7 @@ struct PlayView: View {
                             if gm.isDeal {
                                 if newValue == 2 && dillerDrop.draggedCards.count == 2 {
                                     print("Success")
-                                    gm.isDeal = false
+                                   // gm.isDeal = false
                                     standOrHit()
                                 }
                             }
@@ -161,7 +163,9 @@ struct PlayView: View {
                         if gm.isDeal {
                             if newValue == 2 && vm.draggedCards.count == 2 {
                                 print("Success")
-                                gm.isDeal = false
+                               // gm.isDeal = false
+                               // gm.liveTimer?.cancel()
+                                //gm.setUpLiveTimer()
                                 standOrHit()
                             }
                         }
@@ -231,6 +235,27 @@ struct PlayView: View {
                 .offset(y: gm.animCount == 0 ? 150 : 0)
                 .opacity(gm.animCount == 0 ? 0 : 1)
                 .animation(.spring(), value: gm.animCount)
+            
+            Image("timer")
+                .resizable()
+                .scaledToFit()
+                .scaleEffect(0.2)
+                .overlay {
+                        Text(String((159 - gm.liveTimerCount)/10))
+                            .foregroundColor(.white)
+                            .font(Font.custom("RobotoCondensed-Bold",size: 33))
+                }
+                .offset(x: 158, y: -110)
+                .onChange(of: gm.liveTimerCount) { newValue in
+                    if gm.liveTimerCount == 150  {
+                        print("You are too slow!")
+                       // if gm.lives > 1 {
+                          //  gm.lives -= 1
+                            gm.setUpAnimation(whoWin: "Time is out!", isTimeOut: true)
+                       // }
+
+                    }
+                }
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
@@ -242,6 +267,7 @@ struct PlayView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 gm.stake()
                 bet = gm.bet
+                gm.setUpLiveTimer()
             }
         }
     }
@@ -255,6 +281,8 @@ struct PlayView: View {
         dillerDrop.aces = 0
         dillerDrop.dillerSum = 0
         gameMode = 1
+        gm.liveTimer?.cancel()
+        gm.setUpLiveTimer()
         withAnimation { gm.playerWin = false }
        // gm.remainingTime = 180
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -267,6 +295,7 @@ struct PlayView: View {
     }
     
     func checkWinner() {
+        gm.liveTimer?.cancel()
         if !gm.winnerDefined {
             if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
             // gameMode = -1
@@ -277,11 +306,14 @@ struct PlayView: View {
             gm.setUpAnimation(whoWin: "Casino wins!")
         } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
             print("PLAYER WIN")
+            gm.liveTimer?.cancel()
             gm.winnerDefined = true
             //  gameMode = -1
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 //  withAnimation() {
                 gm.playerWin = true
+                gm.setUpLiveTimer()
+               
                 // }
             }
         } else if dillerDrop.dillerSum == vm.botSum  {
@@ -297,7 +329,15 @@ struct PlayView: View {
     
     
     func standOrHit()  {
-        gm.isDeal = false
+        
+        if gm.isDeal {
+            gm.liveTimer?.cancel()
+            gm.setUpLiveTimer()
+            gm.isDeal = false
+        }
+      //  gm.isDeal = false
+    
+        
         if vm.draggedCards.count == 2 && vm.botSum == 21 && dillerDrop.draggedCards.count == 2  {
             if dillerDrop.dillerSum == 21 {
                 gm.setUpAnimation(whoWin: "Draw!")

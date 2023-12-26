@@ -93,7 +93,6 @@ struct RewardsView: View {
             .navigationBarHidden(true)
         }
         .preferredColorScheme(.dark)
-       
     }
       
 }

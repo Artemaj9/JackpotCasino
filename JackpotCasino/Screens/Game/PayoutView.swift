@@ -38,6 +38,7 @@ struct PayoutView: View {
                     .font(Font.custom("RobotoCondensed-Bold",size: 34))
                     .foregroundColor(.white)
                     .offset(y: 40)
+                
             
                   
                 Spacer()

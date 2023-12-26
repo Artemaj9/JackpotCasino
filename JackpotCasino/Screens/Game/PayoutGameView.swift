@@ -46,7 +46,11 @@ struct PayoutGameView: View {
                     .font(Font.custom("RobotoCondensed-Bold",size: 34))
                     .foregroundColor(.white)
                     .offset(y: 40)
-            
+                    .onChange(of: gameLogic.sum) { newValue in
+                        if  gameLogic.sum == userMoney {
+                            endFlag = true
+                        }
+                    }
                   
                 Spacer()
             }

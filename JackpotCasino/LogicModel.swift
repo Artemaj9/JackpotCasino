@@ -12,6 +12,12 @@ class LogicModel: ObservableObject {
     @Published var balance = 0
     @AppStorage("level") var level = 0
     @Published var count = 0
+    
+    // Animation end round
+    @Published var animCount = 0
+    @Published var isAnimationRound = false
+    @Published var showEndText = false
+    
     @Published var isRotating = false
     @Published var rotationIsOver = false
     
@@ -35,6 +41,8 @@ class LogicModel: ObservableObject {
     @Published var decision = -1
     
     private var cancellables = Set<AnyCancellable>()
+    
+    private var animTimer: AnyCancellable?
     
     func setupTimer() {
         Timer
@@ -72,6 +80,10 @@ class LogicModel: ObservableObject {
     func restartGame() {
         bet = 0
         isStand = false
+        // Отменяем таймеры
+//         for item in cancellables {
+//            item.cancel()
+//        }
         stake()
     }
     
@@ -99,6 +111,27 @@ class LogicModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func setUpAnimation() {
+        isAnimationRound = true
+         animTimer = Timer
+            .publish(every: 0.2, on: .main, in: .common)
+            .autoconnect()
+            .sink { [unowned self] _ in
+                self.animCount += 1
+                if animCount > 2 {
+                    showEndText = true
+                }
+                if animCount > 10 {
+                        showEndText = false
+                    }
+                if animCount > 14 {
+                    animCount = 0
+                    isAnimationRound = false
+                    self.animTimer?.cancel()
+                }
+            }
+        }
     
     func randomNumber(probabilities: [Double]) -> Int {
 

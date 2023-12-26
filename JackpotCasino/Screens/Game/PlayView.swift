@@ -58,11 +58,13 @@ struct PlayView: View {
                                                 gameMode = 1
                                             })
                                             .onTapGesture {
-                                                startGame()
+                                                withAnimation {
+                                                    startGame()
+                                                    gm.setUpAnimation()
+                                                }
                                             }
                                     }
-                                
-                            )
+)
                     if !gm.playerWin {
                         GameModeView(selected: $gameMode)
                             .environmentObject(gm)
@@ -132,12 +134,13 @@ struct PlayView: View {
                         .offset(x: -size.width * 0.08, y: size.height*0.38)
                     ZStack {
                         ForEach(dillerDrop.draggedCards.indices, id: \.self) { i in
-                            CardView(needToRotate: i == 0 ? false : true,image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
+                            CardView(needToRotate: (i == 0 && !gm.isStand) ? false : true,image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
                                 .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
                                 .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .bottomTrailing)
                                 .offset(x: size.width * -0.08, y: size.height*0.4)
                         }
                     }
+                    .id(gm.isStand)
                     .onChange(of: dillerDrop.draggedCards.count) { newValue in
                         vm.allDeckCards.shuffle()
                         dillerDrop.draggedCards.reverse()
@@ -192,9 +195,32 @@ struct PlayView: View {
                     .environmentObject(gm)
                     .transition(.move(edge: .bottom))
                     .onChange(of: endFlag) { newValue in
-                        print("OK")
+                        startGame()
+                        gm.playerWin = false
                     }
             }
+            Rectangle()
+                .frame(width: size.width, height: 100)
+                .foregroundColor(.black.opacity(0.5))
+                .cornerRadius(16, corners: [.topLeft, .topRight])
+                .overlay(
+                    VStack(alignment: .center) {
+                        Text("You're the man")
+                            .font(Font.custom("RobotoCondensed-Bold",size: 22))
+                        
+                        Text("Well done!")
+                            .font(Font.custom("RobotoCondensed-MediumItalic",size: 22))
+                            .foregroundColor(.white.opacity(0.9))
+                            //.multilineTextAlignment(.center)
+                           
+                    }
+                        .opacity(gm.showEndText ? 1 : 0)
+                        .animation(.easeIn, value: gm.showEndText)
+                )
+                .offset(y: size.height * 0.5)
+                .offset(y: gm.animCount == 0 ? 150 : 0)
+                .opacity(gm.animCount == 0 ? 0 : 1)
+                .animation(.spring(), value: gm.animCount)            
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
@@ -218,9 +244,9 @@ struct PlayView: View {
         dillerDrop.dillerSum = 0
         gameMode = 1
         withAnimation { gm.playerWin = false }
-        gm.remainingTime = 180
-        gm.countdown()
+       // gm.remainingTime = 180
         gm.restartGame()
+     //   gm.countdown()
     }
     
     func checkWinner() {
@@ -228,7 +254,11 @@ struct PlayView: View {
             print("DILLER WIN")
         } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
             print("PLAYER WIN")
-            gm.playerWin = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation() {
+                    gm.playerWin = true
+                }
+            }
         } else {
             print("DRAW")
         }

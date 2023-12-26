@@ -15,6 +15,7 @@ class GameViewModel: ObservableObject, DropDelegate {
     @Published var aces = 0
     @Published var draggedChips = [ChipModel]()
     
+    var userMoney = 0
     var initialChips: [ChipModel] = [ChipModel(id: UUID(), image: "chip1"), ChipModel(id: UUID(), image: "chip5"), ChipModel(id: UUID(), image: "chip100"), ChipModel(id: UUID(), image: "chip500")]
     
     func performDrop(info: DropInfo) -> Bool {
@@ -26,6 +27,12 @@ class GameViewModel: ObservableObject, DropDelegate {
                             withAnimation(.easeOut) {
                                 self.draggedChips.append(ChipModel(id: UUID(), image: "\(url!)"))
                                 self.sum += self.draggedChips.last?.number ?? 0
+                                if self.sum == self.userMoney {
+                                    print("URRRRAA!!")
+                                }
+                                if self.sum > self.userMoney {
+                                    print("GAME OVER, USER STEAL MONEY!")
+                                }
                             }
                         }
                     }

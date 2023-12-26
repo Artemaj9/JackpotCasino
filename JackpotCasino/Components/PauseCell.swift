@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PauseCell: View {
+    
+    var textMode: String
+    
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: 8)
@@ -23,7 +26,7 @@ struct PauseCell: View {
             VStack(alignment: .trailing) {
                 Text("Mode")
                     .font(Font.custom("RobotoCondensed-LightItalic",size: 14))
-                Text("Payout")
+                Text(textMode)
                     .font(Font.custom("RobotoCondensed-MediumItalic",size: 18))
             }
             .foregroundColor(.white)
@@ -38,7 +41,7 @@ struct PauseCell_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             BackgroundView()
-            PauseCell()
+            PauseCell(textMode: "Dealing")
         }
     }
 }

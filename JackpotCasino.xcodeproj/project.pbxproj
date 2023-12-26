@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC43BD332B3A2EDB008EE66D /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD322B3A2EDB008EE66D /* GameMode.swift */; };
+		AC43BD352B3A44E8008EE66D /* PayoutGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		AC43BD322B3A2EDB008EE66D /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutGameView.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				AC8022D72B38262A00715F1D /* PlayView.swift */,
 				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
+				AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */,
 				AC8022DF2B38762D00715F1D /* CardRotation */,
 				AC8022AF2B37731F00715F1D /* GameViewModel.swift */,
 				AC8022DB2B38346100715F1D /* CardDropDelegate.swift */,
@@ -505,6 +508,7 @@
 				ACA6350F2B3341DA001FCDE4 /* Color+Ext.swift in Sources */,
 				ACA32D1C2B32345400872C51 /* View+Border.swift in Sources */,
 				ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */,
+				AC43BD352B3A44E8008EE66D /* PayoutGameView.swift in Sources */,
 				AC874F222B33B18200036B28 /* RewardsView.swift in Sources */,
 				ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */,
 				AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */,

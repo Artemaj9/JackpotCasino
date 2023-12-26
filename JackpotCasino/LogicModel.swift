@@ -21,6 +21,13 @@ class LogicModel: ObservableObject {
     @Published var gameMode: GameMode = .Deal
     @Published var isDeal = false
     @Published var isGame = false
+    @Published var isStand = false
+    @Published var playerWin = false
+    @Published var remainingTime = 180
+    
+    
+    // hit, stand or double 0, 1, 2
+    @Published var decision = -1
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -59,13 +66,14 @@ class LogicModel: ObservableObject {
     }
     
     
-    func setupGameTimer() {
+    func countdown() {
         Timer
             .publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                count += 1
-                if count >= 180 && isGame  {
+                remainingTime -= 1
+                if remainingTime <= 0 && isGame  {
+                    print("TIME IS OVER!")
                     isGame = false
                     isDeal = false
                     bet = 0
@@ -77,5 +85,25 @@ class LogicModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    
+    
+    func randomNumber(probabilities: [Double]) -> Int {
+
+        // Sum of all probabilities (so that we don't have to require that the sum is 1.0):
+        let sum = probabilities.reduce(0, +)
+        // Random number in the range 0.0 <= rnd < sum :
+        let rnd = Double.random(in: 0.0 ..< sum)
+        // Find the first interval of accumulated probabilities into which `rnd` falls:
+        var accum = 0.0
+        for (i, p) in probabilities.enumerated() {
+            accum += p
+            if rnd < accum {
+                return i
+            }
+        }
+        // This point might be reached due to floating point inaccuracies:
+        return (probabilities.count - 1)
     }
 }

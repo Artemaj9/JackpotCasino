@@ -11,7 +11,7 @@ struct JackpotCasinoApp: App {
     
     var body: some Scene {
         WindowGroup {
-           ContentView()
+           PlayView()
                 .environmentObject(gameLogic)
         }
     }

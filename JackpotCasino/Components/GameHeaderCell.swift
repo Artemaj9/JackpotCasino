@@ -10,7 +10,8 @@ import SwiftUI
 struct GameHeaderCell: View {
     
     let image: String
-    @Binding var text: String
+    
+    var text: String
     var dashPhase: CGFloat = 0
     
     var body: some View {
@@ -57,8 +58,8 @@ struct GameHeaderCell_Previews: PreviewProvider {
         ZStack {
             BackgroundView()
             HStack {
-                GameHeaderCell(image: "heart", text: .constant("10"))
-                GameHeaderCell(image: "watches", text: .constant("03:00"))
+                GameHeaderCell(image: "heart", text: "10")
+                GameHeaderCell(image: "watches", text: "03:00")
             }
         }
     }

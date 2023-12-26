@@ -1,4 +1,10 @@
 //
+//  PayoutGameView.swift
+//  JackpotCasino
+//
+//  Created by Artem on 26.12.2023.
+//
+//
 //  PayoutView.swift
 //  JackpotCasino
 //
@@ -9,22 +15,22 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 private let chips = [1, 5, 100, 500]
-let columns: [GridItem] = [
-    GridItem(.flexible(), spacing: -30, alignment: nil),
-    GridItem(.flexible(), spacing: -40, alignment: nil),
-    GridItem(.flexible(), spacing: -50, alignment: nil),
-    GridItem(.flexible(), spacing: -50, alignment: nil),
-    GridItem(.flexible(), spacing: -70, alignment: nil),
-]
+////let columns: [GridItem] = [
+//    GridItem(.flexible(), spacing: -30, alignment: nil),
+//    GridItem(.flexible(), spacing: -40, alignment: nil),
+//    GridItem(.flexible(), spacing: -50, alignment: nil),
+//    GridItem(.flexible(), spacing: -50, alignment: nil),
+//    GridItem(.flexible(), spacing: -70, alignment: nil),
+//]
 
-struct PayoutView: View {
+struct PayoutGameView: View {
     
     @StateObject var gameLogic = GameViewModel()
-    @EnvironmentObject var gm: LogicModel
+    var userMoney: Int
     
     var body: some View {
         ZStack {
-            BackgroundView()
+           // BackgroundView()
             Image("table")
                 .resizable()
                 .offset(y: 150)
@@ -73,14 +79,6 @@ struct PayoutView: View {
                                 .offset(y: 100)
                         }
                     }
-                        .onChange(of: gameLogic.draggedChips.count) { newValue in
-                            if gameLogic.sum == gm.bet {
-                                print("URRA")
-                            }
-                            if gameLogic.sum > gm.bet {
-                                print("FAIILL!")
-                            }
-                        }
                     )
                 .padding()
                
@@ -113,13 +111,16 @@ struct PayoutView: View {
                 .offset(x: 158, y: -75)
     
         }
+        .onAppear {
+            gameLogic.userMoney = userMoney
+        }
         .preferredColorScheme(.dark)
     }
 }
 
 
-struct PayoutView_Previews: PreviewProvider {
+struct PayoutGameView_Previews: PreviewProvider {
     static var previews: some View {
-        PayoutView()
+        PayoutGameView(userMoney: 100)
     }
 }

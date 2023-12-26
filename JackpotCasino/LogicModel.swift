@@ -17,15 +17,19 @@ class LogicModel: ObservableObject {
     @Published var animCount = 0
     @Published var isAnimationRound = false
     @Published var showEndText = false
+    @Published var result = ""
+    @Published var praiseEndGame = ""
+    @Published var needToStartNewGame = false
     
     @Published var isRotating = false
     @Published var rotationIsOver = false
     
     
     
+    
     // Игра
     @Published var bet = 0
-    @Published var gameMode: GameMode = .Deal
+   // @Published var gameMode: GameMode = .Deal
     @Published var isDeal = false
     @Published var isGame = false
     @Published var isStand = false
@@ -80,6 +84,7 @@ class LogicModel: ObservableObject {
     func restartGame() {
         bet = 0
         isStand = false
+        needToStartNewGame = false
         // Отменяем таймеры
 //         for item in cancellables {
 //            item.cancel()
@@ -112,8 +117,10 @@ class LogicModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func setUpAnimation() {
+    func setUpAnimation(whoWin: String) {
         isAnimationRound = true
+        result = whoWin
+        praiseEndGame = praise.randomElement() ?? "Great job!"
          animTimer = Timer
             .publish(every: 0.2, on: .main, in: .common)
             .autoconnect()
@@ -125,9 +132,10 @@ class LogicModel: ObservableObject {
                 if animCount > 10 {
                         showEndText = false
                     }
-                if animCount > 14 {
+                if animCount > 12 {
                     animCount = 0
                     isAnimationRound = false
+                    needToStartNewGame = true
                     self.animTimer?.cancel()
                 }
             }

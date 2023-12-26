@@ -55,12 +55,13 @@ struct PlayView: View {
                                             .font(Font.custom("RobotoCondensed-Bold",size: 36))
                                             .animation(.easeInOut, value: gm.bet)
                                             .onChange(of: gm.bet, perform: { newValue in
-                                                gameMode = 1
+                                                
+                                                gameMode =  newValue == 0 ? 0 : 1
                                             })
                                             .onTapGesture {
                                                 withAnimation {
                                                     startGame()
-                                                    gm.setUpAnimation()
+                                                    gm.setUpAnimation(whoWin: "Debug win")
                                                 }
                                             }
                                     }
@@ -205,10 +206,10 @@ struct PlayView: View {
                 .cornerRadius(16, corners: [.topLeft, .topRight])
                 .overlay(
                     VStack(alignment: .center) {
-                        Text("You're the man")
+                        Text(gm.result)
                             .font(Font.custom("RobotoCondensed-Bold",size: 22))
                         
-                        Text("Well done!")
+                        Text(gm.praiseEndGame)
                             .font(Font.custom("RobotoCondensed-MediumItalic",size: 22))
                             .foregroundColor(.white.opacity(0.9))
                             //.multilineTextAlignment(.center)
@@ -216,11 +217,18 @@ struct PlayView: View {
                     }
                         .opacity(gm.showEndText ? 1 : 0)
                         .animation(.easeIn, value: gm.showEndText)
+                        .onChange(of: gm.needToStartNewGame, perform: { newValue in
+                            if gm.needToStartNewGame {
+                                withAnimation {
+                                    startGame()
+                                }
+                            }
+                        })
                 )
                 .offset(y: size.height * 0.5)
                 .offset(y: gm.animCount == 0 ? 150 : 0)
                 .opacity(gm.animCount == 0 ? 0 : 1)
-                .animation(.spring(), value: gm.animCount)            
+                .animation(.spring(), value: gm.animCount)
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
@@ -245,22 +253,36 @@ struct PlayView: View {
         gameMode = 1
         withAnimation { gm.playerWin = false }
        // gm.remainingTime = 180
-        gm.restartGame()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            gm.restartGame()
+            bet = gm.bet
+        }
+        
+  
      //   gm.countdown()
     }
     
     func checkWinner() {
         if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
-            print("DILLER WIN")
+           // gameMode = -1
+            print("DILLER WINS")
+            gm.bet = 0
+            bet = 0
+            gm.setUpAnimation(whoWin: "Casino wins!")
         } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
             print("PLAYER WIN")
+          //  gameMode = -1
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                withAnimation() {
+              //  withAnimation() {
                     gm.playerWin = true
-                }
+               // }
             }
         } else {
             print("DRAW")
+           // gameMode = -1
+            gm.bet = 0
+            bet = 0
+            gm.setUpAnimation(whoWin: "Draw!")
         }
     }
     
@@ -271,6 +293,7 @@ struct PlayView: View {
             gm.decision = gm.randomNumber(probabilities: [0.1, 0.9])
             if gm.decision == 0 {
                 print("I prefer to surrender!")
+                gm.setUpAnimation(whoWin: "Player surrender!")
                 gameMode = 0
             } else {
                 print("I have \(vm.botSum) and prefer HIT!!!")
@@ -352,6 +375,7 @@ struct PlayView: View {
         if vm.botSum > 21  {
             print("I'm loose my money")
             gameMode = -1
+            gm.setUpAnimation(whoWin: "Casino wins!")
         }
         
         if gm.isStand && dillerDrop.dillerSum > 16 {

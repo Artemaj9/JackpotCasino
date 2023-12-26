@@ -60,6 +60,6 @@ enum Articles {
 ]
 }
 
-let textEndGame = ["Bravo!", "Excellent job!", "Outstanding!", "Superb effort!", "Fantastic work!", "Impressive!", "Great job!", "Way to go!", "Splendid!", "Top-notch!"]
+let praise = ["Bravo!", "Excellent job!", "Outstanding!", "Superb effort!", "Fantastic work!", "Impressive!", "Great job!", "Way to go!", "Splendid!", "Top-notch!"]
 
 let article = [Articles.about, Articles.strategy, Articles.payouts, Articles.history,Articles.lifehacks,Articles.math,Articles.kinds, Articles.psychology]

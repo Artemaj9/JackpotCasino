@@ -13,7 +13,7 @@ struct PlayView: View {
     @StateObject var dillerDrop = DillerDropDelegate()
     @EnvironmentObject var gm: LogicModel
     @State var bet = 0
-    let tableRatio = 0.2
+    let tableRatio = 0.23
     
     @State var gameMode = -1
     @State var endFlag = false
@@ -30,14 +30,13 @@ struct PlayView: View {
                         }
                         })
             
-           
-                VStack(spacing: 40) {
+                VStack(spacing: 16) {
                     HStack(spacing: 30) {
                         GameHeaderCell(image: "heart", text: "10")
                         GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
                         PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
                     }
-                    .offset(y: 50)
+                   // .offset(y: 20)
 
                         RoundedRectangle(cornerRadius: 6)
                             .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
@@ -55,7 +54,7 @@ struct PlayView: View {
                                             .font(Font.custom("RobotoCondensed-Bold",size: 36))
                                             .animation(.easeInOut, value: gm.bet)
                                             .onChange(of: gm.bet, perform: { newValue in
-                                                
+//
                                                 gameMode =  newValue == 0 ? 0 : 1
                                             })
                                             .onTapGesture {
@@ -64,14 +63,15 @@ struct PlayView: View {
                                                     gm.setUpAnimation(whoWin: "Debug win")
                                                 }
                                             }
-                                    }
-)
+                                    })
+                            .offset(y: 8)
+                    
                     if !gm.playerWin {
                         GameModeView(selected: $gameMode)
                             .environmentObject(gm)
                     }
                 }
-                .offset(y: -size.height * 0.4)
+                .offset(y: gm.playerWin ? -size.height * 0.43 : -size.height * 0.38)
             
             if !gm.playerWin {
                 Image("table")
@@ -105,20 +105,21 @@ struct PlayView: View {
                     }
                     .onChange(of: vm.draggedCards.count) { newValue in
                         
-                       
-                        if !gm.isDeal {
-                            standOrHit()
-                        }
-                        
-                        if gm.isStand && dillerDrop.dillerSum > 16 {
-                            checkWinner()
-                        }
-                        
-                        if gm.isDeal {
-                            if newValue == 2 && dillerDrop.draggedCards.count == 2 {
-                                print("Success")
-                                gm.isDeal = false
+                        if newValue > 0 {
+                            if !gm.isDeal {
                                 standOrHit()
+                            }
+                            
+                            if gm.isStand && dillerDrop.dillerSum > 16 {
+                                checkWinner()
+                            }
+                            
+                            if gm.isDeal {
+                                if newValue == 2 && dillerDrop.draggedCards.count == 2 {
+                                    print("Success")
+                                    gm.isDeal = false
+                                    standOrHit()
+                                }
                             }
                         }
                     }
@@ -196,8 +197,10 @@ struct PlayView: View {
                     .environmentObject(gm)
                     .transition(.move(edge: .bottom))
                     .onChange(of: endFlag) { newValue in
-                        startGame()
-                        gm.playerWin = false
+                        //startGame()
+                        gm.setUpAnimation(whoWin: "Player wins!")
+                            //gm.playerWin = false
+                        
                     }
             }
             Rectangle()
@@ -219,9 +222,9 @@ struct PlayView: View {
                         .animation(.easeIn, value: gm.showEndText)
                         .onChange(of: gm.needToStartNewGame, perform: { newValue in
                             if gm.needToStartNewGame {
-                                withAnimation {
+                              //  withAnimation {
                                     startGame()
-                                }
+                               // }
                             }
                         })
                 )

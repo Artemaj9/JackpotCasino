@@ -119,6 +119,7 @@ class LogicModel: ObservableObject {
     
     func setUpAnimation(whoWin: String) {
         isAnimationRound = true
+        bet = 0
         result = whoWin
         praiseEndGame = praise.randomElement() ?? "Great job!"
          animTimer = Timer

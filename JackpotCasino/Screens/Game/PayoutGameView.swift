@@ -37,13 +37,14 @@ struct PayoutGameView: View {
                 .resizable()
                 .offset(y: 150)
             VStack() {
-                BrightButton(text: "CONTINUE", fontSize: 28)
-                    .padding(.horizontal, 64)
-                    .padding()
+//                BrightButton(text: "CONTINUE", fontSize: 28)
+//                    .padding(.horizontal, 64)
+//                    .padding()
              //   DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
-                    .padding(.horizontal, 84)
+                   // .padding(.horizontal, 84)
                 Text("DEBUG: \(gameLogic.sum)")
                     .font(Font.custom("RobotoCondensed-Bold",size: 34))
+                    .opacity(0)
                     .foregroundColor(.white)
                     .offset(y: 40)
                     .onChange(of: gameLogic.sum) { newValue in

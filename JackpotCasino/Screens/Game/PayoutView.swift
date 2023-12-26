@@ -74,10 +74,10 @@ struct PayoutView: View {
                         }
                     }
                         .onChange(of: gameLogic.draggedChips.count) { newValue in
-                            if gameLogic.sum == gm.bet {
+                            if gameLogic.sum == gameLogic.userMoney {
                                 print("URRA")
                             }
-                            if gameLogic.sum > gm.bet {
+                            if gameLogic.sum > gameLogic.userMoney {
                                 print("FAIILL!")
                             }
                         }

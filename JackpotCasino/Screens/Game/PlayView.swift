@@ -254,7 +254,7 @@ struct PlayView: View {
         }
         
         if vm.botSum >= 19 && vm.botSum < 21 {
-            gm.decision = gm.randomNumber(probabilities: [0.1, 0.9])
+            gm.decision = gm.randomNumber(probabilities: [0.01, 0.99])
             if gm.decision == 0 {
                 print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2

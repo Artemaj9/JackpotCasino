@@ -27,34 +27,38 @@ struct PayoutGameView: View {
     
     @StateObject var gameLogic = GameViewModel()
     @EnvironmentObject var gm: LogicModel
-    @Binding var userMoney: Int
+    
+    var userMoney: Int
     @Binding var endFlag: Bool
+    var coef: Double = 1
     
     var body: some View {
         ZStack {
-           // BackgroundView()
+           
             Image("table")
                 .resizable()
                 .offset(y: 150)
-            VStack() {
-//                BrightButton(text: "CONTINUE", fontSize: 28)
-//                    .padding(.horizontal, 64)
-//                    .padding()
-             //   DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
-                   // .padding(.horizontal, 84)
-                Text("DEBUG: \(gameLogic.sum)")
-                    .font(Font.custom("RobotoCondensed-Bold",size: 34))
-                    .opacity(0.0)
-                    .foregroundColor(.white)
-                    .offset(y: 40)
-                    .onChange(of: gameLogic.sum) { newValue in
-                        if  gameLogic.sum == userMoney {
-                            endFlag = true
-                        }
-                    }
-                  
+            VStack {
                 Spacer()
+                Text("State: \(gameLogic.state), summ: \(gameLogic.sum), endFlag: \(endFlag.description)")
+                    .foregroundColor(.pink)
+                    .font(.largeTitle)
+                    .id(gameLogic.sum)
+                    .background(
+                        GeometryReader { geo in
+                            Color.clear.onAppear {
+                                if gameLogic.sum == userMoney {
+                                    endFlag = true
+                                    gm.setUpAnimation(whoWin: "Player wins!")
+                                }
+                            }
+                        })
+                    
             }
+//
+//                .onChange(of: gameLogic.state) { newValue in
+//                    endFlag = true
+//                }
             VStack(spacing: 50) {
                 Spacer()
                 Spacer()
@@ -67,8 +71,6 @@ struct PayoutGameView: View {
                                 .font(Font.custom("RobotoCondensed-Bold",size: 64))
                                 .foregroundColor(.white.opacity(0.3))
                                 .offset(y: 35)
-                               // .padding(100)
-                   
                 }
                // .contentShape(Rectangle())
                 
@@ -86,8 +88,21 @@ struct PayoutGameView: View {
                                 .offset(y: 100)
                         }
                     }
+                       
                     )
                 .padding()
+            //    .id(gameLogic.sum)
+//                .onChange(of: gameLogic.sum) { newValue in
+//                    if  gameLogic.sum == userMoney {
+//                        endFlag = true
+//                    }
+//                }
+//                .onChange(of: gameLogic.state) { newValue in
+//                    if  gameLogic.sum == userMoney {
+//                        endFlag = true
+//                    }
+//                }
+                
                
                 
                 Spacer()
@@ -100,16 +115,11 @@ struct PayoutGameView: View {
                             .onDrag {
                                 NSItemProvider(item: .some(URL(string: String(chip.image))! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
                             }
-                           
-                          
                     }
                 }
+                .offset(y: -50)
             }
-            .onChange(of: gameLogic.draggedChips.count) { newValue in
-                if  gameLogic.sum == userMoney {
-                    endFlag = true
-                }
-            }
+            
             Image("timer")
                 .resizable()
                 .scaledToFit()
@@ -123,15 +133,18 @@ struct PayoutGameView: View {
     
         }
         .onAppear {
-            gameLogic.userMoney = userMoney
+            gameLogic.userMoney = Int(Double(userMoney) * coef)
+            gameLogic.state = 0
+            gameLogic.draggedChips = []
+            gameLogic.sum = 0
         }
         .preferredColorScheme(.dark)
     }
 }
 
-
-struct PayoutGameView_Previews: PreviewProvider {
-    static var previews: some View {
-        PayoutGameView(userMoney: .constant(100), endFlag: .constant(false))
-    }
-}
+//
+//struct PayoutGameView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        PayoutGameView(userMoney: .constant(100), endFlag: .constant(false))
+//    }
+//}

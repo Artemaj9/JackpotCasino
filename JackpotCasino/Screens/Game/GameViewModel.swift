@@ -16,6 +16,7 @@ class GameViewModel: ObservableObject, DropDelegate {
     @Published var draggedChips = [ChipModel]()
     @Published var endFlag = false
     @Published var userMoney = 0
+    @Published var state = 0
     
     var initialChips = [ChipModel(image: "chip1"), ChipModel(image: "chip5"), ChipModel(image: "chip100"), ChipModel(image: "chip500")]
     
@@ -25,16 +26,16 @@ class GameViewModel: ObservableObject, DropDelegate {
             if provider.canLoadObject(ofClass: URL.self) {
                 let _ = provider.loadObject(ofClass: URL.self) { (url, error) in
                         DispatchQueue.main.async {
-                            withAnimation(.easeOut) {
                                 self.draggedChips.append(ChipModel(id: UUID(), image: "\(url!)"))
-                                self.sum += self.draggedChips.last?.number ?? 0
+                                self.sum += self.draggedChips.last!.number 
                                 if self.sum == self.userMoney {
                                     print("URRRRAA!!")
+                                    self.state = 1
                                 }
                                 if self.sum > self.userMoney {
                                     print("GAME OVER, USER STEAL MONEY!")
+                                    self.state = -1
                                 }
-                            }
                         }
                     }
                 }

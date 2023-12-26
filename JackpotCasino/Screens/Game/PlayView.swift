@@ -125,8 +125,13 @@ struct PlayView: View {
                                 }
                             }
                         }
-                        if gm.isDouble {
-                            checkWinner()
+                        
+                        if gm.isDouble && !gm.notAbleToBring {
+                            gm.notAbleToBring = true
+                            gm.openDillerCards = true
+                            if dillerDrop.dillerSum > 16 {
+                                checkWinner()
+                            }
                         }
                     }
                 }
@@ -142,10 +147,11 @@ struct PlayView: View {
                         .offset(x: -size.width * 0.08, y: size.height*0.38)
                     ZStack {
                         ForEach(dillerDrop.draggedCards.indices, id: \.self) { i in
-                            CardView(needToRotate: (i == 0 && !gm.isStand && !gm.isDouble) ? false : true,image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
+                            CardView(needToRotate: i == 0 && !gm.isStand && !gm.openDillerCards ? false : true, image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
                                 .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
                                 .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .bottomTrailing)
                                 .offset(x: size.width * -0.08, y: size.height*0.4)
+                                .id(gm.openDillerCards)
                         }
                     }
                     .id(gm.isStand)
@@ -164,20 +170,9 @@ struct PlayView: View {
                             checkWinner()
                         }
                         
-//                        if gm.isStand && dillerDrop.dillerSum > 16 && dillerDrop.dillerSum <= 21 {
-//                            if dillerDrop.dillerSum > vm.botSum  {
-//                                print("DILLER WIN")
-//                            } else if dillerDrop.dillerSum < vm.botSum {
-//                                print("PLAYER WIN")
-//                                gm.playerWin = true
-//                            } else {
-//                                print("DRAW")
-//                                gm.playerWin = true
-//
-//                            }
-//                        }
-                        
-                        
+                        if gm.notAbleToBring && dillerDrop.dillerSum > 16 {
+                            checkWinner()
+                        }
                     }
                 }
                 .onDrop(of: [UTType.url], delegate: dillerDrop)
@@ -199,15 +194,13 @@ struct PlayView: View {
                         .offset(x: -size.width * 0.33, y: size.height * 0.15)
                 }
             } else {
-                PayoutGameView(userMoney: $bet, endFlag: $endFlag)
+                PayoutGameView(userMoney: bet, endFlag: $endFlag, coef: gm.isBlackJack ? 1.5 : 1)
                     .environmentObject(gm)
+                    //.id(endFlag)
                     .transition(.move(edge: .bottom))
-                    .onChange(of: endFlag) { newValue in
-                        //startGame()
-                        gm.setUpAnimation(whoWin: "Player wins!")
-                            //gm.playerWin = false
-                        
-                    }
+//                    .onChange(of: endFlag) { newValue in
+//                        gm.setUpAnimation(whoWin: "Player wins!")
+//                    }
             }
             Rectangle()
                 .frame(width: size.width, height: 100)
@@ -305,12 +298,22 @@ struct PlayView: View {
     
     func standOrHit()  {
         gm.isDeal = false
+        if vm.draggedCards.count == 2 && vm.botSum == 21 && dillerDrop.draggedCards.count == 2  {
+            if dillerDrop.dillerSum == 21 {
+                gm.setUpAnimation(whoWin: "Draw!")
+            } else {
+                gm.isBlackJack = true
+                gm.playerWin = true
+                gm.winnerDefined = true
+                print("BLACK JACK")
+            }
+        }
         
         if vm.botSum < 9 {
-            gm.decision = gm.randomNumber(probabilities: [0.2, 0.8])
+            gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
             if gm.decision == 0 {
                 print("I prefer to surrender!")
-                gm.setUpAnimation(whoWin: "Player surrender!")
+                gm.setUpAnimation(whoWin: "Player surrenders!")
                 gameMode = 0
             } else {
                 print("I have \(vm.botSum) and prefer HIT!!!")
@@ -327,6 +330,7 @@ struct PlayView: View {
                 gm.canDouble = false
                 withAnimation {
                     gm.bet = gm.bet * 2
+                    bet = bet * 2
                 }
                 return
             } else {

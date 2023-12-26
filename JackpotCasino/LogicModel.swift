@@ -38,6 +38,9 @@ class LogicModel: ObservableObject {
     @Published var isFired = false
     @Published var timerStopflag = false
     @Published var winnerDefined = false
+    @Published var notAbleToBring = false
+    @Published var isBlackJack = false
+    @Published var openDillerCards = false
     
     // hit, stand or double 0, 1, 2
     @Published var decision = -1
@@ -90,6 +93,9 @@ class LogicModel: ObservableObject {
         isWinEnd = false
         isFired = false
         timerStopflag = false
+        notAbleToBring = false
+        isBlackJack = false
+        openDillerCards = false
 
         // Отменяем таймеры
 //         for item in cancellables {

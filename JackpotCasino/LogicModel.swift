@@ -23,16 +23,13 @@ class LogicModel: ObservableObject {
     
     @Published var isRotating = false
     @Published var rotationIsOver = false
-    
-    
-    
-    
     // Игра
     @Published var bet = 0
    // @Published var gameMode: GameMode = .Deal
     @Published var isDeal = false
     @Published var isGame = false
     @Published var isStand = false
+    @Published var canDouble = true
     @Published var isDouble = false
     @Published var playerWin = false
     @Published var remainingTime = 180
@@ -40,6 +37,7 @@ class LogicModel: ObservableObject {
     @Published var isWinEnd = false
     @Published var isFired = false
     @Published var timerStopflag = false
+    @Published var winnerDefined = false
     
     // hit, stand or double 0, 1, 2
     @Published var decision = -1
@@ -85,6 +83,14 @@ class LogicModel: ObservableObject {
         bet = 0
         isStand = false
         needToStartNewGame = false
+        canDouble = true
+        winnerDefined = false
+        isDouble = false
+        playerWin = false
+        isWinEnd = false
+        isFired = false
+        timerStopflag = false
+
         // Отменяем таймеры
 //         for item in cancellables {
 //            item.cancel()

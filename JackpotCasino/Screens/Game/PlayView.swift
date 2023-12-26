@@ -36,7 +36,6 @@ struct PlayView: View {
                         GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
                         PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
                     }
-                   // .offset(y: 20)
 
                         RoundedRectangle(cornerRadius: 6)
                             .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
@@ -54,8 +53,12 @@ struct PlayView: View {
                                             .font(Font.custom("RobotoCondensed-Bold",size: 36))
                                             .animation(.easeInOut, value: gm.bet)
                                             .onChange(of: gm.bet, perform: { newValue in
-//
-                                                gameMode =  newValue == 0 ? 0 : 1
+                                                //
+                                                if newValue == 0 {
+                                                    gameMode = 0
+                                                } else if !gm.isDouble {
+                                                    gameMode = 1
+                                                }
                                             })
                                             .onTapGesture {
                                                 withAnimation {
@@ -83,7 +86,7 @@ struct PlayView: View {
                         .resizable()
                         .scaleEffect(0.5)
                 }
-                .offset(x: -size.width*0.25,y: size.height * 0.1)
+                .offset(x: -size.width*0.25,y: size.height * 0.12)
                 
                 ZStack {
                     Rectangle().frame(width:300, height: 300)
@@ -93,7 +96,7 @@ struct PlayView: View {
                     NeonRect(color: Color("redNeon"), shadow: Color("redNeon"), strokeCoeff: 0.5)
                         .frame(width: size.height * 0.23, height: size.height * 0.23)
                         .rotationEffect(Angle(degrees: 15))
-                        .offset(x: size.width * 0.19)
+                        .offset(x: size.width * 0.17, y: size.height * 0.02)
                     
                     ZStack {
                         ForEach(vm.draggedCards.indices, id: \.self) { i in
@@ -105,7 +108,7 @@ struct PlayView: View {
                     }
                     .onChange(of: vm.draggedCards.count) { newValue in
                         
-                        if newValue > 0 {
+                        if newValue > 0 && !gm.isDouble {
                             if !gm.isDeal {
                                 standOrHit()
                             }
@@ -122,6 +125,9 @@ struct PlayView: View {
                                 }
                             }
                         }
+                        if gm.isDouble {
+                            checkWinner()
+                        }
                     }
                 }
                 .onDrop(of: [UTType.url], delegate: vm)
@@ -136,7 +142,7 @@ struct PlayView: View {
                         .offset(x: -size.width * 0.08, y: size.height*0.38)
                     ZStack {
                         ForEach(dillerDrop.draggedCards.indices, id: \.self) { i in
-                            CardView(needToRotate: (i == 0 && !gm.isStand) ? false : true,image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
+                            CardView(needToRotate: (i == 0 && !gm.isStand && !gm.isDouble) ? false : true,image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
                                 .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
                                 .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .bottomTrailing)
                                 .offset(x: size.width * -0.08, y: size.height*0.4)
@@ -178,11 +184,11 @@ struct PlayView: View {
                 
                 
                 StatCell(title: "Player's Hand", color: Color("redNeon"), num: vm.botSum)
-                    .offset(x: -size.width * 0.34, y: -size.height*0.07)
+                    .offset(x: -size.width * 0.3, y: -size.height*0.05)
                 
                 StatCell(title: "Your's Hand", color: Color("freshBlueNeon"), num: dillerDrop.dillerSum, alignment: .trailing)
                 
-                    .offset(x: size.width * 0.34, y: size.height*0.25)
+                    .offset(x: size.width * 0.3, y: size.height*0.25)
                 
                 ZStack {
                     CardView(image: "CardBack", width: 70, height: 100)
@@ -252,6 +258,8 @@ struct PlayView: View {
         vm.draggedCards = []
         dillerDrop.draggedCards = []
         vm.botSum = 0
+        vm.aces = 0
+        dillerDrop.aces = 0
         dillerDrop.dillerSum = 0
         gameMode = 1
         withAnimation { gm.playerWin = false }
@@ -266,34 +274,40 @@ struct PlayView: View {
     }
     
     func checkWinner() {
-        if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
-           // gameMode = -1
+        if !gm.winnerDefined {
+            if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
+            // gameMode = -1
             print("DILLER WINS")
             gm.bet = 0
             bet = 0
+            gm.winnerDefined = true
             gm.setUpAnimation(whoWin: "Casino wins!")
         } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
             print("PLAYER WIN")
-          //  gameMode = -1
+            gm.winnerDefined = true
+            //  gameMode = -1
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-              //  withAnimation() {
-                    gm.playerWin = true
-               // }
+                //  withAnimation() {
+                gm.playerWin = true
+                // }
             }
-        } else {
+        } else if dillerDrop.dillerSum == vm.botSum  {
             print("DRAW")
-           // gameMode = -1
+            // gameMode = -1
+            gm.winnerDefined = true
             gm.bet = 0
             bet = 0
             gm.setUpAnimation(whoWin: "Draw!")
         }
     }
+    }
     
     
     func standOrHit()  {
+        gm.isDeal = false
         
         if vm.botSum < 9 {
-            gm.decision = gm.randomNumber(probabilities: [0.1, 0.9])
+            gm.decision = gm.randomNumber(probabilities: [0.2, 0.8])
             if gm.decision == 0 {
                 print("I prefer to surrender!")
                 gm.setUpAnimation(whoWin: "Player surrender!")
@@ -305,13 +319,16 @@ struct PlayView: View {
         }
         
         if vm.botSum >= 9 && vm.botSum < 12 {
-            gm.decision = gm.randomNumber(probabilities: [0.35, 0.65])
-            if gm.decision == 0 {
+            gm.decision = gm.randomNumber(probabilities: [0.95, 0.05])
+            if gm.decision == 0 && gm.canDouble {
                 print("I prefer to Double!")
                 gameMode = 4
+                gm.isDouble = true
+                gm.canDouble = false
                 withAnimation {
                     gm.bet = gm.bet * 2
                 }
+                return
             } else {
                 print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
@@ -375,6 +392,7 @@ struct PlayView: View {
             gameMode = 3
             gm.isStand = true
         }
+        
         if vm.botSum > 21  {
             print("I'm loose my money")
             gameMode = -1
@@ -384,7 +402,10 @@ struct PlayView: View {
         if gm.isStand && dillerDrop.dillerSum > 16 {
             checkWinner()
         }
+        
+        gm.canDouble = false
     }
+    
 }
 
 

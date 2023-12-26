@@ -13,14 +13,14 @@ struct GameHeaderCell: View {
     
     var text: String
     var dashPhase: CGFloat = 0
-    
+    var color = Color("lightPinkNeon")
     var body: some View {
    
         RoundedRectangle(cornerRadius: 6)
             .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
             .foregroundColor(Color("whitePink"))
-            .shadow(color: Color("lightPinkNeon"), radius: 4)
-            .shadow(color: Color("lightPinkNeon"), radius: 4)
+            .shadow(color: color, radius: 4)
+            .shadow(color: color, radius: 4)
             .overlay(
                 HStack(spacing: 0) {
                     Rectangle()
@@ -28,8 +28,8 @@ struct GameHeaderCell: View {
                         .frame(width: 36)
                         .cornerRadius(6, corners: [.bottomLeft, .topLeft])
                        
-                        .shadow(color: Color("lightPinkNeon"), radius: 4)
-                       .shadow(color: Color("lightPinkNeon"), radius: 2)
+                        .shadow(color: color, radius: 4)
+                       .shadow(color: color, radius: 2)
                         .overlay {
                             Image(image)
                                 .resizable()
@@ -39,7 +39,7 @@ struct GameHeaderCell: View {
                         }
                     Rectangle()
                         .fill(Color("pinkBg"))
-                        .shadow(color: Color("lightPinkNeon"), radius: 1, x: -5)
+                        .shadow(color: color, radius: 1, x: -5)
                         .cornerRadius(10, corners: [.bottomRight, .topRight])
                         .overlay {
                             Text(text)

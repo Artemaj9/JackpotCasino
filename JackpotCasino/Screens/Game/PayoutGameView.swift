@@ -44,7 +44,7 @@ struct PayoutGameView: View {
                    // .padding(.horizontal, 84)
                 Text("DEBUG: \(gameLogic.sum)")
                     .font(Font.custom("RobotoCondensed-Bold",size: 34))
-                    .opacity(0)
+                    .opacity(0.0)
                     .foregroundColor(.white)
                     .offset(y: 40)
                     .onChange(of: gameLogic.sum) { newValue in
@@ -105,7 +105,11 @@ struct PayoutGameView: View {
                     }
                 }
             }
-          
+            .onChange(of: gameLogic.draggedChips.count) { newValue in
+                if  gameLogic.sum == userMoney {
+                    endFlag = true
+                }
+            }
             Image("timer")
                 .resizable()
                 .scaledToFit()

@@ -18,7 +18,7 @@ struct DashedMenuBtn: View {
     @State var dashPhase: CGFloat = CGFloat(Int.random(in: -50...50))
     
     var body: some View {
-        StrokedNeonText(text: text, color: Color("greenMenu"), shadowColor: Color("greenMenuShadow"), size: 32, stroke: 0.1)
+        StrokedNeonText(text: text, color: Color("greenMenu"), shadowColor: Color("greenMenuShadow"), size: fontSize, stroke: 0.1)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 12)
@@ -32,13 +32,7 @@ struct DashedMenuBtn: View {
                     .shadow(color: Color.black.opacity(0.25), radius: 8)
                     .shadow(color: color, radius: 8)
                     .shadow(color: color, radius: 8)
-                 //   .shadow(color: color, radius: 4)
             }
-//            .onAppear {
-//                withAnimation(Animation.linear(duration: 60)) {
-//                    dashPhase = 200
-//                }
-//            }
     }
 }
 

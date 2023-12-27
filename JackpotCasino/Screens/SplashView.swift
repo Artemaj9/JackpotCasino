@@ -11,6 +11,14 @@ struct SplashView: View {
     var body: some View {
         ZStack {
             BackgroundView()
+                .background(
+                    GeometryReader() { geo in
+                        Color.clear.onAppear {
+                            vm.size = geo.size
+                            print("width splash:  \(vm.size.width)")
+                            print("height splash: \(vm.size.height)")
+                        }
+                    })
             LogoView()
         }
         .onAppear {

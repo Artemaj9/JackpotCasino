@@ -30,6 +30,10 @@ struct ContentView: View {
         }
         .onAppear {
             gameLogic.firstStart = true
+            gameLogic.lives = 10
+            gameLogic.record = 0
+            gameLogic.balance = 0
+            gameLogic.level = 0
         }
     }
 }

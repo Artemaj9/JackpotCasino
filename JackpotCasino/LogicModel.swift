@@ -8,11 +8,15 @@ import Combine
 class LogicModel: ObservableObject {
     
     @AppStorage("firstStart") var firstStart = true
-    @Published var isSplash = true
-    @Published var balance = 0
     @AppStorage("level") var level = 0
-    @Published var count = 0
     @AppStorage("record") var record = 0
+    @AppStorage("lives") var lives = 10
+    @AppStorage("balance") var balance = 0
+    
+    @Published var isSplash = true
+    //@Published var balance = 0
+    @Published var count = 0
+
     
     // Animation end round
     @Published var animCount = 0
@@ -36,7 +40,7 @@ class LogicModel: ObservableObject {
     @Published var isLoosed = false
     @Published var playerWin = false
     @Published var remainingTime = 180
-    @Published var lives = 1
+    //@Published var lives = 1
     @Published var isWinEnd = false
     @Published var isFired = false
     @Published var timerStopflag = false
@@ -52,6 +56,10 @@ class LogicModel: ObservableObject {
     
     // hit, stand or double 0, 1, 2
     @Published var decision = -1
+    
+    @Published var size: CGSize = .zero
+    
+    
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -90,7 +98,8 @@ class LogicModel: ObservableObject {
     
     
     func stake() {
-        bet = [100, 500, 1000, 1500, 2000, 2500, 3000].randomElement()!
+        bet = 100
+        //bet = [2, 10, 100, 500, 1000, 1500, 2000, 2500, 3000].randomElement()!
         isGame = true
         isDeal = true
     }
@@ -133,11 +142,12 @@ class LogicModel: ObservableObject {
                         self.showEndText = false
                         if balance >= 2500 {
                             self.isLoosed = true
+                            cancelAllTimers()
                         } else {
                             self.isFired = true
+                            cancelAllTimers()
                         }
                     }
-                    cancelAllTimers()
                     self.liveTimer?.cancel()
                 }
             }
@@ -244,6 +254,28 @@ class LogicModel: ObservableObject {
             item.cancel()
         }
         
+    }
+
+    func resetToDefault() {
+       // cancelAllTimers()
+        animCount = 0
+        bet = 0
+        isDeal = false
+        isGame = false
+        isStand = false
+        canDouble = true
+        isDouble = false
+        isLoosed = false
+        playerWin = false
+        remainingTime = 180
+        isWinEnd = false
+        isFired = false
+        timerStopflag = false
+        winnerDefined = false
+        notAbleToBring = false
+        isBlackJack = false
+        openDillerCards = false
+        deadTimerCount = 0
     }
     
     func randomNumber(probabilities: [Double]) -> Int {

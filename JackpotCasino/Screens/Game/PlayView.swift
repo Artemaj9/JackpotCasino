@@ -50,7 +50,7 @@ struct PlayView: View {
                         RoundedRectangle(cornerRadius: 6)
                             .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
                             .foregroundColor(Color("whitePink"))
-                            .frame(width: 200, height: size.width < 380 ? 35 : 50)
+                            .frame(width: 200, height: gm.size.width < 380 ? 35 : 50)
                             .shadow(color: Color("lightPinkNeon"), radius: 4)
                             .shadow(color: Color("lightPinkNeon"), radius: 4)
                             .overlay(
@@ -60,7 +60,7 @@ struct PlayView: View {
                                     .overlay {
                                         Text(String(gm.bet))
                                             .foregroundColor(.white)
-                                            .font(Font.custom("RobotoCondensed-Bold",size: size.width < 380 ? 32 : 36))
+                                            .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
                                             .animation(.easeInOut, value: gm.bet)
                                             .onChange(of: gm.bet, perform: { newValue in
                                                 //
@@ -84,7 +84,7 @@ struct PlayView: View {
                             .environmentObject(gm)
                     }
                 }
-                .offset(y: gm.playerWin ? -size.height * 0.43 : -size.height * 0.34)
+                .offset(y: gm.playerWin ? -gm.size.height * 0.4 : -gm.size.height * 0.37)
             
             if !gm.playerWin {
                 Image("table")
@@ -142,13 +142,17 @@ struct PlayView: View {
                             }
                         }
                         
-                        if gm.isDouble && !gm.notAbleToBring {
+                        if gm.isDouble && gm.notAbleToBring {
                             gm.notAbleToBring = true
                             gm.openDillerCards = true
                             if dillerDrop.dillerSum > 16 {
                                 checkWinner()
                             }
                         }
+                            if gm.isDouble && vm.draggedCards.count == 4 {
+                                gm.setUpDeadTimer()
+                                gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
+                            }
                     }
                 }
                 }
@@ -191,8 +195,12 @@ struct PlayView: View {
                                 standOrHit()
                             }
                         }
+                  
                         
-                   
+                        if gm.isDouble && !gm.notAbleToBring {
+                            gm.setUpDeadTimer()
+                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
+                        }
                         
                         if gm.isStand && dillerDrop.dillerSum > 16 {
                             checkWinner()
@@ -224,14 +232,9 @@ struct PlayView: View {
             } else {
                 PayoutGameView(userMoney: bet, endFlag: $endFlag, coef: gm.isBlackJack ? 1.5 : 1)
                     .environmentObject(gm)
-                    //.id(endFlag)
-                    .transition(.move(edge: .bottom))
-//                    .onChange(of: endFlag) { newValue in
-//                        gm.setUpAnimation(whoWin: "Player wins!")
-//                    }
             }
             Rectangle()
-                .frame(width: size.width, height: size.height/8)
+                .frame(width: size.width, height: size.height/8.2)
                 .foregroundColor(.black.opacity(0.5))
                 .cornerRadius(16, corners: [.topLeft, .topRight])
                 .overlay(
@@ -305,9 +308,10 @@ struct PlayView: View {
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
         .onAppear {
+            gm.resetToDefault()
             vm.addCards()
             vm.allDeckCards.shuffle()
-            gm.remainingTime = 18
+            gm.remainingTime = 180
             gm.countdown()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 gm.stake()
@@ -380,7 +384,6 @@ struct PlayView: View {
             gm.setUpLiveTimer()
             gm.isDeal = false
         }
-      //  gm.isDeal = false
     
         
         if vm.draggedCards.count == 2 && vm.botSum == 21 && dillerDrop.draggedCards.count == 2  {
@@ -396,7 +399,7 @@ struct PlayView: View {
         
         if vm.botSum < 9 {
             gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
-            if gm.decision == 0 {
+            if gm.decision == 0 && vm.draggedCards.count == 2 {
                 print("I prefer to surrender!")
                 gm.setUpAnimation(whoWin: "Player surrenders!")
                 gameMode = 0
@@ -407,17 +410,19 @@ struct PlayView: View {
         }
         
         if vm.botSum >= 9 && vm.botSum < 12 {
-            gm.decision = gm.randomNumber(probabilities: [0.95, 0.05])
-            if gm.decision == 0 && gm.canDouble {
+            gm.decision = gm.randomNumber(probabilities: [0.3, 0.7])
+            if gm.decision == 0 && gm.canDouble && vm.draggedCards.count == 2 {
                 print("I prefer to Double!")
                 gameMode = 4
+                gm.isDeal = false
+                gm.isStand = false
                 gm.isDouble = true
                 gm.canDouble = false
                 withAnimation {
                     gm.bet = gm.bet * 2
                     bet = bet * 2
                 }
-                return
+              //  return
             } else {
                 print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2

@@ -25,13 +25,15 @@ struct PayoutGameView: View {
     
     var body: some View {
         ZStack {
+        
             Image("table")
                 .resizable()
                 .offset(y: 150)
+
             VStack {
                 Spacer()
                 Text("State: \(gameLogic.state), summ: \(gameLogic.sum), endFlag: \(endFlag.description)")
-                    .foregroundColor(.pink)
+                    .foregroundColor(.clear)
                     .font(.largeTitle)
                     .id(gameLogic.sum)
                     .background(
@@ -41,9 +43,14 @@ struct PayoutGameView: View {
                                     endFlag = true
                                     gm.setUpAnimation(whoWin: "Player wins!")
                                 }
+                                
+                                if gameLogic.sum > userMoney {
+                                    gm.liveTimer?.cancel()
+                                    gm.setUpAnimation(whoWin: "User stole casino money!", isTimeOut: true)
+                                    gm.setUpDeadTimer()
+                                }
                             }
                         })
-                    
             }
             
             VStack(spacing: 50) {
@@ -76,18 +83,6 @@ struct PayoutGameView: View {
                        
                     )
                 .padding()
-            //    .id(gameLogic.sum)
-//                .onChange(of: gameLogic.sum) { newValue in
-//                    if  gameLogic.sum == userMoney {
-//                        endFlag = true
-//                    }
-//                }
-//                .onChange(of: gameLogic.state) { newValue in
-//                    if  gameLogic.sum == userMoney {
-//                        endFlag = true
-//                    }
-//                }
-                
                
                 
                 Spacer()

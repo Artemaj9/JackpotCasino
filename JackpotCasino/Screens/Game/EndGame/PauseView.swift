@@ -48,6 +48,8 @@ struct PauseView: View {
                         .padding(40)
                     }
                     Button {
+                        gm.isPaused = false
+                        gm.cancelAllTimers()
                         dismiss()
                     } label: {
                         DashedButton(color: Color( "lightBlueNeon"), text: "TO MENU", padding: 12, fontSize: 24, font: Font.custom("RobotoCondensed-Medium", size: 27))

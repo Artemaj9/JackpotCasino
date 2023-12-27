@@ -23,6 +23,7 @@ class LogicModel: ObservableObject {
     
     @Published var isRotating = false
     @Published var rotationIsOver = false
+    @Published var isPaused = false
     
     // Игра
     @Published var bet = 0
@@ -61,7 +62,9 @@ class LogicModel: ObservableObject {
             .publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                count += 1
+                if !isPaused {
+                    count += 1
+                }
                 if count >= 8 && isRotating  {
                     isRotating = false
                     withAnimation { rotationIsOver = true }
@@ -78,6 +81,7 @@ class LogicModel: ObservableObject {
                     }
                     count = 0
                 }
+                    
             }
             .store(in: &cancellables)
     }
@@ -118,7 +122,9 @@ class LogicModel: ObservableObject {
             .publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                self.liveTimerCount += 1
+                if !isPaused {
+                    self.liveTimerCount += 1
+                }
                 if self.liveTimerCount >= 150 {
                     if self.lives > 1 {
                         self.lives -= 1
@@ -137,7 +143,9 @@ class LogicModel: ObservableObject {
             .publish(every: 0.01, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                self.deadTimerCount += 1
+                if !isPaused {
+                    self.deadTimerCount += 1
+                }
                 if self.deadTimerCount >= 200 {
                     if self.lives > 1 {
                         withAnimation {
@@ -157,7 +165,9 @@ class LogicModel: ObservableObject {
             .publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                remainingTime -= 1
+                if !isPaused {
+                    remainingTime -= 1
+                }
                 if (remainingTime <= 0 && isGame && lives > 0)  || timerStopflag {
                     
                     print("TIME IS OVER!")
@@ -188,18 +198,20 @@ class LogicModel: ObservableObject {
             .publish(every: 0.2, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                self.animCount += 1
-                if animCount > 2 {
-                    showEndText = true
-                }
-                if animCount > 10 {
+                if !isPaused {
+                    self.animCount += 1
+                    if animCount > 2 {
+                        showEndText = true
+                    }
+                    if animCount > 10 {
                         showEndText = false
                     }
-                if animCount > 12 {
-                    animCount = 0
-                    isAnimationRound = false
-                    needToStartNewGame = true
-                    self.animTimer?.cancel()
+                    if animCount > 12 {
+                        animCount = 0
+                        isAnimationRound = false
+                        needToStartNewGame = true
+                        self.animTimer?.cancel()
+                    }
                 }
             }
         }

@@ -8,16 +8,44 @@
 import SwiftUI
 
 struct PauseView: View {
+    @State var size: CGSize = .zero
+    @EnvironmentObject var gm: LogicModel
+    
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
                 .ignoresSafeArea()
+                .background(
+                    GeometryReader() { geo in
+                        Color.clear.onAppear {
+                            self.size = geo.size
+                            print("width:  \(size.width)")
+                            print("height: \(size.height)")
+                        }
+                        })
+            VStack {
+                
+                StrokedBgRect(lightningColor: Color("greenEndNeon"),
+                              angle:.degrees(40), axis: (1, 1, -1))
+                
+                .scaleEffect(0.8)
+                .offset(x: 90, y: 0)
+                StrokedBgRect(lightningColor: Color("yellowEndNeon"), angle:.degrees(90), axis: (1, 0.8, 1))
+                    .scaleEffect(0.95)
+                    .offset(x: -50, y: -200)
+            }
+            .offset(y: -100)
+            
             VStack {
                 VStack {
                     StrokedNeonText(text: "PAUSE", color: Color("purpleText"), shadowColor: Color("purpleText"), size: 100)
                         .padding(.top)
-                    BrightButton(text: "BACK TO GAME", fontSize: 42)
+                    Button {
+                        gm.isPaused = false
+                    } label: {
+                        BrightButton(text: "BACK TO GAME", fontSize: size.width < 380  ? 34 : 42)
                         .padding(40)
+                    }
                     Button {
                        // dismiss()
                     } label: {

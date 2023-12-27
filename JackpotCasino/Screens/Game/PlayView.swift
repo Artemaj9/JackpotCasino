@@ -29,6 +29,7 @@ struct PlayView: View {
                             print("height: \(size.height)")
                         }
                         })
+           
             
                 VStack(spacing: 16) {
                     HStack(spacing: 30) {
@@ -39,7 +40,11 @@ struct PlayView: View {
                             .saturation(0.5 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1) + 1) 
                           //  .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
                         GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
-                        PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
+                        Button {
+                            gm.isPaused = true
+                        } label: {
+                            PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
+                        }
                     }
 
                         RoundedRectangle(cornerRadius: 6)
@@ -275,6 +280,17 @@ struct PlayView: View {
 
                     }
                 }
+            //FiredView()
+           // LooseView()
+            if gm.isPaused {
+                PauseView()
+                    .environmentObject(gm)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .bottom),
+                        removal: .slide))
+            }
+            
+            // GoodJobView()
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)

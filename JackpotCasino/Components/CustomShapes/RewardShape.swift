@@ -1,5 +1,5 @@
 //
-//  AwardShape.swift
+//  RewardShape.swift
 //
 
 import SwiftUI

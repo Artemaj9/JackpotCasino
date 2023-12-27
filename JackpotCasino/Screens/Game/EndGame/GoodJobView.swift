@@ -12,6 +12,7 @@ struct GoodJobView: View {
     @EnvironmentObject var gm: LogicModel
     @Environment(\.dismiss) var dismiss
     @State var rotation: Angle = .degrees(0)
+    @State var opacity: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -55,6 +56,9 @@ struct GoodJobView: View {
                         HStack() {
                             StrokedNeonText(text: "2000", color: Color("cherryColor"), shadowColor: Color("cherryColor").opacity(0.4), size: 74)
                                 .offset(x: 16)
+                            
+                        
+                               
                             Image("coin")
                                 .rotation3DEffect(rotation, axis: (x: 0, y: 1, z: 0))
                                 .onTapGesture {
@@ -66,6 +70,7 @@ struct GoodJobView: View {
                                 
                             
                         }
+                            .opacity(opacity)
                             
                     )
                 Button {
@@ -82,6 +87,10 @@ struct GoodJobView: View {
         .onAppear {
             withAnimation(.easeIn(duration: 1)) {
                 rotation = .degrees(360)
+            
+            }
+            withAnimation(.easeIn(duration: 0.4).delay(0.3)) {
+                opacity = 1
             }
         }
     }

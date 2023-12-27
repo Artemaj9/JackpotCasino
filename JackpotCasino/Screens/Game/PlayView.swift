@@ -13,7 +13,7 @@ struct PlayView: View {
     @StateObject var dillerDrop = DillerDropDelegate()
     @EnvironmentObject var gm: LogicModel
     @State var bet = 0
-    let tableRatio = 0.23
+    let tableRatio = 0.21
     
     @State var gameMode = -1
     @State var endFlag = false
@@ -25,8 +25,8 @@ struct PlayView: View {
                     GeometryReader() { geo in
                         Color.clear.onAppear {
                             self.size = geo.size
-                            print("width:  \(size.width)")
-                            print("height: \(size.height)")
+                            print("width Play:  \(size.width)")
+                            print("height Play: \(size.height)")
                         }
                         })
            
@@ -50,7 +50,7 @@ struct PlayView: View {
                         RoundedRectangle(cornerRadius: 6)
                             .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
                             .foregroundColor(Color("whitePink"))
-                            .frame(width: 200, height: 50)
+                            .frame(width: 200, height: size.width < 380 ? 35 : 50)
                             .shadow(color: Color("lightPinkNeon"), radius: 4)
                             .shadow(color: Color("lightPinkNeon"), radius: 4)
                             .overlay(
@@ -60,7 +60,7 @@ struct PlayView: View {
                                     .overlay {
                                         Text(String(gm.bet))
                                             .foregroundColor(.white)
-                                            .font(Font.custom("RobotoCondensed-Bold",size: 36))
+                                            .font(Font.custom("RobotoCondensed-Bold",size: size.width < 380 ? 32 : 36))
                                             .animation(.easeInOut, value: gm.bet)
                                             .onChange(of: gm.bet, perform: { newValue in
                                                 //
@@ -84,12 +84,12 @@ struct PlayView: View {
                             .environmentObject(gm)
                     }
                 }
-                .offset(y: gm.playerWin ? -size.height * 0.43 : -size.height * 0.38)
+                .offset(y: gm.playerWin ? -size.height * 0.43 : -size.height * 0.34)
             
             if !gm.playerWin {
                 Image("table")
                     .resizable()
-                    .offset(y: tableRatio * size.height)
+                    .offset(y: size.width < 380 ?  tableRatio * size.height * 1.15 : tableRatio * size.height)
                 
                 ZStack {
                     Image("carddeck")
@@ -231,7 +231,7 @@ struct PlayView: View {
 //                    }
             }
             Rectangle()
-                .frame(width: size.width, height: 100)
+                .frame(width: size.width, height: size.height/8)
                 .foregroundColor(.black.opacity(0.5))
                 .cornerRadius(16, corners: [.topLeft, .topRight])
                 .overlay(
@@ -255,8 +255,8 @@ struct PlayView: View {
                             }
                         })
                 )
-                .offset(y: size.height * 0.5)
-                .offset(y: gm.animCount == 0 ? 150 : 0)
+                .offset(y: size.height * 0.45)
+                .offset(y: gm.animCount == 0 ? 150 : -10)
                 .opacity(gm.animCount == 0 ? 0 : 1)
                 .animation(.spring(), value: gm.animCount)
             

@@ -10,6 +10,8 @@ import SwiftUI
 struct LooseView: View {
     @State var size: CGSize = .zero
     @EnvironmentObject var gm: LogicModel
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
@@ -34,11 +36,25 @@ struct LooseView: View {
                         .font(Font.custom("RobotoCondensed-Bold", size: 24))
                     StrokedNeonText(text: "DO YOU WANT TO CONTINUE?", color: Color("purpleText"), shadowColor: Color("purpleText"), size: 46)
                         //.padding(.top)
-                    BrightButton(text: "CONTINUE FOR 2500", fontSize: size.width < 380 ? 27 : 33)
-                        .padding([.horizontal, .bottom] , 44)
-                        .padding(.top, 16)
                     Button {
-                       // dismiss()
+                        gm.balance -= 2500
+                        gm.lives = 5
+                        gm.needToStartNewGame = true
+                        gm.remainingTime = 180
+                        gm.countdown()
+                        
+                        gm.isLoosed = false
+                    } label: {
+                        BrightButton(text: "CONTINUE FOR 2500", fontSize: size.width < 380 ? 27 : 33)
+                            .padding([.horizontal, .bottom] , 44)
+                            .padding(.top, 16)
+                    }
+                 
+                    Button {
+                        gm.record = max(gm.record, gm.level)
+                        gm.level = 0
+                        gm.lives = 10
+                        dismiss()
                     } label: {
                         DashedButton(color: Color( "lightBlueNeon"), text: "TO MENU", padding: 12, fontSize: 27, font: Font.custom("RobotoCondensed-Medium", size: 27))
                     }
@@ -46,6 +62,9 @@ struct LooseView: View {
                     .padding(.horizontal, 24)
                 }
            .padding()
+        }
+        .onAppear {
+            gm.cancelAllTimers()
         }
     }
 }

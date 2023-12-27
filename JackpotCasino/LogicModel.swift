@@ -12,6 +12,7 @@ class LogicModel: ObservableObject {
     @Published var balance = 0
     @AppStorage("level") var level = 0
     @Published var count = 0
+    @AppStorage("record") var record = 0
     
     // Animation end round
     @Published var animCount = 0
@@ -32,9 +33,10 @@ class LogicModel: ObservableObject {
     @Published var isStand = false
     @Published var canDouble = true
     @Published var isDouble = false
+    @Published var isLoosed = false
     @Published var playerWin = false
     @Published var remainingTime = 180
-    @Published var lives = 10
+    @Published var lives = 1
     @Published var isWinEnd = false
     @Published var isFired = false
     @Published var timerStopflag = false
@@ -107,11 +109,8 @@ class LogicModel: ObservableObject {
         notAbleToBring = false
         isBlackJack = false
         openDillerCards = false
-
-        // Отменяем таймеры
-//         for item in cancellables {
-//            item.cancel()
-//        }
+        isLoosed = false
+       // cancelAllTimers()
         stake()
     }
     
@@ -129,8 +128,16 @@ class LogicModel: ObservableObject {
                     if self.lives > 1 {
                         self.lives -= 1
                     } else {
-                        self.isFired = true
+                        self.lives -= 1
+                        self.needToStartNewGame = false
+                        self.showEndText = false
+                        if balance >= 2500 {
+                            self.isLoosed = true
+                        } else {
+                            self.isFired = true
+                        }
                     }
+                    cancelAllTimers()
                     self.liveTimer?.cancel()
                 }
             }
@@ -152,7 +159,17 @@ class LogicModel: ObservableObject {
                             self.lives -= 1
                         }
                     } else {
-                        self.isFired = true
+                        self.needToStartNewGame = false
+                        self.showEndText = false
+                        withAnimation {
+                            self.lives -= 1
+                        }
+                        if balance >= 2500 {
+                            self.isLoosed = true
+                        } else {
+                            self.isFired = true
+                        }
+                       cancelAllTimers()
                     }
                     deadTimerCount = 0
                     self.deadTimer?.cancel()
@@ -171,12 +188,16 @@ class LogicModel: ObservableObject {
                 if (remainingTime <= 0 && isGame && lives > 0)  || timerStopflag {
                     
                     print("TIME IS OVER!")
+                   
                     isGame = false
                     isDeal = false
                     isWinEnd = true
+                    
                     level += 1
+                    record = max(record, level)
                     bet = 0
                     count = 0
+                    cancelAllTimers()
                     // GAME OVER
                     for item in cancellables {
                         item.cancel()
@@ -215,6 +236,15 @@ class LogicModel: ObservableObject {
                 }
             }
         }
+    func cancelAllTimers() {
+        liveTimer?.cancel()
+        deadTimer?.cancel()
+        animTimer?.cancel()
+        for item in cancellables {
+            item.cancel()
+        }
+        
+    }
     
     func randomNumber(probabilities: [Double]) -> Int {
 

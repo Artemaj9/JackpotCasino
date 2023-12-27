@@ -7,11 +7,13 @@ import SwiftUI
 struct MenuView: View {
     
     @EnvironmentObject var vm: LogicModel
+    @State var rotation: Angle = .degrees(0)
     
     var body: some View {
         NavigationView {
             ZStack {
                 BackgroundView()
+                    .ignoresSafeArea()
                 Rectangle()
                     .fill(Color("infoRibbon").opacity(0.08))
                     .frame(width: 25)
@@ -38,7 +40,15 @@ struct MenuView: View {
                                     Image("coin")
                                         .resizable()
                                         .scaledToFit()
+                                        .rotation3DEffect(rotation, axis: (x: 0, y: 1, z: 0))
+                                        .onTapGesture {
+                                            withAnimation {
+                                               
+                                                rotation =  rotation == .degrees(0) ? .degrees(360) : .degrees(0)
+                                            }
+                                        }
                                 }
+                                .offset(x: 16)
                             }
                         NavigationLink {
                             InfoWelcome()
@@ -79,7 +89,7 @@ struct MenuView: View {
                     .offset(y: 20)
                     
                     NavigationLink {
-                        PlayView()
+                        PlayView().edgesIgnoringSafeArea(.all)
                     } label: {
                         BrightButton(text: "PLAY", fontSize: 34)
                             .padding(.horizontal, 64)
@@ -109,9 +119,16 @@ struct MenuView: View {
                     Spacer()
                 }
                 }
+            .onAppear {
+                withAnimation(.easeIn(duration: 1)) {
+                    
+                    rotation =  rotation == .degrees(0) ? .degrees(360) : .degrees(0)
+                }
+            }
             .preferredColorScheme(.dark)
         }
         .navigationViewStyle(.stack)
+        .navigationBarHidden(true)
     }
 }
 

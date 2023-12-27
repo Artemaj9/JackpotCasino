@@ -280,24 +280,34 @@ struct PlayView: View {
 
                     }
                 }
-            //FiredView()
-           // LooseView()
-            if gm.isPaused {
-                PauseView()
-                    .environmentObject(gm)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .bottom),
-                        removal: .slide))
-            }
-            
-            // GoodJobView()
+                if gm.isPaused {
+                    PauseView()
+                        .environmentObject(gm)
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .bottom),
+                            removal: .slide))
+                }
+                            if gm.isWinEnd {
+                                 GoodJobView()
+                                    .environmentObject(gm)
+                            }
+                
+                            if gm.isLoosed {
+                                LooseView()
+                                    .environmentObject(gm)
+                            }
+                
+                            if gm.isFired {
+                                FiredView()
+                                    .environmentObject(gm)
+                            }
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
         .onAppear {
             vm.addCards()
             vm.allDeckCards.shuffle()
-            gm.remainingTime = 180
+            gm.remainingTime = 18
             gm.countdown()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 gm.stake()
@@ -484,7 +494,6 @@ struct PlayView: View {
         
         gm.canDouble = false
     }
-    
 }
 
 

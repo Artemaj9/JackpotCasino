@@ -10,6 +10,7 @@ import SwiftUI
 struct FiredView: View {
     
     @EnvironmentObject var gm: LogicModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -32,9 +33,20 @@ struct FiredView: View {
                 VStack(spacing: 0) {
                     StrokedNeonText(text: "YOU FIRED!", color: Color("cherryColor"), shadowColor: Color("cherryColor").opacity(0.4), size: 74)
                         .padding(.top)
-                    BrightButton(text: "TO MENU", fontSize: 42)
-                        .padding(.horizontal, 40)
+                    Button {
+                        gm.isFired = false
+                        gm.record = max(gm.record, gm.level)
+                        gm.level = 0
+                        gm.lives = 10
+                        dismiss()
+                    } label: {
+                        BrightButton(text: "TO MENU", fontSize: 42)
+                            .padding(.horizontal, 40)
+                    }
             }
+        }
+        .onAppear {
+            gm.cancelAllTimers()
         }
     }
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct GoodJobView: View {
     
     @EnvironmentObject var gm: LogicModel
+    @Environment(\.dismiss) var dismiss
+    @State var rotation: Angle = .degrees(0)
     
     var body: some View {
         ZStack {
@@ -54,15 +56,32 @@ struct GoodJobView: View {
                             StrokedNeonText(text: "2000", color: Color("cherryColor"), shadowColor: Color("cherryColor").opacity(0.4), size: 74)
                                 .offset(x: 16)
                             Image("coin")
+                                .rotation3DEffect(rotation, axis: (x: 0, y: 1, z: 0))
+                                .onTapGesture {
+                                    withAnimation {
+                                       
+                                        rotation =  rotation == .degrees(0) ? .degrees(360) : .degrees(0)
+                                    }
+                                }
                                 
                             
                         }
                             
                     )
-                
-                BrightButton(text: "TAKE", fontSize: 42)
-                    .padding(.horizontal, 40)
-                    .padding(.top, 20)
+                Button {
+                    gm.balance += 2000
+                    dismiss()
+                    gm.isWinEnd = false
+                } label: {
+                    BrightButton(text: "TAKE", fontSize: 42)
+                        .padding(.horizontal, 40)
+                        .padding(.top, 20)
+                }
+            }
+        }
+        .onAppear {
+            withAnimation(.easeIn(duration: 1)) {
+                rotation = .degrees(360)
             }
         }
     }

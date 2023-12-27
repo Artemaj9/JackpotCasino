@@ -24,7 +24,7 @@ struct AllRewardsView: View {
                     
                         .frame(height: 48)
                         .overlay(
-                            Text("CURRENT RECORD: \(vm.level)")
+                            Text("CURRENT RECORD: \(vm.record)")
                                 .font(Font.custom("RobotoCondensed-Medium", size: 27))
                                 .foregroundColor(.white)
                         )
@@ -60,7 +60,7 @@ struct AllRewardsView: View {
                             ForEach (1..<4) { w in
                                 let i = w+(h - 1)*3
                                 let lock = (i == 1) ?
-                                vm.level < i : vm.level < (i - 1) * 5
+                                vm.record < i : vm.record < (i - 1) * 5
                                 
                                 NavigationLink {
                                     if !lock {

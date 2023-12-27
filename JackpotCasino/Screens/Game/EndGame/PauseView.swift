@@ -10,6 +10,7 @@ import SwiftUI
 struct PauseView: View {
     @State var size: CGSize = .zero
     @EnvironmentObject var gm: LogicModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -47,7 +48,7 @@ struct PauseView: View {
                         .padding(40)
                     }
                     Button {
-                       // dismiss()
+                        dismiss()
                     } label: {
                         DashedButton(color: Color( "lightBlueNeon"), text: "TO MENU", padding: 12, fontSize: 24, font: Font.custom("RobotoCondensed-Medium", size: 27))
                     }

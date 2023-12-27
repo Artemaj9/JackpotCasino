@@ -14,6 +14,7 @@ struct DashedButton: View {
     var text: String = "OK"
     var padding: CGFloat = 8
     var fontSize: CGFloat = 21
+    var font = Font.custom("RobotoCondensed-Medium", size: 21)
     
     @State var dashPhase: CGFloat = CGFloat(Int.random(in: 0...100))
     
@@ -21,7 +22,7 @@ struct DashedButton: View {
         
         Text(text)
             .foregroundColor(.white)
-            .font(Font.custom("RobotoCondensed-Medium", size: fontSize))
+            .font(font)
             .padding(.vertical, padding)
             .frame(maxWidth: .infinity)
             .background {

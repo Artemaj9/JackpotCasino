@@ -41,6 +41,7 @@ class LogicModel: ObservableObject {
     @Published var notAbleToBring = false
     @Published var isBlackJack = false
     @Published var openDillerCards = false
+    @Published var deadTimerCount = 0
     
     //Live таймер
     @Published var liveTimerCount = 0
@@ -53,6 +54,7 @@ class LogicModel: ObservableObject {
     
     private var animTimer: AnyCancellable?
     var liveTimer: AnyCancellable?
+    var deadTimer: AnyCancellable?
     
     func setupTimer() {
         Timer
@@ -128,6 +130,27 @@ class LogicModel: ObservableObject {
             }
         }
     
+    
+    func setUpDeadTimer() {
+        deadTimerCount = 0
+         deadTimer = Timer
+            .publish(every: 0.01, on: .main, in: .common)
+            .autoconnect()
+            .sink { [unowned self] _ in
+                self.deadTimerCount += 1
+                if self.deadTimerCount >= 200 {
+                    if self.lives > 1 {
+                        withAnimation {
+                            self.lives -= 1
+                        }
+                    } else {
+                        self.isFired = true
+                    }
+                    deadTimerCount = 0
+                    self.deadTimer?.cancel()
+                }
+            }
+        }
     
     func countdown() {
         Timer

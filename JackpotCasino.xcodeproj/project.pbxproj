@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC43BD332B3A2EDB008EE66D /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD322B3A2EDB008EE66D /* GameMode.swift */; };
 		AC43BD352B3A44E8008EE66D /* PayoutGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */; };
+		AC43BD382B3C2DE1008EE66D /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD372B3C2DE1008EE66D /* PauseView.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -92,6 +93,7 @@
 /* Begin PBXFileReference section */
 		AC43BD322B3A2EDB008EE66D /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutGameView.swift; sourceTree = "<group>"; };
+		AC43BD372B3C2DE1008EE66D /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -185,12 +187,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC43BD362B3C2DC9008EE66D /* EndGame */ = {
+			isa = PBXGroup;
+			children = (
+				AC43BD372B3C2DE1008EE66D /* PauseView.swift */,
+			);
+			path = EndGame;
+			sourceTree = "<group>";
+		};
 		AC8022AA2B3761F800715F1D /* Game */ = {
 			isa = PBXGroup;
 			children = (
 				AC8022D72B38262A00715F1D /* PlayView.swift */,
 				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
 				AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */,
+				AC43BD362B3C2DC9008EE66D /* EndGame */,
 				AC8022DF2B38762D00715F1D /* CardRotation */,
 				AC8022AF2B37731F00715F1D /* GameViewModel.swift */,
 				AC8022DB2B38346100715F1D /* CardDropDelegate.swift */,
@@ -525,6 +536,7 @@
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,
 				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,
 				ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */,
+				AC43BD382B3C2DE1008EE66D /* PauseView.swift in Sources */,
 				AC874F242B33C2C000036B28 /* RewardShape.swift in Sources */,
 				ACA32D382B324CF600872C51 /* View+InnerShadow2.swift in Sources */,
 				ACA635142B33569D001FCDE4 /* BackgroundView.swift in Sources */,

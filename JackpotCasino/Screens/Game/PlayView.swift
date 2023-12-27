@@ -35,6 +35,9 @@ struct PlayView: View {
                         GameHeaderCell(image: "heart", text: String(gm.lives))
                             .hueRotation(Angle(degrees: gm.liveTimerCount < 120 ? 0 : (2 * Double(gm.liveTimerCount) - 240)))
                             .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
+                            .hueRotation(Angle(degrees:  60 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1)))
+                            .saturation(0.5 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1) + 1) 
+                          //  .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
                         GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
                         PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
                     }
@@ -110,6 +113,12 @@ struct PlayView: View {
                     }
                     .onChange(of: vm.draggedCards.count) { newValue in
                         
+                        if gameMode == 3 {
+                            //  gm.lives = -7
+                            gm.setUpDeadTimer()
+                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
+                        } else {
+                        
                         if newValue > 0 && !gm.isDouble {
                             if !gm.isDeal {
                                 standOrHit()
@@ -122,7 +131,7 @@ struct PlayView: View {
                             if gm.isDeal {
                                 if newValue == 2 && dillerDrop.draggedCards.count == 2 {
                                     print("Success")
-                                   // gm.isDeal = false
+                                    // gm.isDeal = false
                                     standOrHit()
                                 }
                             }
@@ -136,6 +145,7 @@ struct PlayView: View {
                             }
                         }
                     }
+                }
                 }
                 .onDrop(of: [UTType.url], delegate: vm)
                 
@@ -160,6 +170,13 @@ struct PlayView: View {
                     .onChange(of: dillerDrop.draggedCards.count) { newValue in
                         vm.allDeckCards.shuffle()
                         dillerDrop.draggedCards.reverse()
+                        
+                        if gameMode == 2 {
+                            //gm.lives = -7
+                            gm.setUpDeadTimer()
+                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
+                        }
+                        
                         if gm.isDeal {
                             if newValue == 2 && vm.draggedCards.count == 2 {
                                 print("Success")
@@ -169,6 +186,8 @@ struct PlayView: View {
                                 standOrHit()
                             }
                         }
+                        
+                   
                         
                         if gm.isStand && dillerDrop.dillerSum > 16 {
                             checkWinner()

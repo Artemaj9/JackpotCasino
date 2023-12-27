@@ -25,7 +25,6 @@ struct PayoutGameView: View {
     
     var body: some View {
         ZStack {
-           
             Image("table")
                 .resizable()
                 .offset(y: 150)
@@ -112,6 +111,7 @@ struct PayoutGameView: View {
             gameLogic.state = 0
             gameLogic.draggedChips = []
             gameLogic.sum = 0
+            gm.setUpLiveTimer()
         }
         .preferredColorScheme(.dark)
     }

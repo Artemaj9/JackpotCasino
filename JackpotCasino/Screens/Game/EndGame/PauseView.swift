@@ -27,7 +27,7 @@ struct PauseView: View {
             VStack {
                 
                 StrokedBgRect(lightningColor: Color("greenEndNeon"),
-                              angle:.degrees(40), axis: (1, 1, -1))
+                              angle:.degrees(40), axis: (1, 1, -1), endDashPhase: 500)
                 
                 .scaleEffect(0.8)
                 .offset(x: 90, y: 0)

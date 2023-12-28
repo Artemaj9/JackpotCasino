@@ -22,7 +22,7 @@ struct GoodJobView: View {
             VStack {
                 
               
-                StrokedBgRect(lightningColor: Color("purpleEndNeon"), angle:.degrees(107), axis: (0, -0.8, 1))
+                StrokedBgRect(lightningColor: Color("purpleEndNeon"), angle:.degrees(107), axis: (0, -0.8, 1),endDashPhase: 700)
                     .scaleEffect(0.75)
                     .offset(x: 100)
 

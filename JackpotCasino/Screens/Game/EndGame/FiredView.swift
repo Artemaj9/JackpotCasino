@@ -20,13 +20,13 @@ struct FiredView: View {
                 StrokedBgRect(lightningColor: .red)
                     .scaleEffect(0.78)
                     .offset(x: 190)
-                StrokedBgRect(lightningColor: .red, angle:.degrees(-70), axis: (1, 0, 1))
+                StrokedBgRect(lightningColor: .red, angle:.degrees(-70), axis: (1, 0, 1), endDashPhase: 550)
                     .scaleEffect(0.75)
                     .offset(x: -120, y: 0)
-                StrokedBgRect(lightningColor: .red,angle:.degrees(-60), axis: (1, 1, -1))
+                StrokedBgRect(lightningColor: .red,angle:.degrees(-60), axis: (1, 1, -1), endDashPhase: -700)
                     .offset(x: 100, y: 80)
                 StrokedBgRect(lightningColor: .red,
-                              angle:.degrees(60), axis: (1, 1, 0))
+                              angle:.degrees(60), axis: (1, 1, 0), endDashPhase: 400)
                     .scaleEffect(1)
                     .offset(x: -10, y: -150)
             }

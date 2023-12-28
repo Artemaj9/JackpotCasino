@@ -21,7 +21,7 @@ struct LooseView: View {
                 .ignoresSafeArea()
             VStack {
                 StrokedBgRect(lightningColor: Color("greenEndNeon"),
-                              angle:.degrees(20), axis: (1, 1, -1))
+                              angle:.degrees(20), axis: (1, 1, -1), endDashPhase: 400)
                 
                 .scaleEffect(0.7)
                 .offset(x: 80)

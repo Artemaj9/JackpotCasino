@@ -17,15 +17,17 @@ struct GeometryReaderPro: View {
         ZStack {
             ForEach(0..<numLayers) { index in
                 ZStack {
-                    PyramidLayer()
+                    Image("coin")
                         .rotationEffect(self.animating ? Angle(degrees: 90) : Angle(degrees: 0))
                         .shadow(radius: 5)
-                        .frame(width: self.sizeForIndex(index), height:  self.sizeForIndex(index))
+                       // .frame(width: self.sizeForIndex(index), height:  self.sizeForIndex(index))
+                        .offset(x: CGFloat(Int.random(in: -150...150)), y: CGFloat(Int.random(in: -200...200)))
                         
                         .animation(Animation
                             .easeInOut(duration: 2)
                             .repeatForever()
                             .delay(self.delayForIndex(index)*0.5))
+                      
                 }
             }
             .onAppear {
@@ -35,7 +37,7 @@ struct GeometryReaderPro: View {
        // .blur(radius:10)
        // .shadow(color: .purple, radius: 20)
         //.padding(100)
-        .drawingGroup()
+      //  .drawingGroup()
        // .frame(width: 100, height: 100)
        // .mask {
        //     Text("NUSELENOK")

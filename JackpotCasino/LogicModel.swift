@@ -131,7 +131,7 @@ class LogicModel: ObservableObject {
             .publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                if !isPaused {
+                if !isPaused && !isTutorialMode {
                     self.liveTimerCount += 1
                 }
                 if self.liveTimerCount >= 150 {
@@ -161,7 +161,7 @@ class LogicModel: ObservableObject {
             .publish(every: 0.01, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                if !isPaused {
+                if !isPaused && !isTutorialMode {
                     self.deadTimerCount += 1
                 }
                 if self.deadTimerCount >= 200 {
@@ -193,7 +193,7 @@ class LogicModel: ObservableObject {
             .publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
-                if !isPaused {
+                if !isPaused && !isTutorialMode {
                     remainingTime -= 1
                 }
                 if (remainingTime <= 0 && isGame && lives > 0)  || timerStopflag {

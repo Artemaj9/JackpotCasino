@@ -120,7 +120,6 @@ struct PlayView: View {
                         .onChange(of: vm.draggedCards.count) { newValue in
                             
                             if gameMode == 3 {
-                                //  gm.lives = -7
                                 gm.setUpDeadTimer()
                                 gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                             } else {
@@ -182,7 +181,6 @@ struct PlayView: View {
                             dillerDrop.draggedCards.reverse()
                             
                             if gameMode == 2 {
-                                //gm.lives = -7
                                 gm.setUpDeadTimer()
                                 gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                             }
@@ -282,10 +280,8 @@ struct PlayView: View {
                     .onChange(of: gm.liveTimerCount) { newValue in
                         if gm.liveTimerCount == 150  {
                             print("You are too slow!")
-                            // if gm.lives > 1 {
-                            //  gm.lives -= 1
+
                             gm.setUpAnimation(whoWin: "Time is out!", isTimeOut: true)
-                            // }
                             
                         }
                     }

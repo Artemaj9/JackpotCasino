@@ -17,6 +17,7 @@
 		AC43BD422B3D69A6008EE66D /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD412B3D69A6008EE66D /* TutorialView.swift */; };
 		AC43BD442B3D6C95008EE66D /* TutorialScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */; };
 		AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */; };
+		AC43BD482B3DAA5A008EE66D /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD472B3DAA5A008EE66D /* CoinsView.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -108,6 +109,7 @@
 		AC43BD412B3D69A6008EE66D /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScreenModel.swift; sourceTree = "<group>"; };
 		AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTutorialView.swift; sourceTree = "<group>"; };
+		AC43BD472B3DAA5A008EE66D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				AC874F252B33C2E900036B28 /* CustomShapes */,
 				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
+				AC43BD472B3DAA5A008EE66D /* CoinsView.swift */,
 				AC874F262B345ADF00036B28 /* LogoView.swift */,
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
 				ACA32D152B32292700872C51 /* StrokedNeonText.swift */,
@@ -531,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */,
+				AC43BD482B3DAA5A008EE66D /* CoinsView.swift in Sources */,
 				AC43BD402B3C6D6E008EE66D /* StrokedBgRect.swift in Sources */,
 				AC8022E72B388DAC00715F1D /* DillerDropDelegate.swift in Sources */,
 				AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */,

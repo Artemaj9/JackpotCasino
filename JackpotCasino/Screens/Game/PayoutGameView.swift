@@ -39,12 +39,12 @@ struct PayoutGameView: View {
                     .background(
                         GeometryReader { geo in
                             Color.clear.onAppear {
-                                if gameLogic.sum == userMoney {
+                                if gameLogic.sum == gameLogic.userMoney {
                                     endFlag = true
                                     gm.setUpAnimation(whoWin: "Player wins!")
                                 }
                                 
-                                if gameLogic.sum > userMoney {
+                                if gameLogic.sum > gameLogic.userMoney {
                                     gm.liveTimer?.cancel()
                                     gm.setUpAnimation(whoWin: "User stole casino money!", isTimeOut: true)
                                     gm.setUpDeadTimer()
@@ -65,6 +65,15 @@ struct PayoutGameView: View {
                                 .font(Font.custom("RobotoCondensed-Bold",size: 64))
                                 .foregroundColor(.white.opacity(0.3))
                                 .offset(y: 35)
+                                .opacity(0.5)
+                    if  gm.isBlackJack {
+                        if  gm.isBlackJack {
+                            StrokedNeonText(text: "BLACKJACK!", color:   Color("lightPinkNeon"), shadowColor:  Color("lightPinkNeon").opacity(0.1), size: 45)
+                                .opacity(0.6)
+                                .offset(y: 200)
+                            
+                        }
+                    }
                 }
                 .onDrop(of: [UTType.url], delegate: gameLogic)
                 .overlay(
@@ -102,7 +111,8 @@ struct PayoutGameView: View {
     
         }
         .onAppear {
-            gameLogic.userMoney = Int(Double(userMoney) * coef)
+            gameLogic.userMoney = gm.isBlackJack ? Int(1.5 * Double(gm.bet)) : gm.bet
+            print("user money: \(gameLogic.userMoney) ")
             gameLogic.state = 0
             gameLogic.draggedChips = []
             gameLogic.sum = 0

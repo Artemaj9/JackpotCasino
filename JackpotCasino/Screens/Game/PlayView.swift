@@ -38,7 +38,7 @@ struct PlayView: View {
                             .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
                             .hueRotation(Angle(degrees:  60 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1)))
                             .saturation(0.5 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1) + 1) 
-                          //  .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
+                
                         GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
                         Button {
                             gm.isPaused = true
@@ -142,7 +142,7 @@ struct PlayView: View {
                             }
                         }
                         
-                        if gm.isDouble && gm.notAbleToBring {
+                        if gm.isDouble && !gm.notAbleToBring {
                             gm.notAbleToBring = true
                             gm.openDillerCards = true
                             if dillerDrop.dillerSum > 16 {
@@ -186,6 +186,13 @@ struct PlayView: View {
                             gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                         }
                         
+                        if gm.isDouble && !gm.notAbleToBring {
+                            gm.setUpDeadTimer()
+                            gm.isDouble = false
+                            gm.notAbleToBring = false
+                            gm.setUpAnimation(whoWin: "Wrong action! 1", isTimeOut: true)
+                        }
+                        
                         if gm.isDeal {
                             if newValue == 2 && vm.draggedCards.count == 2 {
                                 print("Success")
@@ -194,12 +201,6 @@ struct PlayView: View {
                                 //gm.setUpLiveTimer()
                                 standOrHit()
                             }
-                        }
-                  
-                        
-                        if gm.isDouble && !gm.notAbleToBring {
-                            gm.setUpDeadTimer()
-                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                         }
                         
                         if gm.isStand && dillerDrop.dillerSum > 16 {
@@ -327,6 +328,8 @@ struct PlayView: View {
         dillerDrop.draggedCards = []
         vm.botSum = 0
         vm.aces = 0
+        gm.isDouble = false
+        gm.canDouble = true
         dillerDrop.aces = 0
         dillerDrop.dillerSum = 0
         gameMode = 1
@@ -396,7 +399,7 @@ struct PlayView: View {
                 print("BLACK JACK")
             }
         }
-        
+
         if vm.botSum < 9 {
             gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
             if gm.decision == 0 && vm.draggedCards.count == 2 {
@@ -408,7 +411,7 @@ struct PlayView: View {
                 gameMode = 2
             }
         }
-        
+
         if vm.botSum >= 9 && vm.botSum < 12 {
             gm.decision = gm.randomNumber(probabilities: [0.3, 0.7])
             if gm.decision == 0 && gm.canDouble && vm.draggedCards.count == 2 {
@@ -428,8 +431,8 @@ struct PlayView: View {
                 gameMode = 2
             }
         }
-        
-        
+
+
         if vm.botSum >= 12 && vm.botSum <= 13 {
             gm.decision = gm.randomNumber(probabilities: [0.8, 0.2])
             if gm.decision == 0 {
@@ -441,9 +444,9 @@ struct PlayView: View {
                 gm.isStand = true
             }
         }
-        
-        
-        
+
+
+
         if vm.botSum > 13 && vm.botSum < 16 {
             gm.decision = gm.randomNumber(probabilities: [0.6, 0.4])
             if gm.decision == 0 {
@@ -455,8 +458,8 @@ struct PlayView: View {
                 gm.isStand = true
             }
         }
-        
-        
+
+
         if vm.botSum >= 16 && vm.botSum<19 {
             gm.decision = gm.randomNumber(probabilities: [0.15, 0.85])
             if gm.decision == 0 {
@@ -468,7 +471,7 @@ struct PlayView: View {
                 gm.isStand = true
             }
         }
-        
+
         if vm.botSum >= 19 && vm.botSum < 21 {
             gm.decision = gm.randomNumber(probabilities: [0.01, 0.99])
             if gm.decision == 0 {
@@ -480,13 +483,13 @@ struct PlayView: View {
                 gm.isStand = true
             }
         }
-        
+
         if vm.botSum == 21  {
             print("Of course i prefer to stand!!!")
             gameMode = 3
             gm.isStand = true
         }
-        
+
         if vm.botSum > 21  {
             print("I'm loose my money")
             gameMode = -1

@@ -30,7 +30,7 @@ class LogicModel: ObservableObject {
     @Published var rotationIsOver = false
     @Published var isPaused = false
     
-    // Игра
+    // Game
     @Published var bet = 0
     @Published var isDeal = false
     @Published var isGame = false
@@ -98,8 +98,7 @@ class LogicModel: ObservableObject {
     
     
     func stake() {
-        bet = 100
-        //bet = [2, 10, 100, 500, 1000, 1500, 2000, 2500, 3000].randomElement()!
+        bet = [2, 10, 100, 500, 1000, 1500, 2000, 2500, 3000].randomElement()!
         isGame = true
         isDeal = true
     }

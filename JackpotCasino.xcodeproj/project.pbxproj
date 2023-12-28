@@ -14,6 +14,9 @@
 		AC43BD3C2B3C3399008EE66D /* FiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD3B2B3C3399008EE66D /* FiredView.swift */; };
 		AC43BD3E2B3C6982008EE66D /* GoodJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD3D2B3C6982008EE66D /* GoodJobView.swift */; };
 		AC43BD402B3C6D6E008EE66D /* StrokedBgRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD3F2B3C6D6E008EE66D /* StrokedBgRect.swift */; };
+		AC43BD422B3D69A6008EE66D /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD412B3D69A6008EE66D /* TutorialView.swift */; };
+		AC43BD442B3D6C95008EE66D /* TutorialScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */; };
+		AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -102,6 +105,9 @@
 		AC43BD3B2B3C3399008EE66D /* FiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiredView.swift; sourceTree = "<group>"; };
 		AC43BD3D2B3C6982008EE66D /* GoodJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodJobView.swift; sourceTree = "<group>"; };
 		AC43BD3F2B3C6D6E008EE66D /* StrokedBgRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokedBgRect.swift; sourceTree = "<group>"; };
+		AC43BD412B3D69A6008EE66D /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScreenModel.swift; sourceTree = "<group>"; };
+		AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTutorialView.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -210,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				AC8022D72B38262A00715F1D /* PlayView.swift */,
-				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
 				AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */,
 				AC43BD362B3C2DC9008EE66D /* EndGame */,
 				AC8022DF2B38762D00715F1D /* CardRotation */,
@@ -404,8 +409,11 @@
 		ACBF20692B35897E00FDA48C /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
+				AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */,
 				AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */,
 				ACBF206A2B3589A800FDA48C /* MenTypeView.swift */,
+				AC43BD412B3D69A6008EE66D /* TutorialView.swift */,
 				ACBF206C2B3591D900FDA48C /* TaskTutorialView.swift */,
 			);
 			path = Tutorial;
@@ -425,6 +433,7 @@
 			children = (
 				ACF44CD32B34E09600626B74 /* RewardsModel.swift */,
 				AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */,
+				AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */,
 				ACBF20732B35D96100FDA48C /* CoinAnimation.swift */,
 				ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */,
 				AC43BD322B3A2EDB008EE66D /* GameMode.swift */,
@@ -524,6 +533,7 @@
 				ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */,
 				AC43BD402B3C6D6E008EE66D /* StrokedBgRect.swift in Sources */,
 				AC8022E72B388DAC00715F1D /* DillerDropDelegate.swift in Sources */,
+				AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */,
 				AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */,
 				AC80230C2B39A75D00715F1D /* ContentView.swift in Sources */,
 				ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */,
@@ -564,6 +574,7 @@
 				ACE4E9A02B3A17C8005C2872 /* GameModeView.swift in Sources */,
 				AC8022F02B39783300715F1D /* LogicModel.swift in Sources */,
 				AC43BD3A2B3C316B008EE66D /* LooseView.swift in Sources */,
+				AC43BD442B3D6C95008EE66D /* TutorialScreenModel.swift in Sources */,
 				ACBF20682B350D0C00FDA48C /* TextData.swift in Sources */,
 				AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */,
 				ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */,
@@ -574,6 +585,7 @@
 				ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */,
 				ACBF206B2B3589A800FDA48C /* MenTypeView.swift in Sources */,
 				ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */,
+				AC43BD422B3D69A6008EE66D /* TutorialView.swift in Sources */,
 				AC8022E32B38766800715F1D /* BackView.swift in Sources */,
 				ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */,
 				ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */,

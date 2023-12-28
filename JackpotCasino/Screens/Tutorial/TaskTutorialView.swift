@@ -10,6 +10,12 @@ import SwiftUI
 struct TaskTutorialView: View {
     
     @State private var width: CGFloat = 0
+    @State var showX = true
+    @Binding var screen: Int
+    var title = "TASK 1"
+    var subTitle = "The Dealer's Rush"
+    var image = "task1Deal"
+    var text = Tutorial.dealText
     
     var body: some View {
         ZStack {
@@ -22,24 +28,41 @@ struct TaskTutorialView: View {
                         }
                     }
                 )
+                .overlay(alignment: .topTrailing) {
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .fill( Color.purple.opacity(0.001))
+                                .frame(width: 50, height: 50)
+                            Image("back")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                        }
+                        .padding(24)
+                    }
+                   .opacity(showX ? 1 : 0)
+                   .offset(y: -16)
+                }
             VStack(spacing: 16) {
                 VStack(spacing: 8) {
-                    Text("TASK 1")
+                    Text(title)
                         .foregroundColor(Color("taskBlue"))
                         .font(Font.custom("RobotoCondensed-BoldItalic",size: width < 380 ? 48 : 52))
                     
-                    Text("The Dealer's Rush")
+                    Text(subTitle)
                         .foregroundColor(.white)
                         .font(Font.custom("RobotoCondensed-BoldItalic",size: width < 380 ? 28 : 32))
                         .padding(.horizontal)
                     
-                    Image("task1Deal")
+                    Image(image)
                         .resizable()
                         .scaledToFit()
                 }
                 VStack(spacing: 8) {
                     
-                    Text(Tutorial.dealText)
+                    Text(text)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                         .font(Font.custom("RobotoCondensed-Bold",size: width < 380 ? 17 : 21))
@@ -58,6 +81,6 @@ struct TaskTutorialView: View {
 
 struct TaskTutorialView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskTutorialView()
+        TaskTutorialView(screen: .constant(1))
     }
 }

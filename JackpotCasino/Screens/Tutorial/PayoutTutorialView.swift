@@ -34,6 +34,8 @@ struct PayoutTutorial: View {
                     .overlay(
                     Text("DRAG\nHERE")
                     .font(Font.custom("RobotoCondensed-Bold",size: 64))
+                    .opacity(0.3)
+                    .offset(y: 50)
                           )
                 
                 Spacer()

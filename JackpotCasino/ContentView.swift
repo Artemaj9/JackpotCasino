@@ -30,6 +30,7 @@ struct ContentView: View {
         }
         .onAppear {
             gameLogic.firstStart = true
+            gameLogic.isTutorialShown = false
             gameLogic.lives = 1
             gameLogic.record = 0
             gameLogic.balance = 0

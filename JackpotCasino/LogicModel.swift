@@ -12,6 +12,7 @@ class LogicModel: ObservableObject {
     @AppStorage("record") var record = 0
     @AppStorage("lives") var lives = 10
     @AppStorage("balance") var balance = 0
+    @AppStorage("isTutorialShown") var isTutorialShown = false
     
     @Published var isSplash = true
     //@Published var balance = 0
@@ -59,6 +60,7 @@ class LogicModel: ObservableObject {
     
     @Published var size: CGSize = .zero
     
+    @Published var isTutorialMode = false
     
     
     private var cancellables = Set<AnyCancellable>()

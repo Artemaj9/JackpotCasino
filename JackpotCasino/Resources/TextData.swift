@@ -24,7 +24,7 @@ enum Info {
 enum Tutorial {
     static let welcomeText = "Welcome to Jackpot Casino, where the blackjack table is the epicenter of dreams. As a dealer, you hold the key to fortunes, navigating the glitz and glamor with precision. The shuffle of cards blends with hopeful sighs as players count on you for a fair game. In this bustling world, every flick of the wrist sets the rhythm, making each second crucial. The stage is set, the lights are bright— it's your time to shine."
     
-    static let hitText = "If the player signals 'hit', and your response must be immediate—deal a card within the strict 5-second window."
+    static let hitText = "If the player signals 'hit', and your response must be immediate—deal a card within the strict 15-second window."
     
     static let standText = "The player may signal 'stand', and just like that, your role shifts as you collect the cards, always ready for the next move."
     

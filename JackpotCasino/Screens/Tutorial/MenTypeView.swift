@@ -39,7 +39,7 @@ struct MenTypeView: View {
                     .scaledToFit()
                     .overlay(alignment: .topTrailing) {
                         Button {
-                            
+                           dismiss()
                         } label: {
                             ZStack {
                                 Circle()

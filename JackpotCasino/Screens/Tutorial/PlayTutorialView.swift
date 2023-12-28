@@ -1,18 +1,21 @@
 //
-//  PlayView.swift
+//  PlayTutorialView.swift
+//  JackpotCasino
+//
+//  Created by Artem on 28.12.2023.
 //
 
 import SwiftUI
 import UniformTypeIdentifiers
-import MobileCoreServices
 
-struct PlayView: View {
+struct PlayTutorialView: View {
     
     @State var size: CGSize = .zero
     @StateObject var vm = CardDropDelegate()
     @StateObject var dillerDrop = DillerDropDelegate()
     @EnvironmentObject var gm: LogicModel
     @State var bet = 0
+    @Binding var screen: Int
     let tableRatio = 0.21
     
     @State var gameMode = -1
@@ -32,20 +35,6 @@ struct PlayView: View {
            
             
                 VStack(spacing: 16) {
-                    HStack(spacing: 30) {
-                        GameHeaderCell(image: "heart", text: String(gm.lives))
-                            .hueRotation(Angle(degrees: gm.liveTimerCount < 120 ? 0 : (2 * Double(gm.liveTimerCount) - 240)))
-                            .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
-                            .hueRotation(Angle(degrees:  60 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1)))
-                            .saturation(0.5 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1) + 1)
-                        
-                        GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
-                        Button {
-                            gm.isPaused = true
-                        } label: {
-                            PauseCell(textMode: gm.playerWin ? "Payout" : "Dealing")
-                        }
-                    }
 
                         RoundedRectangle(cornerRadius: 6)
                             .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
@@ -231,10 +220,6 @@ struct PlayView: View {
                         .offset(x: -size.width * 0.33, y: size.height * 0.15)
                 }
             } else {
-                if gm.playerWin && gm.isBlackJack {
-                    StrokedNeonText(text: "BLACKJACK!", color: .red, shadowColor: .blue, size: 25)
-                        .opacity(0.3)
-                }
                 PayoutGameView(userMoney: bet, endFlag: $endFlag, coef: gm.isBlackJack ? 1.5 : 1)
                     .environmentObject(gm)
             }
@@ -512,12 +497,9 @@ struct PlayView: View {
 private let gradient  =
 LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
 
-//struct PlayView_Previews: PreviewProvider {
+//
+//struct PlayTutorialView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PlayView()
-//            .environmentObject(GameL)
+//        PlayTutorialView()
 //    }
 //}
-
-
-

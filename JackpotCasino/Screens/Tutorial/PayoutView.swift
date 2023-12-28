@@ -29,11 +29,29 @@ struct PayoutView: View {
                 .resizable()
                 .offset(y: 150)
             VStack() {
-                BrightButton(text: "CONTINUE", fontSize: 28)
-                    .padding(.horizontal, 64)
-                    .padding()
-                DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
-                    .padding(.horizontal, 84)
+                Button {
+                    gm.isTutorialShown = true
+                } label: {
+                    BrightButton(text: "CONTINUE", fontSize: 28)
+                        .padding(.horizontal, 64)
+                        .padding()
+                }
+           
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
+                    .foregroundColor(Color("whitePink"))
+                    .frame(width: 200, height: gm.size.width < 380 ? 35 : 50)
+                    .shadow(color: Color("lightPinkNeon"), radius: 4)
+                    .shadow(color: Color("lightPinkNeon"), radius: 4)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color("pinkBg"))
+                            .shadow(color: Color("lightPinkNeon"), radius: 1, x: -5)
+                            .overlay {
+                                Text(String(gameLogic.sum))
+                                    .foregroundColor(.white)
+                                    .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
+                            })
                 Text("DEBUG: \(gameLogic.sum)")
                     .font(Font.custom("RobotoCondensed-Bold",size: 34))
                     .foregroundColor(.white)
@@ -53,8 +71,8 @@ struct PayoutView: View {
                         .offset(y: 60)
                     Text("DRAG\nHERE")
                                 .font(Font.custom("RobotoCondensed-Bold",size: 64))
-                                .foregroundColor(.white.opacity(0.3))
-                                .offset(y: 35)
+                                .foregroundColor(.white.opacity(0.2))
+                                .offset(y: 45)
                 }
                 .onDrop(of: [UTType.url], delegate: gameLogic)
                 .overlay(

@@ -41,7 +41,7 @@ struct PlayTutorialView: View {
                         .padding(.horizontal, 64)
                         .padding([.horizontal, .top])
                 }
-        
+                
                 GameModeView(selected: $gameMode)
                     .environmentObject(gm)
                 
@@ -50,42 +50,6 @@ struct PlayTutorialView: View {
                 
                 Spacer()
             }
-            
-            
-            VStack(spacing: 16) {
-                
-                RoundedRectangle(cornerRadius: 6)
-                    .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
-                    .foregroundColor(Color("whitePink"))
-                    .frame(width: 200, height: gm.size.width < 380 ? 35 : 50)
-                    .shadow(color: Color("lightPinkNeon"), radius: 4)
-                    .shadow(color: Color("lightPinkNeon"), radius: 4)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(Color("pinkBg"))
-                            .shadow(color: Color("lightPinkNeon"), radius: 1, x: -5)
-                            .overlay {
-                                Text(String(gm.bet))
-                                    .foregroundColor(.white)
-                                    .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
-                                    .animation(.easeInOut, value: gm.bet)
-                                    .onChange(of: gm.bet, perform: { newValue in
-                                        //
-                                        if newValue == 0 {
-                                            gameMode = 0
-                                        } else if !gm.isDouble {
-                                            gameMode = 1
-                                        }
-                                    })
-                            })
-                    .offset(y: 8)
-                
-                if !gm.playerWin {
-                    GameModeView(selected: $gameMode)
-                        .environmentObject(gm)
-                }
-            }
-            .offset(y: gm.playerWin ? -gm.size.height * 0.4 : -gm.size.height * 0.37)
             
             Image("table")
                 .resizable()

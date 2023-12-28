@@ -96,11 +96,7 @@ struct MenuView: View {
                       Spacer()
 
                         NavigationLink {
-                            if vm.isTutorialShown {
-                                PlayView()
-                            } else {
-                                TutorialView()
-                            }
+                            PlayView()
                         } label: {
                             BrightButton(text: "PLAY", fontSize: vm.size.width < 380 ? 30 : 34)
                                 .padding(.horizontal, 64)

@@ -240,7 +240,7 @@ struct PlayView: View {
                         .environmentObject(gm)
                 }
                 Rectangle()
-                    .frame(width: size.width, height: size.height/8.2)
+                    .frame(width: gm.size.width, height: gm.size.height/8.2)
                     .foregroundColor(.black.opacity(0.5))
                     .cornerRadius(16, corners: [.topLeft, .topRight])
                     .overlay(
@@ -264,8 +264,8 @@ struct PlayView: View {
                                 }
                             })
                     )
-                    .offset(y: size.height * 0.45)
-                    .offset(y: gm.animCount == 0 ? 150 : -10)
+                    .offset(y: gm.size.height * 0.45)
+                    .offset(y: gm.animCount == 0 ? 150 : gm.size.width < 380 ? 10 :  gm.size.height * 0.04)
                     .opacity(gm.animCount == 0 ? 0 : 1)
                     .animation(.spring(), value: gm.animCount)
                 
@@ -326,191 +326,181 @@ struct PlayView: View {
                 }
             }
         } else {
-            TutorialView()
+            TutorialView(screen: 1)
         }
+    }
+    
+    func startGame() {
+        vm.draggedCards = []
+        dillerDrop.draggedCards = []
+        vm.botSum = 0
+        vm.aces = 0
+        gm.isDouble = false
+        gm.canDouble = true
+        dillerDrop.aces = 0
+        dillerDrop.dillerSum = 0
+        gameMode = 1
+        gm.liveTimer?.cancel()
+        gm.setUpLiveTimer()
+        withAnimation { gm.playerWin = false }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            gm.restartGame()
+            bet = gm.bet
         }
+    }
+    
+    func checkWinner() {
+        gm.liveTimer?.cancel()
+        if !gm.winnerDefined {
+            if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
+                print("DILLER WINS")
+                gm.bet = 0
+                bet = 0
+                gm.winnerDefined = true
+                gm.setUpAnimation(whoWin: "Casino wins!")
+            } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
+                print("PLAYER WIN")
+                gm.liveTimer?.cancel()
+                gm.winnerDefined = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    gm.playerWin = true
+                    gm.setUpLiveTimer()
+                    
+                }
+            } else if dillerDrop.dillerSum == vm.botSum  {
+                print("DRAW")
+                gm.winnerDefined = true
+                gm.bet = 0
+                bet = 0
+                gm.setUpAnimation(whoWin: "Draw!")
+            }
+        }
+    }
+    
+    
+    func standOrHit()  {
         
-        
-        func startGame() {
-            vm.draggedCards = []
-            dillerDrop.draggedCards = []
-            vm.botSum = 0
-            vm.aces = 0
-            gm.isDouble = false
-            gm.canDouble = true
-            dillerDrop.aces = 0
-            dillerDrop.dillerSum = 0
-            gameMode = 1
+        if gm.isDeal {
             gm.liveTimer?.cancel()
             gm.setUpLiveTimer()
-            withAnimation { gm.playerWin = false }
-            // gm.remainingTime = 180
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                gm.restartGame()
-                bet = gm.bet
-            }
-            
-            
-            //   gm.countdown()
+            gm.isDeal = false
         }
+    
         
-        func checkWinner() {
-            gm.liveTimer?.cancel()
-            if !gm.winnerDefined {
-                if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
-                    // gameMode = -1
-                    print("DILLER WINS")
-                    gm.bet = 0
-                    bet = 0
-                    gm.winnerDefined = true
-                    gm.setUpAnimation(whoWin: "Casino wins!")
-                } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
-                    print("PLAYER WIN")
-                    gm.liveTimer?.cancel()
-                    gm.winnerDefined = true
-                    //  gameMode = -1
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        //  withAnimation() {
-                        gm.playerWin = true
-                        gm.setUpLiveTimer()
-                        
-                        // }
-                    }
-                } else if dillerDrop.dillerSum == vm.botSum  {
-                    print("DRAW")
-                    // gameMode = -1
-                    gm.winnerDefined = true
-                    gm.bet = 0
-                    bet = 0
-                    gm.setUpAnimation(whoWin: "Draw!")
-                }
+        if vm.draggedCards.count == 2 && vm.botSum == 21 && dillerDrop.draggedCards.count == 2  {
+            if dillerDrop.dillerSum == 21 {
+                gm.setUpAnimation(whoWin: "Draw!")
+            } else {
+                gm.isBlackJack = true
+                gm.playerWin = true
+                gm.winnerDefined = true
+                print("BLACK JACK")
             }
         }
-        
-        
-        func standOrHit()  {
-            
-            if gm.isDeal {
-                gm.liveTimer?.cancel()
-                gm.setUpLiveTimer()
+
+        if vm.botSum < 9 {
+            gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
+            if gm.decision == 0 && vm.draggedCards.count == 2 {
+                print("I prefer to surrender!")
+                gm.setUpAnimation(whoWin: "Player surrenders!")
+                gameMode = 0
+            } else {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            }
+        }
+
+        if vm.botSum >= 9 && vm.botSum < 12 {
+            gm.decision = gm.randomNumber(probabilities: [0.3, 0.7])
+            if gm.decision == 0 && gm.canDouble && vm.draggedCards.count == 2 {
+                print("I prefer to Double!")
+                gameMode = 4
                 gm.isDeal = false
-            }
-            
-            
-            if vm.draggedCards.count == 2 && vm.botSum == 21 && dillerDrop.draggedCards.count == 2  {
-                if dillerDrop.dillerSum == 21 {
-                    gm.setUpAnimation(whoWin: "Draw!")
-                } else {
-                    gm.isBlackJack = true
-                    gm.playerWin = true
-                    gm.winnerDefined = true
-                    print("BLACK JACK")
+                gm.isStand = false
+                gm.isDouble = true
+                gm.canDouble = false
+                withAnimation {
+                    gm.bet = gm.bet * 2
+                    bet = bet * 2
                 }
+              //  return
+            } else {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
             }
-            
-            if vm.botSum < 9 {
-                gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
-                if gm.decision == 0 && vm.draggedCards.count == 2 {
-                    print("I prefer to surrender!")
-                    gm.setUpAnimation(whoWin: "Player surrenders!")
-                    gameMode = 0
-                } else {
-                    print("I have \(vm.botSum) and prefer HIT!!!")
-                    gameMode = 2
-                }
-            }
-            
-            if vm.botSum >= 9 && vm.botSum < 12 {
-                gm.decision = gm.randomNumber(probabilities: [0.3, 0.7])
-                if gm.decision == 0 && gm.canDouble && vm.draggedCards.count == 2 {
-                    print("I prefer to Double!")
-                    gameMode = 4
-                    gm.isDeal = false
-                    gm.isStand = false
-                    gm.isDouble = true
-                    gm.canDouble = false
-                    withAnimation {
-                        gm.bet = gm.bet * 2
-                        bet = bet * 2
-                    }
-                    //  return
-                } else {
-                    print("I have \(vm.botSum) and prefer HIT!!!")
-                    gameMode = 2
-                }
-            }
-            
-            
-            if vm.botSum >= 12 && vm.botSum <= 13 {
-                gm.decision = gm.randomNumber(probabilities: [0.8, 0.2])
-                if gm.decision == 0 {
-                    print("I have \(vm.botSum) and prefer HIT!!!")
-                    gameMode = 2
-                } else {
-                    print("I have \(vm.botSum) and prefer to stand!!")
-                    gameMode = 3
-                    gm.isStand = true
-                }
-            }
-            
-            
-            
-            if vm.botSum > 13 && vm.botSum < 16 {
-                gm.decision = gm.randomNumber(probabilities: [0.6, 0.4])
-                if gm.decision == 0 {
-                    print("I have \(vm.botSum) and prefer HIT!!!")
-                    gameMode = 2
-                } else {
-                    print("I have \(vm.botSum) and prefer to stand!!")
-                    gameMode = 3
-                    gm.isStand = true
-                }
-            }
-            
-            
-            if vm.botSum >= 16 && vm.botSum<19 {
-                gm.decision = gm.randomNumber(probabilities: [0.15, 0.85])
-                if gm.decision == 0 {
-                    print("I have \(vm.botSum) and prefer HIT!!!")
-                    gameMode = 2
-                } else {
-                    print("I have \(vm.botSum) and prefer to stand!!")
-                    gameMode = 3
-                    gm.isStand = true
-                }
-            }
-            
-            if vm.botSum >= 19 && vm.botSum < 21 {
-                gm.decision = gm.randomNumber(probabilities: [0.01, 0.99])
-                if gm.decision == 0 {
-                    print("I have \(vm.botSum) and prefer HIT!!!")
-                    gameMode = 2
-                } else {
-                    print("I have \(vm.botSum) and prefer to stand!!")
-                    gameMode = 3
-                    gm.isStand = true
-                }
-            }
-            
-            if vm.botSum == 21  {
-                print("Of course i prefer to stand!!!")
+        }
+
+
+        if vm.botSum >= 12 && vm.botSum <= 13 {
+            gm.decision = gm.randomNumber(probabilities: [0.8, 0.2])
+            if gm.decision == 0 {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            } else {
+                print("I have \(vm.botSum) and prefer to stand!!")
                 gameMode = 3
                 gm.isStand = true
             }
-            
-            if vm.botSum > 21  {
-                print("I'm loose my money")
-                gameMode = -1
-                gm.setUpAnimation(whoWin: "Casino wins!")
-            }
-            
-            if gm.isStand && dillerDrop.dillerSum > 16 {
-                checkWinner()
-            }
-            
-            gm.canDouble = false
         }
+
+
+
+        if vm.botSum > 13 && vm.botSum < 16 {
+            gm.decision = gm.randomNumber(probabilities: [0.6, 0.4])
+            if gm.decision == 0 {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            } else {
+                print("I have \(vm.botSum) and prefer to stand!!")
+                gameMode = 3
+                gm.isStand = true
+            }
+        }
+
+
+        if vm.botSum >= 16 && vm.botSum<19 {
+            gm.decision = gm.randomNumber(probabilities: [0.15, 0.85])
+            if gm.decision == 0 {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            } else {
+                print("I have \(vm.botSum) and prefer to stand!!")
+                gameMode = 3
+                gm.isStand = true
+            }
+        }
+
+        if vm.botSum >= 19 && vm.botSum < 21 {
+            gm.decision = gm.randomNumber(probabilities: [0.01, 0.99])
+            if gm.decision == 0 {
+                print("I have \(vm.botSum) and prefer HIT!!!")
+                gameMode = 2
+            } else {
+                print("I have \(vm.botSum) and prefer to stand!!")
+                gameMode = 3
+                gm.isStand = true
+            }
+        }
+
+        if vm.botSum == 21  {
+            print("Of course i prefer to stand!!!")
+            gameMode = 3
+            gm.isStand = true
+        }
+
+        if vm.botSum > 21  {
+            print("I'm loose my money")
+            gameMode = -1
+            gm.setUpAnimation(whoWin: "Casino wins!")
+        }
+        
+        if gm.isStand && dillerDrop.dillerSum > 16 {
+            checkWinner()
+        }
+        
+        gm.canDouble = false
     }
+}
 
 
 private let gradient  =

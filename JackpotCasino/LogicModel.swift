@@ -61,6 +61,7 @@ class LogicModel: ObservableObject {
     @Published var size: CGSize = .zero
     
     @Published var isTutorialMode = false
+   
     
     
     private var cancellables = Set<AnyCancellable>()
@@ -131,22 +132,24 @@ class LogicModel: ObservableObject {
             .publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [unowned self] _ in
+                if !isTutorialMode {
                 if !isPaused {
                     self.liveTimerCount += 1
                 }
-                if self.liveTimerCount >= 150 {
-                    if self.lives > 1 {
-                        self.lives -= 1
-                    } else {
-                        self.lives -= 1
-                        self.needToStartNewGame = false
-                        self.showEndText = false
-                        if balance >= 2500 {
-                            self.isLoosed = true
-                            cancelAllTimers()
+                    if self.liveTimerCount >= 150 {
+                        if self.lives > 1 {
+                            self.lives -= 1
                         } else {
-                            self.isFired = true
-                            cancelAllTimers()
+                            self.lives -= 1
+                            self.needToStartNewGame = false
+                            self.showEndText = false
+                            if balance >= 2500 {
+                                self.isLoosed = true
+                                cancelAllTimers()
+                            } else {
+                                self.isFired = true
+                                cancelAllTimers()
+                            }
                         }
                     }
                     self.liveTimer?.cancel()

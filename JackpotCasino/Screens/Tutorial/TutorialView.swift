@@ -35,6 +35,7 @@ struct TutorialView: View {
             default: BackgroundView()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 

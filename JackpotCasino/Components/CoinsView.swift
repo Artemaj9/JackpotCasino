@@ -16,7 +16,7 @@ struct CoinsView: View {
                 Image("coin")
                     .resizable()
                     .scaledToFit()
-                    .scaleEffect(0.4)
+                    .scaleEffect(0.8)
                     .offset(x: CGFloat(Int.random(in: -150...150)), y: CGFloat(Int.random(in: -3500...0)))
                     .offset(y: offset)
                     .animation(.easeIn(duration: 20), value: offset)

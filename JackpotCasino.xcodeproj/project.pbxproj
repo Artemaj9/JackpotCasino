@@ -304,7 +304,6 @@
 			children = (
 				ACB8B2C32B3225F900F41761 /* Info.plist */,
 				ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */,
-				AC8022EF2B39783300715F1D /* LogicModel.swift */,
 				AC80230B2B39A75D00715F1D /* ContentView.swift */,
 				ACA635102B334FBD001FCDE4 /* Screens */,
 				ACB8B2C72B32268600F41761 /* Components */,
@@ -434,6 +433,7 @@
 		ACF44CD22B34E07900626B74 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AC8022EF2B39783300715F1D /* LogicModel.swift */,
 				ACF44CD32B34E09600626B74 /* RewardsModel.swift */,
 				AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */,
 				AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */,

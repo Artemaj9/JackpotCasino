@@ -20,8 +20,8 @@ struct GeometryReaderPro: View {
                     Image("coin")
                         .rotationEffect(self.animating ? Angle(degrees: 90) : Angle(degrees: 0))
                         .shadow(radius: 5)
-                       // .frame(width: self.sizeForIndex(index), height:  self.sizeForIndex(index))
-                        .offset(x: CGFloat(Int.random(in: -150...150)), y: CGFloat(Int.random(in: -200...200)))
+                        .frame(width: self.sizeForIndex(index), height:  self.sizeForIndex(index))
+//                        .offset(x: CGFloat(Int.random(in: -150...150)), y: CGFloat(Int.random(in: -200...200)))
                         
                         .animation(Animation
                             .easeInOut(duration: 2)

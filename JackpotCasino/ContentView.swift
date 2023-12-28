@@ -1,8 +1,5 @@
 //
 //  ContentView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 25.12.2023.
 //
 
 import SwiftUI

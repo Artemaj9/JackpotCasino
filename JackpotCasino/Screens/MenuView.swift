@@ -97,16 +97,23 @@ struct MenuView: View {
 
                         NavigationLink {
                             PlayView()
+                              
                         } label: {
                             BrightButton(text: "PLAY", fontSize: vm.size.width < 380 ? 30 : 34)
                                 .padding(.horizontal, 64)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            vm.isTutorialMode = false
+                        })
                         VStack(spacing: vm.size.width < 380 ? 20 : 34) {
                             NavigationLink {
-                               TutorialView()
+                               PlayView()
                             } label: {
                                 DashedMenuBtn(color: Color( "lightGreenNeon"), dash: [40, 30, 25, 10], text: "TRAINING MODE", fontSize: vm.size.width < 380 ? 26 : 30)
                             }
+                            .simultaneousGesture(TapGesture().onEnded {
+                                vm.isTutorialMode = true
+                            })
                             NavigationLink {
                                 KnowledgeBaseView()
                             } label: {

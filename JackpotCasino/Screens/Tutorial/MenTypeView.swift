@@ -9,6 +9,7 @@ struct MenTypeView: View {
     @State private var width: CGFloat = 0
     @Binding var screen: Int
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var gm: LogicModel
     
     let text: String
     let image: String
@@ -65,7 +66,7 @@ struct MenTypeView: View {
                     
                     HStack(spacing: 24) {
                         Button {
-                            dismiss()
+                            gm.isTutorialShown = true
                         } label: {
                             DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: 8, fontSize: width < 380 ? 18 : 21 )
                         }

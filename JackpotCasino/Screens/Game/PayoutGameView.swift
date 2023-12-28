@@ -6,13 +6,6 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 private let chips = [1, 5, 100, 500]
-////let columns: [GridItem] = [
-//    GridItem(.flexible(), spacing: -30, alignment: nil),
-//    GridItem(.flexible(), spacing: -40, alignment: nil),
-//    GridItem(.flexible(), spacing: -50, alignment: nil),
-//    GridItem(.flexible(), spacing: -50, alignment: nil),
-//    GridItem(.flexible(), spacing: -70, alignment: nil),
-//]
 
 struct PayoutGameView: View {
     

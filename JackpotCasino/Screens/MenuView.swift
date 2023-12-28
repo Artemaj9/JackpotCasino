@@ -107,7 +107,7 @@ struct MenuView: View {
                         }
                         VStack(spacing: vm.size.width < 380 ? 20 : 34) {
                             NavigationLink {
-                                PayoutView()
+                               TutorialView()
                             } label: {
                                 DashedMenuBtn(color: Color( "lightGreenNeon"), dash: [40, 30, 25, 10], text: "TRAINING MODE", fontSize: vm.size.width < 380 ? 26 : 30)
                             }

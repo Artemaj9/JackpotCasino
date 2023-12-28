@@ -29,11 +29,6 @@ struct GameModeView: View {
                             .foregroundColor(.white)
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
-                    .onTapGesture {
-                        withAnimation {
-                            selected = 1
-                        }
-                    }
                     .animation(.easeInOut, value: selected)
                 
                 Rectangle()
@@ -44,11 +39,7 @@ struct GameModeView: View {
                             .foregroundColor(.white)
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
-                    .onTapGesture {
-                        withAnimation {
-                            selected = 2
-                        }
-                    }
+                    .animation(.easeInOut, value: selected)
                     .offset(x: -2)
                 
                 Rectangle()
@@ -60,11 +51,8 @@ struct GameModeView: View {
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
                     .offset(x: -4)
-                    .onTapGesture {
-                        withAnimation {
-                            selected = 3
-                        }
-                    }
+                    .animation(.easeInOut, value: selected)
+                
                 Rectangle()
                     .fill(Color(selected == 4 ? "orangeBtn" : "pinkBg"))
                     .border(Color("lavandBord"), width: 2)
@@ -74,11 +62,7 @@ struct GameModeView: View {
                             .foregroundColor(.white)
                             .font(Font.custom("RobotoCondensed-Medium",size: 21))
                     )
-                    .onTapGesture {
-                        withAnimation {
-                            selected = 4
-                        }
-                    }
+                    .animation(.easeInOut, value: selected)
                     .offset(x: -6)
                 Color.clear
                     .frame(width: 18)

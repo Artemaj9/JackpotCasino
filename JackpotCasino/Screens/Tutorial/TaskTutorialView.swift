@@ -12,6 +12,9 @@ struct TaskTutorialView: View {
     @State private var width: CGFloat = 0
     @State var showX = true
     @Binding var screen: Int
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var gm: LogicModel
+    
     var title = "TASK 1"
     var subTitle = "The Dealer's Rush"
     var image = "task1Deal"
@@ -30,7 +33,7 @@ struct TaskTutorialView: View {
                 )
                 .overlay(alignment: .topTrailing) {
                     Button {
-                        
+                        dismiss()
                     } label: {
                         ZStack {
                             Circle()
@@ -69,13 +72,23 @@ struct TaskTutorialView: View {
                         .padding(.horizontal)
                     
                     HStack(spacing: 24) {
-                        DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: 8, fontSize: width < 380 ? 18 : 21 )
-                        BrightButton(text: "NEXT", fontSize: width < 380 ? 20 : 24, padding: 8)
+                        Button {
+                            gm.isTutorialShown = true
+                        } label: {
+                            DashedButton(color: Color( "lightBlueNeon"), text: "SKIP", padding: 8, fontSize: width < 380 ? 18 : 21 )
+                        }
+                      
+                        Button {
+                            screen += 1
+                        } label : {
+                            BrightButton(text: "NEXT", fontSize: width < 380 ? 20 : 24, padding: 8)
+                        }
                     }
                     .padding()
                 }
             }
         }
+        .preferredColorScheme(.dark)
     }
 }
 

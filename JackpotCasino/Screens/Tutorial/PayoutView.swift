@@ -21,6 +21,7 @@ struct PayoutView: View {
     
     @StateObject var gameLogic = GameViewModel()
     @EnvironmentObject var gm: LogicModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -31,6 +32,7 @@ struct PayoutView: View {
             VStack() {
                 Button {
                     gm.isTutorialShown = true
+                    
                 } label: {
                     BrightButton(text: "CONTINUE", fontSize: 28)
                         .padding(.horizontal, 64)
@@ -52,12 +54,6 @@ struct PayoutView: View {
                                     .foregroundColor(.white)
                                     .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
                             })
-                Text("DEBUG: \(gameLogic.sum)")
-                    .font(Font.custom("RobotoCondensed-Bold",size: 34))
-                    .foregroundColor(.white)
-                    .offset(y: 40)
-                
-            
                   
                 Spacer()
             }

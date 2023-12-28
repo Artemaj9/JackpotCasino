@@ -18,8 +18,9 @@ struct PlayTutorialView: View {
     @Binding var screen: Int
     let tableRatio = 0.21
     
-    @State var gameMode = -1
+    @State var gameMode = 1
     @State var endFlag = false
+    @State var text = "Deal 2 cards to the player!"
     
     var body: some View {
         ZStack {
@@ -31,198 +32,179 @@ struct PlayTutorialView: View {
                             print("width Play:  \(size.width)")
                             print("height Play: \(size.height)")
                         }
-                        })
-           
-            
-                VStack(spacing: 16) {
-
-                        RoundedRectangle(cornerRadius: 6)
-                            .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
-                            .foregroundColor(Color("whitePink"))
-                            .frame(width: 200, height: gm.size.width < 380 ? 35 : 50)
-                            .shadow(color: Color("lightPinkNeon"), radius: 4)
-                            .shadow(color: Color("lightPinkNeon"), radius: 4)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color("pinkBg"))
-                                    .shadow(color: Color("lightPinkNeon"), radius: 1, x: -5)
-                                    .overlay {
-                                        Text(String(gm.bet))
-                                            .foregroundColor(.white)
-                                            .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
-                                            .animation(.easeInOut, value: gm.bet)
-                                            .onChange(of: gm.bet, perform: { newValue in
-                                                //
-                                                if newValue == 0 {
-                                                    gameMode = 0
-                                                } else if !gm.isDouble {
-                                                    gameMode = 1
-                                                }
-                                            })
-                                            .onTapGesture {
-                                                withAnimation {
-                                                    startGame()
-                                                    gm.setUpAnimation(whoWin: "Debug win")
-                                                }
-                                            }
-                                    })
-                            .offset(y: 8)
-                    
-                    if !gm.playerWin {
-                        GameModeView(selected: $gameMode)
-                            .environmentObject(gm)
-                    }
+                    })
+            VStack() {
+                Button {
+                    screen += 1
+                } label: {
+                    BrightButton(text: "CONTINUE", fontSize: 24)
+                        .padding(.horizontal, 64)
+                        .padding([.horizontal, .top])
                 }
-                .offset(y: gm.playerWin ? -gm.size.height * 0.4 : -gm.size.height * 0.37)
-            
-            if !gm.playerWin {
-                Image("table")
-                    .resizable()
-                    .offset(y: size.width < 380 ?  tableRatio * size.height * 1.15 : tableRatio * size.height)
-                
-                ZStack {
-                    Image("carddeck")
-                        .resizable()
-                        .scaleEffect(0.5)
-                }
-                .offset(x: -size.width*0.25,y: size.height * 0.12)
-                
-                ZStack {
-                    Rectangle().frame(width:300, height: 300)
-                        .opacity(0.001)
-                        .offset(x: 100)
-                        .layoutPriority(-1)
-                    NeonRect(color: Color("redNeon"), shadow: Color("redNeon"), strokeCoeff: 0.5)
-                        .frame(width: size.height * 0.23, height: size.height * 0.23)
-                        .rotationEffect(Angle(degrees: 15))
-                        .offset(x: size.width * 0.17, y: size.height * 0.02)
-                    
-                    ZStack {
-                        ForEach(vm.draggedCards.indices, id: \.self) { i in
-                            CardView(needToRotate: true,image: vm.draggedCards[i].image, width: 80, height: 120)
-                                .rotationEffect(Angle(degrees: CGFloat(2)), anchor: .topLeading)
-                                .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .topLeading)
-                                .offset(x: size.width * 0.31)
-                        }
-                    }
-                    .onChange(of: vm.draggedCards.count) { newValue in
-                        
-                        if gameMode == 3 {
-                            //  gm.lives = -7
-                            gm.setUpDeadTimer()
-                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
-                        } else {
-                        
-                        if newValue > 0 && !gm.isDouble {
-                            if !gm.isDeal {
-                                standOrHit()
-                            }
-                            
-                            if gm.isStand && dillerDrop.dillerSum > 16 {
-                                checkWinner()
-                            }
-                            
-                            if gm.isDeal {
-                                if newValue == 2 && dillerDrop.draggedCards.count == 2 {
-                                    print("Success")
-                                    // gm.isDeal = false
-                                    standOrHit()
-                                }
-                            }
-                        }
-                        
-                        if gm.isDouble && !gm.notAbleToBring {
-                            gm.notAbleToBring = true
-                            gm.openDillerCards = true
-                            if dillerDrop.dillerSum > 16 {
-                                checkWinner()
-                            }
-                        }
-                            if gm.isDouble && vm.draggedCards.count == 4 {
-                                gm.setUpDeadTimer()
-                                gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
-                            }
-                    }
-                }
-                }
-                .onDrop(of: [UTType.url], delegate: vm)
-                
-                ZStack {
-                    Rectangle().frame(width:300, height: 500).opacity(0.001)
-                        .offset(y: 500)
-                        .layoutPriority(-1)
-                    NeonRect(color: Color("freshBlueNeon"), shadow: Color("freshBlueNeon"), strokeCoeff: 0.5)
-                        .frame(width: size.height * 0.23, height: size.height * 0.23)
-                        .rotationEffect(Angle(degrees: 15))
-                        .offset(x: -size.width * 0.08, y: size.height*0.38)
-                    ZStack {
-                        ForEach(dillerDrop.draggedCards.indices, id: \.self) { i in
-                            CardView(needToRotate: i == 0 && !gm.isStand && !gm.openDillerCards ? false : true, image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
-                                .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
-                                .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .bottomTrailing)
-                                .offset(x: size.width * -0.08, y: size.height*0.4)
-                                .id(gm.openDillerCards)
-                        }
-                    }
-                    .id(gm.isStand)
-                    .onChange(of: dillerDrop.draggedCards.count) { newValue in
-                        vm.allDeckCards.shuffle()
-                        dillerDrop.draggedCards.reverse()
-                        
-                        if gameMode == 2 {
-                            //gm.lives = -7
-                            gm.setUpDeadTimer()
-                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
-                        }
-                        
-                        if gm.isDouble && !gm.notAbleToBring {
-                            gm.setUpDeadTimer()
-                            gm.isDouble = false
-                            gm.notAbleToBring = false
-                            gm.setUpAnimation(whoWin: "Wrong action! 1", isTimeOut: true)
-                        }
-                        
-                        if gm.isDeal {
-                            if newValue == 2 && vm.draggedCards.count == 2 {
-                                print("Success")
-                               // gm.isDeal = false
-                               // gm.liveTimer?.cancel()
-                                //gm.setUpLiveTimer()
-                                standOrHit()
-                            }
-                        }
-                        
-                        if gm.isStand && dillerDrop.dillerSum > 16 {
-                            checkWinner()
-                        }
-                        
-                        if gm.notAbleToBring && dillerDrop.dillerSum > 16 {
-                            checkWinner()
-                        }
-                    }
-                }
-                .onDrop(of: [UTType.url], delegate: dillerDrop)
-                
-                
-                StatCell(title: "Player's Hand", color: Color("redNeon"), num: vm.botSum)
-                    .offset(x: -size.width * 0.3, y: -size.height*0.05)
-                
-                StatCell(title: "Your's Hand", color: Color("freshBlueNeon"), num: dillerDrop.dillerSum, alignment: .trailing)
-                
-                    .offset(x: size.width * 0.3, y: size.height*0.25)
-                
-                ZStack {
-                    CardView(image: "CardBack", width: 70, height: 100)
-                        .onDrag {
-                            NSItemProvider(item: .some(URL(string:  vm.allDeckCards[0].image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
-                        }
-                        .rotationEffect(Angle(degrees: 30))
-                        .offset(x: -size.width * 0.33, y: size.height * 0.15)
-                }
-            } else {
-                PayoutGameView(userMoney: bet, endFlag: $endFlag, coef: gm.isBlackJack ? 1.5 : 1)
+        
+                GameModeView(selected: $gameMode)
                     .environmentObject(gm)
+                
+                Text(text)
+                    .font(Font.custom("RobotoCondensed-Bold",size: 18))
+                
+                Spacer()
             }
+            
+            
+            VStack(spacing: 16) {
+                
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: 0))
+                    .foregroundColor(Color("whitePink"))
+                    .frame(width: 200, height: gm.size.width < 380 ? 35 : 50)
+                    .shadow(color: Color("lightPinkNeon"), radius: 4)
+                    .shadow(color: Color("lightPinkNeon"), radius: 4)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color("pinkBg"))
+                            .shadow(color: Color("lightPinkNeon"), radius: 1, x: -5)
+                            .overlay {
+                                Text(String(gm.bet))
+                                    .foregroundColor(.white)
+                                    .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
+                                    .animation(.easeInOut, value: gm.bet)
+                                    .onChange(of: gm.bet, perform: { newValue in
+                                        //
+                                        if newValue == 0 {
+                                            gameMode = 0
+                                        } else if !gm.isDouble {
+                                            gameMode = 1
+                                        }
+                                    })
+                            })
+                    .offset(y: 8)
+                
+                if !gm.playerWin {
+                    GameModeView(selected: $gameMode)
+                        .environmentObject(gm)
+                }
+            }
+            .offset(y: gm.playerWin ? -gm.size.height * 0.4 : -gm.size.height * 0.37)
+            
+            Image("table")
+                .resizable()
+                .offset(y: size.width < 380 ?  tableRatio * size.height * 1.15 : tableRatio * size.height)
+            
+            ZStack {
+                Image("carddeck")
+                    .resizable()
+                    .scaleEffect(0.5)
+            }
+            .offset(x: -size.width*0.25,y: size.height * 0.12)
+            
+            ZStack {
+                Rectangle().frame(width:300, height: 300)
+                    .opacity(0.001)
+                    .offset(x: 100)
+                    .layoutPriority(-1)
+                NeonRect(color: Color("redNeon"), shadow: Color("redNeon"), strokeCoeff: 0.5)
+                    .frame(width: size.height * 0.23, height: size.height * 0.23)
+                    .rotationEffect(Angle(degrees: 15))
+                    .offset(x: size.width * 0.17, y: size.height * 0.02)
+                
+                ZStack {
+                    ForEach(vm.draggedCards.indices, id: \.self) { i in
+                        CardView(needToRotate: true,image: vm.draggedCards[i].image, width: 80, height: 120)
+                            .rotationEffect(Angle(degrees: CGFloat(2)), anchor: .topLeading)
+                            .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .topLeading)
+                            .offset(x: size.width * 0.31)
+                    }
+                }
+                .onChange(of: vm.draggedCards.count) { newValue in
+                    if vm.draggedCards.count == 2 {
+                        gameMode = 2
+                        text = "Good! Deal another card to the player."
+                    }
+                    
+                    if vm.draggedCards.count == 3 {
+                        gameMode = 3
+                        text = "Excellent! Now take yourself one card!"
+                        gm.openDillerCards = true
+                    }
+                    
+                    if gameMode == 3 && vm.draggedCards.count == 4 {
+                        vm.botSum -= vm.draggedCards[3].number
+                        vm.draggedCards.remove(at: 3)
+                        
+                    }
+                }
+                
+            }
+            .onDrop(of: [UTType.url], delegate: vm)
+            
+            ZStack {
+                Rectangle().frame(width:300, height: 500).opacity(0.001)
+                    .offset(y: 500)
+                    .layoutPriority(-1)
+                NeonRect(color: Color("freshBlueNeon"), shadow: Color("freshBlueNeon"), strokeCoeff: 0.5)
+                    .frame(width: size.height * 0.23, height: size.height * 0.23)
+                    .rotationEffect(Angle(degrees: 15))
+                    .offset(x: -size.width * 0.08, y: size.height*0.38)
+                ZStack {
+                    ForEach(dillerDrop.draggedCards.indices, id: \.self) { i in
+                        
+//                        CardView(needToRotate: i == 0 || gameMode != 3 ? false : true, image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
+                        CardView(needToRotate: i != 0 || gm.openDillerCards ? true : false, image: dillerDrop.draggedCards[i].image, width: 80, height: 120)
+                            .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
+                            .rotationEffect(Angle(degrees: CGFloat(15 * i)), anchor: .bottomTrailing)
+                            .offset(x: size.width * -0.08, y: size.height*0.4)
+                            .id(gm.openDillerCards)
+                    }
+//
+//                    CardView(needToRotate: false, image: "Kings", width: 80, height: 120)
+//                        .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
+//                        .offset(x: size.width * -0.08, y: size.height*0.4)
+//
+//                    CardView(needToRotate:  true, image: "Kings", width: 80, height: 120)
+//                        .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
+//                        .rotationEffect(Angle(degrees: CGFloat(15 * 1)), anchor: .bottomTrailing)
+//                        .offset(x: size.width * -0.08, y: size.height*0.4)
+                    //  .id(gm.openDillerCards)
+                }
+                .id(gm.isStand)
+                .onChange(of: dillerDrop.draggedCards.count) { newValue in
+                    if dillerDrop.draggedCards.count > 2, gameMode != 3 {
+                       dillerDrop.dillerSum -= dillerDrop.draggedCards[newValue - 1].number
+                        dillerDrop.draggedCards.remove(at: newValue - 1)
+                        
+                    }
+                    
+                    if gameMode == 3 && dillerDrop.draggedCards.count == 3 {
+                       text = "Perfect!"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            screen += 1
+                        }
+                    }
+                  //  vm.allDeckCards.shuffle()
+                    //dillerDrop.draggedCards.reverse()
+                }
+            }
+            .onDrop(of: [UTType.url], delegate: dillerDrop)
+            
+            Group {
+            StatCell(title: "Player's Hand", color: Color("redNeon"), num: vm.botSum)
+                .offset(x: -size.width * 0.3, y: -size.height*0.05)
+            
+            StatCell(title: "Your's Hand", color: Color("freshBlueNeon"), num: dillerDrop.dillerSum, alignment: .trailing)
+            
+                .offset(x: size.width * 0.3, y: size.height*0.25)
+            
+            ZStack {
+                CardView(image: "CardBack", width: 70, height: 100)
+                    .onDrag {
+                        NSItemProvider(item: .some(URL(string:  vm.allDeckCards[0].image)! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
+                    }
+                    .rotationEffect(Angle(degrees: 30))
+                    .offset(x: -size.width * 0.33, y: size.height * 0.15)
+            }
+        }
+
             Rectangle()
                 .frame(width: size.width, height: size.height/8.2)
                 .foregroundColor(.black.opacity(0.5))
@@ -235,18 +217,9 @@ struct PlayTutorialView: View {
                         Text(gm.praiseEndGame)
                             .font(Font.custom("RobotoCondensed-MediumItalic",size: 22))
                             .foregroundColor(.white.opacity(0.9))
-                            //.multilineTextAlignment(.center)
-                           
                     }
                         .opacity(gm.showEndText ? 1 : 0)
                         .animation(.easeIn, value: gm.showEndText)
-                        .onChange(of: gm.needToStartNewGame, perform: { newValue in
-                            if gm.needToStartNewGame {
-                              //  withAnimation {
-                                    startGame()
-                               // }
-                            }
-                        })
                 )
                 .offset(y: size.height * 0.45)
                 .offset(y: gm.animCount == 0 ? 150 : -10)
@@ -263,243 +236,22 @@ struct PlayTutorialView: View {
                             .font(Font.custom("RobotoCondensed-Bold",size: 33))
                 }
                 .offset(x: 158, y: -110)
-                .onChange(of: gm.liveTimerCount) { newValue in
-                    if gm.liveTimerCount == 150  {
-                        print("You are too slow!")
-                       // if gm.lives > 1 {
-                          //  gm.lives -= 1
-                            gm.setUpAnimation(whoWin: "Time is out!", isTimeOut: true)
-                       // }
-
-                    }
-                }
-                if gm.isPaused {
-                    PauseView()
-                        .environmentObject(gm)
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .bottom),
-                            removal: .slide))
-                }
-                            if gm.isWinEnd {
-                                 GoodJobView()
-                                    .environmentObject(gm)
-                            }
                 
-                            if gm.isLoosed {
-                                LooseView()
-                                    .environmentObject(gm)
-                            }
-                
-                            if gm.isFired {
-                                FiredView()
-                                    .environmentObject(gm)
-                            }
+        }
+        .preferredColorScheme(.dark)
+        .onAppear {
+            vm.addCards()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                dillerDrop.draggedCards.append(CardModel(image: "3d"))
+                dillerDrop.draggedCards.append(CardModel(image: "4h"))
+                dillerDrop.dillerSum = 7
+            }
         }
         .navigationBarHidden(true)
         .preferredColorScheme(.dark)
-        .onAppear {
-            gm.resetToDefault()
-            vm.addCards()
-            vm.allDeckCards.shuffle()
-            gm.remainingTime = 180
-            gm.countdown()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                gm.stake()
-                bet = gm.bet
-                gm.setUpLiveTimer()
-            }
-        }
-    }
-    
-    
-    func startGame() {
-        vm.draggedCards = []
-        dillerDrop.draggedCards = []
-        vm.botSum = 0
-        vm.aces = 0
-        gm.isDouble = false
-        gm.canDouble = true
-        dillerDrop.aces = 0
-        dillerDrop.dillerSum = 0
-        gameMode = 1
-        gm.liveTimer?.cancel()
-        gm.setUpLiveTimer()
-        withAnimation { gm.playerWin = false }
-       // gm.remainingTime = 180
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            gm.restartGame()
-            bet = gm.bet
-        }
-        
-  
-     //   gm.countdown()
-    }
-    
-    func checkWinner() {
-        gm.liveTimer?.cancel()
-        if !gm.winnerDefined {
-            if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
-            // gameMode = -1
-            print("DILLER WINS")
-            gm.bet = 0
-            bet = 0
-            gm.winnerDefined = true
-            gm.setUpAnimation(whoWin: "Casino wins!")
-        } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
-            print("PLAYER WIN")
-            gm.liveTimer?.cancel()
-            gm.winnerDefined = true
-            //  gameMode = -1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                //  withAnimation() {
-                gm.playerWin = true
-                gm.setUpLiveTimer()
-               
-                // }
-            }
-        } else if dillerDrop.dillerSum == vm.botSum  {
-            print("DRAW")
-            // gameMode = -1
-            gm.winnerDefined = true
-            gm.bet = 0
-            bet = 0
-            gm.setUpAnimation(whoWin: "Draw!")
-        }
-    }
-    }
-    
-    
-    func standOrHit()  {
-        
-        if gm.isDeal {
-            gm.liveTimer?.cancel()
-            gm.setUpLiveTimer()
-            gm.isDeal = false
-        }
-    
-        
-        if vm.draggedCards.count == 2 && vm.botSum == 21 && dillerDrop.draggedCards.count == 2  {
-            if dillerDrop.dillerSum == 21 {
-                gm.setUpAnimation(whoWin: "Draw!")
-            } else {
-                gm.isBlackJack = true
-                gm.playerWin = true
-                gm.winnerDefined = true
-                print("BLACK JACK")
-            }
-        }
-
-        if vm.botSum < 9 {
-            gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
-            if gm.decision == 0 && vm.draggedCards.count == 2 {
-                print("I prefer to surrender!")
-                gm.setUpAnimation(whoWin: "Player surrenders!")
-                gameMode = 0
-            } else {
-                print("I have \(vm.botSum) and prefer HIT!!!")
-                gameMode = 2
-            }
-        }
-
-        if vm.botSum >= 9 && vm.botSum < 12 {
-            gm.decision = gm.randomNumber(probabilities: [0.3, 0.7])
-            if gm.decision == 0 && gm.canDouble && vm.draggedCards.count == 2 {
-                print("I prefer to Double!")
-                gameMode = 4
-                gm.isDeal = false
-                gm.isStand = false
-                gm.isDouble = true
-                gm.canDouble = false
-                withAnimation {
-                    gm.bet = gm.bet * 2
-                    bet = bet * 2
-                }
-              //  return
-            } else {
-                print("I have \(vm.botSum) and prefer HIT!!!")
-                gameMode = 2
-            }
-        }
-
-
-        if vm.botSum >= 12 && vm.botSum <= 13 {
-            gm.decision = gm.randomNumber(probabilities: [0.8, 0.2])
-            if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
-                gameMode = 2
-            } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
-                gameMode = 3
-                gm.isStand = true
-            }
-        }
-
-
-
-        if vm.botSum > 13 && vm.botSum < 16 {
-            gm.decision = gm.randomNumber(probabilities: [0.6, 0.4])
-            if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
-                gameMode = 2
-            } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
-                gameMode = 3
-                gm.isStand = true
-            }
-        }
-
-
-        if vm.botSum >= 16 && vm.botSum<19 {
-            gm.decision = gm.randomNumber(probabilities: [0.15, 0.85])
-            if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
-                gameMode = 2
-            } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
-                gameMode = 3
-                gm.isStand = true
-            }
-        }
-
-        if vm.botSum >= 19 && vm.botSum < 21 {
-            gm.decision = gm.randomNumber(probabilities: [0.01, 0.99])
-            if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
-                gameMode = 2
-            } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
-                gameMode = 3
-                gm.isStand = true
-            }
-        }
-
-        if vm.botSum == 21  {
-            print("Of course i prefer to stand!!!")
-            gameMode = 3
-            gm.isStand = true
-        }
-
-        if vm.botSum > 21  {
-            print("I'm loose my money")
-            gameMode = -1
-            gm.setUpAnimation(whoWin: "Casino wins!")
-        }
-        
-        if gm.isStand && dillerDrop.dillerSum > 16 {
-            checkWinner()
-        }
-        
-        gm.canDouble = false
     }
 }
 
 
 private let gradient  =
 LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
-
-//
-//struct PlayTutorialView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayTutorialView()
-//    }
-//}

@@ -62,17 +62,6 @@ struct WinView: View {
             ForEach(vm.backCoins, id: \.self) { coins in
                 Image("coin")
                     .offset(y: CGFloat(coins.number * 100))
-                   // .resizable()
-                    //.scaledToFit()
-              
-                  //  .saturation(coin.saturation)
-                  //  .hueRotation(Angle(degrees: coin.hueRotation))
-                  //  .rotation3DEffect(.degrees(coinOneDegree * coin.angularSpeed),
-//                                      axis: (
-//                                        x: coin.axisX, y: coin.axisY, z: coin.axisZ))
-                  //  .offset(x: coin.initialXOffset, y: coin.initialYOffset + coinOneOffset * coin.speed)
-                  //  .animation(.easeOut(duration: 7), value: coinOneOffset)
-                   // .animation(.easeOut(duration: 14), value: coinOneDegree )
             }
         }
        // .drawingGroup()

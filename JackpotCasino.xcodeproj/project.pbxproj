@@ -409,11 +409,11 @@
 		ACBF20692B35897E00FDA48C /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				AC43BD412B3D69A6008EE66D /* TutorialView.swift */,
 				AC8022AD2B37713E00715F1D /* PayoutView.swift */,
+				ACBF206A2B3589A800FDA48C /* MenTypeView.swift */,
 				AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */,
 				AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */,
-				ACBF206A2B3589A800FDA48C /* MenTypeView.swift */,
-				AC43BD412B3D69A6008EE66D /* TutorialView.swift */,
 				ACBF206C2B3591D900FDA48C /* TaskTutorialView.swift */,
 			);
 			path = Tutorial;

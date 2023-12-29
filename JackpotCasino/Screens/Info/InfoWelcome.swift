@@ -38,7 +38,7 @@ struct InfoWelcome: View {
                             Text(Info.welcomeText)
                                 .multilineTextAlignment(.leading)
                                 .foregroundColor(.white)
-                                .font(Font.custom("RobotoCondensed-Bold", size: width < 380 ? 18 : 22))
+                                .font(Font.custom("RobotoCondensed-Bold", size: width < 380 ? 18 : 20))
                                 .padding()
                             
                             HStack(spacing: 24) {

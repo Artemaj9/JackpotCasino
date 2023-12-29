@@ -31,13 +31,16 @@ struct PlayView: View {
                 
                 VStack(spacing: 16) {
                     HStack(spacing: 30) {
-                        GameHeaderCell(image: "heart", text: String(gm.lives))
-                            .hueRotation(Angle(degrees: gm.liveTimerCount < 120 ? 0 : (2 * Double(gm.liveTimerCount) - 240)))
-                            .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
-                            .hueRotation(Angle(degrees:  60 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1)))
-                            .saturation(0.5 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1) + 1)
-                        
-                        GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
+                        if !gm.isTutorialMode {
+                            GameHeaderCell(image: "heart", text: String(gm.lives))
+                                .hueRotation(Angle(degrees: gm.liveTimerCount < 120 ? 0 : (2 * Double(gm.liveTimerCount) - 240)))
+                                .saturation(gm.liveTimerCount < 120 ? 1 : (1/60 * Double(gm.liveTimerCount) - 1))
+                                .hueRotation(Angle(degrees:  60 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1)))
+                                .saturation(0.5 * abs(abs(( -Double(gm.deadTimerCount)) * 0.01 + 1) - 1) + 1)
+                            
+                            
+                            GameHeaderCell(image: "watches", text: "\(gm.remainingTime/60):\(gm.remainingTime%60/10)\(gm.remainingTime%60%10)", dashPhase: 22)
+                        }
                         Button {
                             gm.isPaused = true
                         } label: {
@@ -67,12 +70,6 @@ struct PlayView: View {
                                                 gameMode = 1
                                             }
                                         })
-                                        .onTapGesture {
-                                            withAnimation {
-                                                startGame()
-                                                gm.setUpAnimation(whoWin: "Debug win")
-                                            }
-                                        }
                                 })
                         .offset(y: 8)
                     
@@ -262,22 +259,23 @@ struct PlayView: View {
                     .offset(y: gm.animCount == 0 ? 150 : gm.size.width < 380 ? 10 :  gm.size.height * 0.04)
                     .opacity(gm.animCount == 0 ? 0 : 1)
                     .animation(.spring(), value: gm.animCount)
-                
-                Image("timer")
-                    .resizable()
-                    .scaledToFit()
-                    .scaleEffect(0.2)
-                    .overlay {
-                        Text(String((159 - gm.liveTimerCount)/10))
-                            .foregroundColor(.white)
-                            .font(Font.custom("RobotoCondensed-Bold",size: 33))
-                    }
-                    .offset(x: 158, y: -110)
-                    .onChange(of: gm.liveTimerCount) { newValue in
-                        if gm.liveTimerCount == 150  {
-                            gm.setUpAnimation(whoWin: "Time is out!", isTimeOut: true)
+                if !gm.isTutorialMode {
+                    Image("timer")
+                        .resizable()
+                        .scaledToFit()
+                        .scaleEffect(0.2)
+                        .overlay {
+                            Text(String((159 - gm.liveTimerCount)/10))
+                                .foregroundColor(.white)
+                                .font(Font.custom("RobotoCondensed-Bold",size: 33))
                         }
-                    }
+                        .offset(x: 158, y: -110)
+                        .onChange(of: gm.liveTimerCount) { newValue in
+                            if gm.liveTimerCount == 150  {
+                                gm.setUpAnimation(whoWin: "Time is out!", isTimeOut: true)
+                            }
+                        }
+                }
                 
                 if gm.isPaused {
                     PauseView()

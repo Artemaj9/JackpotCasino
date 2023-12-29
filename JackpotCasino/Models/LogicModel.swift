@@ -15,7 +15,6 @@ class LogicModel: ObservableObject {
     @AppStorage("isTutorialShown") var isTutorialShown = false
     
     @Published var isSplash = true
-    //@Published var balance = 0
     @Published var count = 0
 
     
@@ -26,7 +25,6 @@ class LogicModel: ObservableObject {
     @Published var result = ""
     @Published var praiseEndGame = ""
     @Published var needToStartNewGame = false
-    
     @Published var isRotating = false
     @Published var rotationIsOver = false
     @Published var isPaused = false
@@ -40,8 +38,6 @@ class LogicModel: ObservableObject {
     @Published var isDouble = false
     @Published var isLoosed = false
     @Published var playerWin = false
-    @Published var remainingTime = 180
-    //@Published var lives = 1
     @Published var isWinEnd = false
     @Published var isFired = false
     @Published var timerStopflag = false
@@ -49,9 +45,9 @@ class LogicModel: ObservableObject {
     @Published var notAbleToBring = false
     @Published var isBlackJack = false
     @Published var openDillerCards = false
+   
+    @Published var remainingTime = 180
     @Published var deadTimerCount = 0
-    
-    //Live таймер
     @Published var liveTimerCount = 0
     
     
@@ -59,15 +55,13 @@ class LogicModel: ObservableObject {
     @Published var decision = -1
     
     @Published var size: CGSize = .zero
-    
     @Published var isTutorialMode = false
-    
-    
-    private var cancellables = Set<AnyCancellable>()
     
     var animTimer: AnyCancellable?
     var liveTimer: AnyCancellable?
     var deadTimer: AnyCancellable?
+    
+    private var cancellables = Set<AnyCancellable>()
     
     func setupTimer() {
         Timer
@@ -98,7 +92,6 @@ class LogicModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    
     func stake() {
         bet = [2, 10, 100, 500, 1000, 1500, 2000, 2500, 3000].randomElement()!
         isGame = true
@@ -120,7 +113,6 @@ class LogicModel: ObservableObject {
         isBlackJack = false
         openDillerCards = false
         isLoosed = false
-       // cancelAllTimers()
         stake()
     }
     
@@ -247,6 +239,7 @@ class LogicModel: ObservableObject {
                 }
             }
         }
+    
     func cancelAllTimers() {
         liveTimer?.cancel()
         deadTimer?.cancel()
@@ -258,9 +251,6 @@ class LogicModel: ObservableObject {
     }
 
     func resetToDefault() {
-       // cancelAllTimers()
-        animCount = 0
-        bet = 0
         isDeal = false
         isGame = false
         isStand = false
@@ -268,7 +258,6 @@ class LogicModel: ObservableObject {
         isDouble = false
         isLoosed = false
         playerWin = false
-        remainingTime = 180
         isWinEnd = false
         isFired = false
         timerStopflag = false
@@ -276,11 +265,13 @@ class LogicModel: ObservableObject {
         notAbleToBring = false
         isBlackJack = false
         openDillerCards = false
+        remainingTime = 180
         deadTimerCount = 0
+        animCount = 0
+        bet = 0
     }
     
     func randomNumber(probabilities: [Double]) -> Int {
-
         // Sum of all probabilities (so that we don't have to require that the sum is 1.0):
         let sum = probabilities.reduce(0, +)
         // Random number in the range 0.0 <= rnd < sum :

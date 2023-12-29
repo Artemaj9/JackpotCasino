@@ -61,7 +61,6 @@ struct PlayView: View {
                                         .font(Font.custom("RobotoCondensed-Bold",size: gm.size.width < 380 ? 32 : 36))
                                         .animation(.easeInOut, value: gm.bet)
                                         .onChange(of: gm.bet, perform: { newValue in
-                                            //
                                             if newValue == 0 {
                                                 gameMode = 0
                                             } else if !gm.isDouble {

@@ -16,7 +16,6 @@ struct KnowledgeBaseView: View {
                         GeometryReader() { geo in
                             Color.clear.onAppear {
                                 self.width = geo.size.width
-                                print(width)
                             }
                         }
                     )
@@ -66,7 +65,6 @@ struct KnowledgeBaseView: View {
                             }
                         }
                     }
-                
             }
             .preferredColorScheme(.dark)
             .navigationBarHidden(true)

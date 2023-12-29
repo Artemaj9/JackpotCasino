@@ -1,8 +1,5 @@
 //
 //  LooseView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 27.12.2023.
 //
 
 import SwiftUI
@@ -14,17 +11,18 @@ struct LooseView: View {
     @EnvironmentObject var gm: LogicModel
     @Environment(\.dismiss) var dismiss
     
-    
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
                 .ignoresSafeArea()
+            
             VStack {
                 StrokedBgRect(lightningColor: Color("greenEndNeon"),
                               angle:.degrees(20), axis: (1, 1, -1), endDashPhase: 400)
                 
                 .scaleEffect(0.7)
                 .offset(x: 80)
+                
                 StrokedBgRect( angle:.degrees(40), axis: (-1, 0.8, 1))
                     .scaleEffect(0.6)
                     .offset(x: -70, y: -250)
@@ -44,7 +42,7 @@ struct LooseView: View {
                     .foregroundColor(.white)
                     .font(Font.custom("RobotoCondensed-Bold", size: 24))
                 StrokedNeonText(text: "DO YOU WANT TO CONTINUE?", color: Color("purpleText"), shadowColor: Color("purpleText"), size: 46)
-                //.padding(.top)
+              
                 Button {
                     gm.balance -= 2500
                     gm.lives = 3

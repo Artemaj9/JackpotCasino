@@ -16,9 +16,11 @@ struct WelcomeView: View {
     var body: some View {
         ZStack {
             BackgroundView()
+            
             if !vm.rotationIsOver {
                 VStack {
                     Spacer()
+                    
                     StrokedNeonText(text: "WELCOME!", color: Color("purpleText"), shadowColor: Color("purpleText"), size: 77)
                         .padding(.top)
                     
@@ -106,13 +108,11 @@ struct WelcomeView: View {
                         vm.setupTimer()
                         vm.isRotating = true
                         isActive = false
-                        print("Spin: " + String(format: "%.1f",spin))
                         let index = (Int(spin) % 360)/36
                         let text = index == 0 ?
                         "250" : index == 9 ? "5000" : String(500*index)
                         vm.balance = index == 0 ?
                         250 : index == 9 ? 5000 : 500 * index
-                        print("Ваш выигрыш: " + text)
                     }  label: {
                         BrightButton(text: "SPIN", fontSize: 34)
                             .padding(.horizontal, 64)
@@ -136,5 +136,6 @@ struct WelcomeView: View {
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView()
+            .environmentObject(LogicModel())
     }
 }

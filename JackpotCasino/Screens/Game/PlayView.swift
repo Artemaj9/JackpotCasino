@@ -4,7 +4,6 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import MobileCoreServices
 
 struct PlayView: View {
     
@@ -26,8 +25,6 @@ struct PlayView: View {
                         GeometryReader() { geo in
                             Color.clear.onAppear {
                                 self.size = geo.size
-                                print("width Play:  \(size.width)")
-                                print("height Play: \(size.height)")
                             }
                         })
                 
@@ -135,7 +132,6 @@ struct PlayView: View {
                                     
                                     if gm.isDeal {
                                         if newValue == 2 && dillerDrop.draggedCards.count == 2 {
-                                            print("Success")
                                             standOrHit()
                                         }
                                         
@@ -198,7 +194,6 @@ struct PlayView: View {
                             
                             if gm.isDeal {
                                 if newValue == 2 && vm.draggedCards.count == 2 {
-                                    print("Success")
                                     standOrHit()
                                 }
                                 
@@ -255,16 +250,12 @@ struct PlayView: View {
                             Text(gm.praiseEndGame)
                                 .font(Font.custom("RobotoCondensed-MediumItalic",size: 22))
                                 .foregroundColor(.white.opacity(0.9))
-                            //.multilineTextAlignment(.center)
-                            
                         }
                             .opacity(gm.showEndText ? 1 : 0)
                             .animation(.easeIn, value: gm.showEndText)
                             .onChange(of: gm.needToStartNewGame, perform: { newValue in
                                 if gm.needToStartNewGame {
-                                    //  withAnimation {
                                     startGame()
-                                    // }
                                 }
                             })
                     )
@@ -285,12 +276,10 @@ struct PlayView: View {
                     .offset(x: 158, y: -110)
                     .onChange(of: gm.liveTimerCount) { newValue in
                         if gm.liveTimerCount == 150  {
-                            print("You are too slow!")
-
                             gm.setUpAnimation(whoWin: "Time is out!", isTimeOut: true)
-                            
                         }
                     }
+                
                 if gm.isPaused {
                     PauseView()
                         .environmentObject(gm)
@@ -298,6 +287,7 @@ struct PlayView: View {
                             insertion: .move(edge: .bottom),
                             removal: .slide))
                 }
+                
                 if gm.isWinEnd {
                     GoodJobView()
                         .environmentObject(gm)
@@ -356,13 +346,11 @@ struct PlayView: View {
         gm.liveTimer?.cancel()
         if !gm.winnerDefined {
             if (dillerDrop.dillerSum > vm.botSum && dillerDrop.dillerSum <= 21) || vm.botSum > 21 {
-                print("DILLER WINS")
                 gm.bet = 0
                 bet = 0
                 gm.winnerDefined = true
                 gm.setUpAnimation(whoWin: "Casino wins!")
             } else if (dillerDrop.dillerSum < vm.botSum || dillerDrop.dillerSum > 21) && vm.botSum <= 21  {
-                print("PLAYER WIN")
                 gm.liveTimer?.cancel()
                 gm.winnerDefined = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -371,7 +359,6 @@ struct PlayView: View {
                     
                 }
             } else if dillerDrop.dillerSum == vm.botSum  {
-                print("DRAW")
                 gm.winnerDefined = true
                 gm.bet = 0
                 bet = 0
@@ -397,18 +384,15 @@ struct PlayView: View {
                 gm.isBlackJack = true
                 gm.playerWin = true
                 gm.winnerDefined = true
-                print("BLACK JACK")
             }
         }
 
         if vm.botSum < 9 {
             gm.decision = gm.randomNumber(probabilities: [0.4, 0.6])
             if gm.decision == 0 && vm.draggedCards.count == 2 {
-                print("I prefer to surrender!")
                 gm.setUpAnimation(whoWin: "Player surrenders!")
                 gameMode = 0
             } else {
-                print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
             }
         }
@@ -416,7 +400,6 @@ struct PlayView: View {
         if vm.botSum >= 9 && vm.botSum < 12 {
             gm.decision = gm.randomNumber(probabilities: [0.3, 0.7])
             if gm.decision == 0 && gm.canDouble && vm.draggedCards.count == 2 {
-                print("I prefer to Double!")
                 gameMode = 4
                 gm.isDeal = false
                 gm.isStand = false
@@ -426,9 +409,7 @@ struct PlayView: View {
                     gm.bet = gm.bet * 2
                     bet = bet * 2
                 }
-              //  return
             } else {
-                print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
             }
         }
@@ -437,24 +418,18 @@ struct PlayView: View {
         if vm.botSum >= 12 && vm.botSum <= 13 {
             gm.decision = gm.randomNumber(probabilities: [0.8, 0.2])
             if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
             } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
                 gameMode = 3
                 gm.isStand = true
             }
         }
 
-
-
         if vm.botSum > 13 && vm.botSum < 16 {
             gm.decision = gm.randomNumber(probabilities: [0.6, 0.4])
             if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
             } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
                 gameMode = 3
                 gm.isStand = true
             }
@@ -464,10 +439,8 @@ struct PlayView: View {
         if vm.botSum >= 16 && vm.botSum<19 {
             gm.decision = gm.randomNumber(probabilities: [0.15, 0.85])
             if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
             } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
                 gameMode = 3
                 gm.isStand = true
             }
@@ -476,23 +449,19 @@ struct PlayView: View {
         if vm.botSum >= 19 && vm.botSum < 21 {
             gm.decision = gm.randomNumber(probabilities: [0.01, 0.99])
             if gm.decision == 0 {
-                print("I have \(vm.botSum) and prefer HIT!!!")
                 gameMode = 2
             } else {
-                print("I have \(vm.botSum) and prefer to stand!!")
                 gameMode = 3
                 gm.isStand = true
             }
         }
 
         if vm.botSum == 21  {
-            print("Of course i prefer to stand!!!")
             gameMode = 3
             gm.isStand = true
         }
 
         if vm.botSum > 21  {
-            print("I'm loose my money")
             gameMode = -1
             gm.setUpAnimation(whoWin: "Casino wins!")
         }
@@ -505,16 +474,5 @@ struct PlayView: View {
     }
 }
 
-
 private let gradient  =
 LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)
-
-//struct PlayView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayView()
-//            .environmentObject(GameL)
-//    }
-//}
-
-
-

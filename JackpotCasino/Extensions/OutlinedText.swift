@@ -2,7 +2,6 @@
 //  OutlinedText.swift
 //
 
-
 import SwiftUI
 
 struct OutlinedText: View {

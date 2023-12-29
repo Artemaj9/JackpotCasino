@@ -23,7 +23,6 @@ struct MenTypeView: View {
                     GeometryReader() { geo in
                         Color.clear.onAppear {
                             self.width = geo.size.width
-                            print(width)
                         }
                     }
                 )
@@ -88,9 +87,3 @@ struct MenTypeView: View {
         .preferredColorScheme(.dark)
     }
 }
-
-//struct MenView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MenView()
-//    }
-//}

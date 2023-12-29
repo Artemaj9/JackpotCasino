@@ -1,8 +1,5 @@
 //
 //  DashedButton.swift
-//  JackpotCasino
-//
-//  Created by Artem on 20.12.2023.
 //
 
 import SwiftUI
@@ -46,15 +43,11 @@ struct DashedButton: View {
                         RoundedRectangle(cornerRadius: 6)
                             .fill(Color.white.opacity(0.02))
                     }
-                
                     .shadow(color: color, radius: 4)
                     .shadow(color: color, radius: 4)
                     .shadow(color: color, radius: 1)
-                
                     .shadow(color: Color.black.opacity(0.25), radius: 4)
-                
             }
-        
             .onAppear {
                 withAnimation(Animation.linear(duration: 120)) {
                     dashPhase = 1500

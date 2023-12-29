@@ -1,14 +1,11 @@
 //
 //  CardView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 24.12.2023.
 //
 
 import SwiftUI
 
 struct CardView: View {
-    //MARK: Variables
+
     @State var backDegree = 0.0
     @State var frontDegree = -90.0
     @State var isFlipped = false
@@ -20,7 +17,7 @@ struct CardView: View {
     let height : CGFloat
     let durationAndDelay : CGFloat = 0.3
 
-    //MARK: Flip Card Function
+
     func flipCard () {
         isFlipped = !isFlipped
         if isFlipped {
@@ -39,7 +36,7 @@ struct CardView: View {
             }
         }
     }
-    //MARK: View Body
+
     var body: some View {
         ZStack {
             PictureView(width: width, height: height,image: image, degree: $frontDegree)

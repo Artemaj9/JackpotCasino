@@ -1,8 +1,5 @@
 //
 //  FiredView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 27.12.2023.
 //
 
 import SwiftUI
@@ -54,5 +51,6 @@ struct FiredView: View {
 struct FiredView_Previews: PreviewProvider {
     static var previews: some View {
         FiredView()
+            .environmentObject(LogicModel())
     }
 }

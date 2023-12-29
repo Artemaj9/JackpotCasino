@@ -35,7 +35,6 @@ struct GameHeaderCell: View {
                                 .resizable()
                                 .scaledToFit()
                                 .scaleEffect(1)
-                           
                         }
                     Rectangle()
                         .fill(Color("pinkBg"))
@@ -46,10 +45,8 @@ struct GameHeaderCell: View {
                                 .foregroundColor(.white)
                                 .font(Font.custom("RobotoCondensed-Bold",size: 20))
                         }
-                       
                 })
             .frame(width: 100, height: 36)
-        
     }
 }
 

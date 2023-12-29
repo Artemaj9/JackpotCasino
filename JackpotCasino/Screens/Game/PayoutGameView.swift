@@ -18,7 +18,6 @@ struct PayoutGameView: View {
     
     var body: some View {
         ZStack {
-        
             Image("table")
                 .resizable()
                 .offset(y: 150)
@@ -81,12 +80,9 @@ struct PayoutGameView: View {
                                 .scaledToFit()
                                 .offset(y: 100)
                         }
-                    }
-                       
-                    )
+                    })
                 .padding()
                
-                
                 Spacer()
              
                 HStack() {
@@ -101,11 +97,9 @@ struct PayoutGameView: View {
                 }
                 .offset(y: -50)
             }
-    
         }
         .onAppear {
             gameLogic.userMoney = gm.isBlackJack ? Int(1.5 * Double(gm.bet)) : gm.bet
-            print("user money: \(gameLogic.userMoney) ")
             gameLogic.state = 0
             gameLogic.draggedChips = []
             gameLogic.sum = 0
@@ -114,10 +108,3 @@ struct PayoutGameView: View {
         .preferredColorScheme(.dark)
     }
 }
-
-//
-//struct PayoutGameView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        PayoutGameView(userMoney: .constant(100), endFlag: .constant(false))
-//    }
-//}

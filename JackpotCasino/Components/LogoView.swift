@@ -13,7 +13,6 @@ struct LogoView: View {
     
     var body: some View {
         ZStack {
-            //BackgroundView()
             ZStack {
                 Rectangle()
                     .fill(Color.white)
@@ -52,7 +51,6 @@ struct LogoView: View {
                         .resizable()
                         .shadow(color: Color(.white), radius: 2, y: -3)
                         .shadow(color: Color(.white), radius: 2, y: -3)
-                       // .shadow(color: Color.white, radius: 2, y: -4)
                         .shadow(color: Color("wheelShadow"), radius: 1, y: -4)
                     
                     Image("rhombusDown")

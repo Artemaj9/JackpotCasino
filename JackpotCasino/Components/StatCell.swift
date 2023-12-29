@@ -1,8 +1,5 @@
 //
 //  StatCell.swift
-//  JackpotCasino
-//
-//  Created by Artem on 24.12.2023.
 //
 
 import SwiftUI
@@ -27,6 +24,7 @@ struct StatCell: View {
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(color, lineWidth: 2)
                     )
+                
                 Text(String(num))
                     .foregroundColor(num <= 21 ? .white : .red)
                     .font(Font.custom("RobotoCondensed-Bold", size: 21))

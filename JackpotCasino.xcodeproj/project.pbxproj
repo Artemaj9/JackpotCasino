@@ -19,7 +19,7 @@
 		AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */; };
 		AC43BD482B3DAA5A008EE66D /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD472B3DAA5A008EE66D /* CoinsView.swift */; };
 		AC43BD4A2B3DB1B6008EE66D /* CoinAnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD492B3DB1B6008EE66D /* CoinAnimationModel.swift */; };
-		AC43BD4C2B3DB1F6008EE66D /* DollarAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD4B2B3DB1F6008EE66D /* DollarAnimatableProperties.swift */; };
+		AC43BD4C2B3DB1F6008EE66D /* CoinAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD4B2B3DB1F6008EE66D /* CoinAnimatableProperties.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -98,7 +98,7 @@
 		AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTutorialView.swift; sourceTree = "<group>"; };
 		AC43BD472B3DAA5A008EE66D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
 		AC43BD492B3DB1B6008EE66D /* CoinAnimationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimationModel.swift; sourceTree = "<group>"; };
-		AC43BD4B2B3DB1F6008EE66D /* DollarAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarAnimatableProperties.swift; sourceTree = "<group>"; };
+		AC43BD4B2B3DB1F6008EE66D /* CoinAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimatableProperties.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -194,12 +194,6 @@
 				AC8022D72B38262A00715F1D /* PlayView.swift */,
 				AC43BD342B3A44E8008EE66D /* PayoutGameView.swift */,
 				AC43BD362B3C2DC9008EE66D /* EndGame */,
-				AC8022DF2B38762D00715F1D /* CardRotation */,
-				AC8022AF2B37731F00715F1D /* GameViewModel.swift */,
-				AC8022DB2B38346100715F1D /* CardDropDelegate.swift */,
-				AC8022E62B388DAC00715F1D /* DillerDropDelegate.swift */,
-				AC8022B32B37758400715F1D /* ChipModel.swift */,
-				AC8022DD2B3834E600715F1D /* CardModel.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -283,7 +277,6 @@
 				ACB8B2C72B32268600F41761 /* Components */,
 				ACF44CD22B34E07900626B74 /* Models */,
 				ACB8B2C42B32261600F41761 /* Extensions */,
-				ACB8B2932B32256D00F41761 /* Assets.xcassets */,
 				ACB8B29D2B3225C700F41761 /* Resources */,
 				ACB8B2952B32256D00F41761 /* Preview Content */,
 			);
@@ -301,6 +294,7 @@
 		ACB8B29D2B3225C700F41761 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACB8B2932B32256D00F41761 /* Assets.xcassets */,
 				ACBF20672B350D0C00FDA48C /* TextData.swift */,
 				ACB8B29E2B3225C700F41761 /* Fonts */,
 			);
@@ -324,14 +318,14 @@
 		ACB8B2C42B32261600F41761 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */,
 				ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */,
-				ACA32D3F2B32687100872C51 /* View+Neon.swift */,
+				ACA32D192B32322F00872C51 /* OutlinedText.swift */,
 				ACA6350E2B3341DA001FCDE4 /* Color+Ext.swift */,
-				ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */,
+				ACA32D3F2B32687100872C51 /* View+Neon.swift */,
 				ACA32D1B2B32345400872C51 /* View+Border.swift */,
 				ACA32D392B324EAE00872C51 /* View+Glow.swift */,
-				ACA32D192B32322F00872C51 /* OutlinedText.swift */,
+				ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */,
+				ACA6350C2B33419D001FCDE4 /* View+InnerNeonShadow.swift */,
 				ACA32D372B324CF600872C51 /* View+InnerShadow2.swift */,
 			);
 			path = Extensions;
@@ -343,8 +337,8 @@
 				AC874F252B33C2E900036B28 /* CustomShapes */,
 				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
 				AC874F262B345ADF00036B28 /* LogoView.swift */,
-				AC43BD3F2B3C6D6E008EE66D /* StrokedBgRect.swift */,
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
+				AC43BD3F2B3C6D6E008EE66D /* StrokedBgRect.swift */,
 				ACA32D152B32292700872C51 /* StrokedNeonText.swift */,
 				ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */,
 				ACE4E99F2B3A17C8005C2872 /* GameModeView.swift */,
@@ -356,6 +350,7 @@
 				ACC939732B360A03002BC3A9 /* LightningRect.swift */,
 				ACA32D3D2B3265DA00872C51 /* DashedButton.swift */,
 				ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */,
+				AC8022DF2B38762D00715F1D /* CardRotation */,
 				AC43BD472B3DAA5A008EE66D /* CoinsView.swift */,
 			);
 			path = Components;
@@ -394,13 +389,18 @@
 		ACF44CD22B34E07900626B74 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AC8022EF2B39783300715F1D /* LogicModel.swift */,
+				AC8022B32B37758400715F1D /* ChipModel.swift */,
+				AC8022DD2B3834E600715F1D /* CardModel.swift */,
 				ACF44CD32B34E09600626B74 /* RewardsModel.swift */,
+				AC8022EF2B39783300715F1D /* LogicModel.swift */,
+				AC8022AF2B37731F00715F1D /* GameViewModel.swift */,
+				AC8022DB2B38346100715F1D /* CardDropDelegate.swift */,
+				AC8022E62B388DAC00715F1D /* DillerDropDelegate.swift */,
 				AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */,
 				AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */,
 				AC43BD322B3A2EDB008EE66D /* GameMode.swift */,
 				AC43BD492B3DB1B6008EE66D /* CoinAnimationModel.swift */,
-				AC43BD4B2B3DB1F6008EE66D /* DollarAnimatableProperties.swift */,
+				AC43BD4B2B3DB1F6008EE66D /* CoinAnimatableProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -546,7 +546,7 @@
 				ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */,
 				AC874F272B345ADF00036B28 /* LogoView.swift in Sources */,
 				AC8022E52B38771400715F1D /* CardView.swift in Sources */,
-				AC43BD4C2B3DB1F6008EE66D /* DollarAnimatableProperties.swift in Sources */,
+				AC43BD4C2B3DB1F6008EE66D /* CoinAnimatableProperties.swift in Sources */,
 				AC43BD332B3A2EDB008EE66D /* GameMode.swift in Sources */,
 				ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */,
 			);

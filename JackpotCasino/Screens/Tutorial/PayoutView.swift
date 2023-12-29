@@ -66,6 +66,7 @@ struct PayoutView: View {
                                         .layoutPriority(-1)
                     NeonRectangle()
                         .offset(y: 60)
+                    
                     Text("DRAG\nHERE")
                                 .font(Font.custom("RobotoCondensed-Bold",size: 64))
                                 .foregroundColor(.white.opacity(0.2))
@@ -87,16 +88,13 @@ struct PayoutView: View {
                     }
                         .onChange(of: gameLogic.draggedChips.count) { newValue in
                             if gameLogic.sum == gameLogic.userMoney {
-                                print("URRA")
                             }
                             if gameLogic.sum > gameLogic.userMoney {
-                                print("FAIILL!")
                             }
                         }
                     )
                 .padding()
                
-                
                 Spacer()
              
                 HStack() {
@@ -107,8 +105,6 @@ struct PayoutView: View {
                             .onDrag {
                                 NSItemProvider(item: .some(URL(string: String(chip.image))! as NSSecureCoding), typeIdentifier: UTType.url.identifier)
                             }
-                           
-                          
                     }
                 }
             }
@@ -123,7 +119,6 @@ struct PayoutView: View {
                         .font(Font.custom("RobotoCondensed-Bold",size: 33))
                 }
                 .offset(x: 158, y: -75)
-    
         }
         .preferredColorScheme(.dark)
     }
@@ -133,5 +128,6 @@ struct PayoutView: View {
 struct PayoutView_Previews: PreviewProvider {
     static var previews: some View {
         PayoutView()
+            .environmentObject(LogicModel())
     }
 }

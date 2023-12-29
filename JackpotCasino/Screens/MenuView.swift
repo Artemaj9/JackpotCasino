@@ -14,14 +14,13 @@ struct MenuView: View {
             NavigationView {
                 ZStack {
                     BackgroundView()
+                    
                     Rectangle()
                         .fill(Color("infoRibbon").opacity(0.08))
                         .frame(width: 25)
                         .scaleEffect(4)
                         .rotationEffect(Angle.radians(-.pi/4))
                         .offset(y: -100)
-                    
-                    
                     
                     ZStack {
                         LightningRect()
@@ -152,5 +151,6 @@ LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], star
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
+            .environmentObject(LogicModel())
     }
 }

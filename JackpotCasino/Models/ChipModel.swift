@@ -1,14 +1,10 @@
 //
 //  ChipModel.swift
-//  JackpotCasino
-//
-//  Created by Artem on 23.12.2023.
 //
 
 import Foundation
 
 struct ChipModel: Identifiable {
-    
     var id = UUID()
     var image: String
     var number: Int {

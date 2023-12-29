@@ -42,6 +42,7 @@ struct WinView: View {
                             Text(String(logicModel.balance))
                                 .font(Font.custom("RobotoCondensed-Bold",size: 66))
                                 .foregroundColor(.white)
+                            
                             Image("coin")
                                 
                         }
@@ -83,5 +84,6 @@ struct WinView: View {
 struct WinView_Previews: PreviewProvider {
     static var previews: some View {
         WinView()
+            .environmentObject(LogicModel())
     }
 }

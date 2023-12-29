@@ -1,8 +1,5 @@
 //
 //  TaskTutorialView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 22.12.2023.
 //
 
 import SwiftUI
@@ -27,10 +24,8 @@ struct TaskTutorialView: View {
                     GeometryReader() { geo in
                         Color.clear.onAppear {
                             self.width = geo.size.width
-                            print(width)
                         }
-                    }
-                )
+                    })
                 .overlay(alignment: .topTrailing) {
                     Button {
                         dismiss()
@@ -48,6 +43,7 @@ struct TaskTutorialView: View {
                    .opacity(showX ? 1 : 0)
                    .offset(y: -16)
                 }
+            
             VStack(spacing: 16) {
                 VStack(spacing: 8) {
                     Text(title)

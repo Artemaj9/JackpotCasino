@@ -29,8 +29,6 @@ struct PlayTutorialView: View {
                     GeometryReader() { geo in
                         Color.clear.onAppear {
                             self.size = geo.size
-                            print("width Play:  \(size.width)")
-                            print("height Play: \(size.height)")
                         }
                     })
             VStack() {
@@ -122,16 +120,6 @@ struct PlayTutorialView: View {
                             .offset(x: size.width * -0.08, y: size.height*0.4)
                             .id(gm.openDillerCards)
                     }
-//
-//                    CardView(needToRotate: false, image: "Kings", width: 80, height: 120)
-//                        .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
-//                        .offset(x: size.width * -0.08, y: size.height*0.4)
-//
-//                    CardView(needToRotate:  true, image: "Kings", width: 80, height: 120)
-//                        .rotationEffect(Angle(degrees: CGFloat(-15)), anchor: .bottomTrailing)
-//                        .rotationEffect(Angle(degrees: CGFloat(15 * 1)), anchor: .bottomTrailing)
-//                        .offset(x: size.width * -0.08, y: size.height*0.4)
-                    //  .id(gm.openDillerCards)
                 }
                 .id(gm.isStand)
                 .onChange(of: dillerDrop.draggedCards.count) { newValue in
@@ -147,8 +135,6 @@ struct PlayTutorialView: View {
                             screen += 1
                         }
                     }
-                  //  vm.allDeckCards.shuffle()
-                    //dillerDrop.draggedCards.reverse()
                 }
             }
             .onDrop(of: [UTType.url], delegate: dillerDrop)
@@ -217,7 +203,6 @@ struct PlayTutorialView: View {
         .preferredColorScheme(.dark)
     }
 }
-
 
 private let gradient  =
 LinearGradient(colors: [Color("questGradLight"), Color("questGradBright")], startPoint: .leading, endPoint: .trailing)

@@ -1,12 +1,8 @@
 //
 //  GameViewModel.swift
-//  JackpotCasino
-//
-//  Created by Artem on 23.12.2023.
 //
 
 import SwiftUI
-import MobileCoreServices
 import UniformTypeIdentifiers
 
 class GameViewModel: ObservableObject, DropDelegate {
@@ -25,20 +21,18 @@ class GameViewModel: ObservableObject, DropDelegate {
         for provider in info.itemProviders(for: [UTType.url]) {
             if provider.canLoadObject(ofClass: URL.self) {
                 let _ = provider.loadObject(ofClass: URL.self) { (url, error) in
-                        DispatchQueue.main.async {
-                                self.draggedChips.append(ChipModel(id: UUID(), image: "\(url!)"))
-                                self.sum += self.draggedChips.last!.number 
-                                if self.sum == self.userMoney {
-                                    print("URRRRAA!!")
-                                    self.state = 1
-                                }
-                                if self.sum > self.userMoney {
-                                    print("GAME OVER, USER STEAL MONEY!")
-                                    self.state = -1
-                                }
+                    DispatchQueue.main.async {
+                        self.draggedChips.append(ChipModel(id: UUID(), image: "\(url!)"))
+                        self.sum += self.draggedChips.last!.number
+                        if self.sum == self.userMoney {
+                            self.state = 1
+                        }
+                        if self.sum > self.userMoney {
+                            self.state = -1
                         }
                     }
                 }
+            }
         }
         return true
     }    

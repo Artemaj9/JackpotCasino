@@ -31,7 +31,7 @@ struct CoinsView: View {
                         .offset(y:  -geo.size.height * 0.3)
                 }
                 ForEach(vm.coins, id: \.self) { dollar in
-                    Image("dollar" + String(dollar.number))
+                    Image("coin")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)

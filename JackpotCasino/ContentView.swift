@@ -25,19 +25,12 @@ struct ContentView: View {
                     .environmentObject(gameLogic)
             }
         }
-        .onAppear {
-            gameLogic.firstStart = true
-            gameLogic.isTutorialShown = false
-            gameLogic.lives = 1
-            gameLogic.record = 27
-            gameLogic.balance = 0
-            gameLogic.level = 15
-        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(LogicModel())
     }
 }

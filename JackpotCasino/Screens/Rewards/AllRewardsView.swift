@@ -6,7 +6,6 @@ import SwiftUI
 
 struct AllRewardsView: View {
 
-   // @State var record: Int = 12
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var vm: LogicModel
  
@@ -40,7 +39,6 @@ struct AllRewardsView: View {
                                 .resizable()
                                 .frame(width: 40, height: 40)
                         }
-                        
                     }
                 }
                 .padding(.vertical)
@@ -54,6 +52,7 @@ struct AllRewardsView: View {
                         .font(Font.custom("RobotoCondensed-Medium", size: 18))
                         .foregroundColor(.white.opacity(0.7))
                 }
+                
                 VStack {
                     ForEach (1..<4) { h in
                         HStack(spacing: 8) {
@@ -67,7 +66,6 @@ struct AllRewardsView: View {
                                         RewardsView(rewardScreen: i)
                                     }
                                 } label: {
-                                    
                                     RewardCell(index: i, isLocked: lock)
                                 }
                                 .allowsHitTesting(!lock)
@@ -89,5 +87,6 @@ struct AllRewardsView: View {
 struct AllRewardsView_Previews: PreviewProvider {
     static var previews: some View {
         AllRewardsView()
+            .environmentObject(LogicModel())
     }
 }

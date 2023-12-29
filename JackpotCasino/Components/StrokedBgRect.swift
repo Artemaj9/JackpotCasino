@@ -12,7 +12,6 @@ struct StrokedBgRect: View {
     var lightningColor = Color("lightningRect")
     var shadow = Color("neonRectShadow")
     var dash: [CGFloat] = [60, 30, 100, 20]
-   // var dashPhase: CGFloat = 0
     var xScale: CGFloat = 1
     var yScale: CGFloat = 1
     var angle: Angle = .degrees(50)
@@ -23,7 +22,7 @@ struct StrokedBgRect: View {
     var body: some View {
         
         RoundedRectangle(cornerRadius: 12)
-           
+        
             .strokeBorder(style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: [60, 30, 100, 20], dashPhase: dashPhase))
             .foregroundColor(.white)
             .innerShadow(using:    RoundedRectangle(cornerRadius: 12), angle: .radians(0), color: .black.opacity(0.25), width: 1, blur: 1)
@@ -33,7 +32,7 @@ struct StrokedBgRect: View {
             .rotation3DEffect(angle, axis: (x: axis.0, y: axis.1, z: axis.2))
             .shadow(color: lightningColor, radius: 8)
             .shadow(color: lightningColor, radius: 8)
-
+        
             .shadow(color: .black.opacity(0.22),radius: 1, y: 4)
             .shadow(color: .black.opacity(0.22),radius: 1, y: 4)
             .onAppear {

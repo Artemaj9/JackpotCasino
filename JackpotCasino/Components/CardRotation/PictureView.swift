@@ -1,8 +1,5 @@
 //
 //  PictureView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 24.12.2023.
 //
 
 import SwiftUI

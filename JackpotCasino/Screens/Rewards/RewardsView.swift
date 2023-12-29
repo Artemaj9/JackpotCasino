@@ -54,16 +54,13 @@ struct RewardsView: View {
                             GeometryReader() { geo in
                                 Color.clear.onAppear {
                                     shapeWidth = geo.size.width
-                                    print(shapeWidth)
                                 }
                                 
-                            }
-                            )
+                            })
+                    
                     RewardShape()
                         .stroke(lineWidth: 4)
-                    
                         .foregroundColor(.white)
-                    
                         .shadow(color: Color("r\(rewardScreen)Bg"), radius: 2)
                         .shadow(color: Color("r\(rewardScreen)Bg"), radius: 2)
                       
@@ -73,8 +70,10 @@ struct RewardsView: View {
                             .scaledToFill()
                             .frame(width: 90, height: 80)
                             .offset(y: shapeWidth < 340 ? 8 : 18 )
+                        
                         StrokedNeonText(text:rewardModel[rewardScreen - 1].title, color: Color("purpleText"), shadowColor: Color("purpleText"), size: shapeWidth < 340 ? 27 : 28)
                             .offset(y: 36)
+                        
                         Text(rewardModel[rewardScreen - 1].description)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
@@ -94,7 +93,6 @@ struct RewardsView: View {
         }
         .preferredColorScheme(.dark)
     }
-      
 }
 
 struct AwardsView_Previews: PreviewProvider {

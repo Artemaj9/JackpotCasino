@@ -20,12 +20,9 @@ struct PauseView: View {
                     GeometryReader() { geo in
                         Color.clear.onAppear {
                             self.size = geo.size
-                            print("width:  \(size.width)")
-                            print("height: \(size.height)")
                         }
                         })
             VStack {
-                
                 StrokedBgRect(lightningColor: Color("greenEndNeon"),
                               angle:.degrees(40), axis: (1, 1, -1), endDashPhase: 500)
                 

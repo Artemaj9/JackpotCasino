@@ -1,8 +1,5 @@
 //
 //  Payout.swift
-//  JackpotCasino
-//
-//  Created by Artem on 23.12.2023.
 //
 
 import SwiftUI
@@ -20,24 +17,24 @@ struct PayoutTutorial: View {
                 BrightButton(text: "CONTINUE", fontSize: 28)
                     .padding(.horizontal, 64)
                     .padding()
+                
                 DashedMenuBtn(color: Color( "lightPinkNeon"), dash: [40, 30, 25, 10], text: "2500")
                     .padding(.horizontal, 84)
-            
                   
                 Spacer()
             }
             VStack(spacing: 50) {
                 Spacer()
                 Spacer()
+                
                 NeonRectangle()
                     .offset(y: 60)
                     .overlay(
                     Text("DRAG\nHERE")
                     .font(Font.custom("RobotoCondensed-Bold",size: 64))
                     .opacity(0.3)
-                    .offset(y: 50)
-                          )
-                
+                    .offset(y: 50))
+    
                 Spacer()
              
                 HStack() {

@@ -1,8 +1,5 @@
 //
 //  PauseCell.swift
-//  JackpotCasino
-//
-//  Created by Artem on 25.12.2023.
 //
 
 import SwiftUI
@@ -16,16 +13,17 @@ struct PauseCell: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(gradient)
                 .shadow(color: Color("questGradBright"), radius: 8)
-            
                 .frame(width: 36,height: 36)
                 .overlay(
                     Image("pause")
                         .resizable()
                         .scaledToFit()
                         .padding(10))
+            
             VStack(alignment: .trailing) {
                 Text("Mode")
                     .font(Font.custom("RobotoCondensed-LightItalic",size: 14))
+                
                 Text(textMode)
                     .font(Font.custom("RobotoCondensed-MediumItalic",size: 18))
             }

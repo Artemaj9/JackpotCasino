@@ -31,7 +31,6 @@ struct InfoWelcome: View {
                                 GeometryReader() { geo in
                                     Color.clear.onAppear {
                                         self.width = geo.size.width
-                                        print(width)
                                     }
                                 })
                         

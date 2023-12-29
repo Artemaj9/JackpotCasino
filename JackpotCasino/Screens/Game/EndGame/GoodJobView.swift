@@ -1,8 +1,5 @@
 //
 //  GoodJobView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 27.12.2023.
 //
 
 import SwiftUI
@@ -21,7 +18,6 @@ struct GoodJobView: View {
             
             VStack {
                 
-              
                 StrokedBgRect(lightningColor: Color("purpleEndNeon"), angle:.degrees(107), axis: (0, -0.8, 1),endDashPhase: 700)
                     .scaleEffect(0.75)
                     .offset(x: 100)
@@ -30,6 +26,7 @@ struct GoodJobView: View {
                 StrokedBgRect(lightningColor: Color("yellowEndNeon"), angle:.degrees(90), axis: (1, 0.8, 1))
                     .scaleEffect(0.95)
                     .offset(x: -50, y: -100)
+                
                 StrokedBgRect(angle:.degrees(40), axis: (1, 1, -1))
                     .scaleEffect(0.95)
                     .offset(x: -50, y:0)
@@ -57,8 +54,6 @@ struct GoodJobView: View {
                             StrokedNeonText(text: "2000", color: Color("cherryColor"), shadowColor: Color("cherryColor").opacity(0.4), size: 74)
                                 .offset(x: 16)
                             
-                        
-                               
                             Image("coin")
                                 .rotation3DEffect(rotation, axis: (x: 0, y: 1, z: 0))
                                 .onTapGesture {
@@ -67,11 +62,8 @@ struct GoodJobView: View {
                                         rotation =  rotation == .degrees(0) ? .degrees(360) : .degrees(0)
                                     }
                                 }
-                                
-                            
                         }
                             .opacity(opacity)
-                            
                     )
                 Button {
                     gm.balance += 2000
@@ -99,5 +91,6 @@ struct GoodJobView: View {
 struct GoodJobView_Previews: PreviewProvider {
     static var previews: some View {
         GoodJobView()
+            .environmentObject(LogicModel())
     }
 }

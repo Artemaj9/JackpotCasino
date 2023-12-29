@@ -1,8 +1,5 @@
 //
 //  GameModeView.swift
-//  JackpotCasino
-//
-//  Created by Artem on 25.12.2023.
 //
 
 import SwiftUI
@@ -19,6 +16,7 @@ struct GameModeView: View {
                 .frame(width: 314, height: 42)
                 .shadow(color: Color("modeShadow"), radius: 8)
                 .shadow(color: Color("modeShadow"), radius: 8)
+            
             HStack(spacing: 0) {
                 Rectangle()
                     .fill(Color(selected == 1 ? "orangeBtn" : "pinkBg"))

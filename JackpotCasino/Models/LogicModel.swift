@@ -17,7 +17,6 @@ class LogicModel: ObservableObject {
     @Published var isSplash = true
     @Published var count = 0
 
-    
     // Animation end round
     @Published var animCount = 0
     @Published var isAnimationRound = false
@@ -49,7 +48,6 @@ class LogicModel: ObservableObject {
     @Published var remainingTime = 180
     @Published var deadTimerCount = 0
     @Published var liveTimerCount = 0
-    
     
     // hit, stand or double 0, 1, 2
     @Published var decision = -1
@@ -116,7 +114,6 @@ class LogicModel: ObservableObject {
         stake()
     }
     
-    
     func setUpLiveTimer() {
         liveTimerCount = 0
          liveTimer = Timer
@@ -145,7 +142,6 @@ class LogicModel: ObservableObject {
                 }
             }
         }
-    
     
     func setUpDeadTimer() {
         deadTimerCount = 0
@@ -190,8 +186,6 @@ class LogicModel: ObservableObject {
                 }
                 if (remainingTime <= 0 && isGame && lives > 0)  || timerStopflag {
                     
-                    print("TIME IS OVER!")
-                   
                     isGame = false
                     isDeal = false
                     isWinEnd = true
@@ -201,7 +195,7 @@ class LogicModel: ObservableObject {
                     bet = 0
                     count = 0
                     cancelAllTimers()
-                    // GAME OVER
+
                     for item in cancellables {
                         item.cancel()
                     }
@@ -272,19 +266,17 @@ class LogicModel: ObservableObject {
     }
     
     func randomNumber(probabilities: [Double]) -> Int {
-        // Sum of all probabilities (so that we don't have to require that the sum is 1.0):
+        
         let sum = probabilities.reduce(0, +)
-        // Random number in the range 0.0 <= rnd < sum :
         let rnd = Double.random(in: 0.0 ..< sum)
-        // Find the first interval of accumulated probabilities into which `rnd` falls:
         var accum = 0.0
+        
         for (i, p) in probabilities.enumerated() {
             accum += p
             if rnd < accum {
                 return i
             }
         }
-        // This point might be reached due to floating point inaccuracies:
         return (probabilities.count - 1)
     }
 }

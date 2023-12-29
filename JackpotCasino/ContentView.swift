@@ -29,9 +29,9 @@ struct ContentView: View {
             gameLogic.firstStart = true
             gameLogic.isTutorialShown = false
             gameLogic.lives = 1
-            gameLogic.record = 0
+            gameLogic.record = 27
             gameLogic.balance = 0
-            gameLogic.level = 0
+            gameLogic.level = 15
         }
     }
 }

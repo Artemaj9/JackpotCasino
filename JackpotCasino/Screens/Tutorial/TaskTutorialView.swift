@@ -79,7 +79,9 @@ struct TaskTutorialView: View {
                         }
                       
                         Button {
-                            screen += 1
+                            withAnimation {
+                                screen += 1
+                            }
                         } label : {
                             BrightButton(text: "NEXT", fontSize: width < 380 ? 20 : 24, padding: 8)
                         }

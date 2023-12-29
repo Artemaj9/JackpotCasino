@@ -48,11 +48,14 @@ struct LooseView: View {
                 Button {
                     gm.balance -= 2500
                     gm.lives = 3
+                    gm.resetToDefault()
+                    gm.animTimer?.cancel()
                     gm.needToStartNewGame = true
                     gm.remainingTime = 180
                     gm.countdown()
                     timer?.invalidate()
                     gm.isLoosed = false
+                    
                 } label: {
                     BrightButton(text: "CONTINUE FOR 2500", fontSize: size.width < 380 ? 27 : 33)
                         .padding([.horizontal, .bottom] , 44)

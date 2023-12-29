@@ -19,6 +19,7 @@ struct TutorialView: View {
                     .environmentObject(gm)
             case 2: TaskTutorialView(screen: $screen)
                     .environmentObject(gm)
+                
             case 3: TaskTutorialView(screen: $screen, image: "task1Hit", text: Tutorial.hitText)
                     .environmentObject(gm)
             case 4: TaskTutorialView(screen: $screen, image: "task1Stand", text: Tutorial.standText)
@@ -35,6 +36,11 @@ struct TutorialView: View {
             default: BackgroundView()
             }
         }
+        .id(screen)
+        .transition(.asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading))
+        )
         .navigationBarHidden(true)
     }
 }

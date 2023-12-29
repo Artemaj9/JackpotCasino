@@ -18,6 +18,8 @@
 		AC43BD442B3D6C95008EE66D /* TutorialScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */; };
 		AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */; };
 		AC43BD482B3DAA5A008EE66D /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD472B3DAA5A008EE66D /* CoinsView.swift */; };
+		AC43BD4A2B3DB1B6008EE66D /* CoinAnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD492B3DB1B6008EE66D /* CoinAnimationModel.swift */; };
+		AC43BD4C2B3DB1F6008EE66D /* DollarAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC43BD4B2B3DB1F6008EE66D /* DollarAnimatableProperties.swift */; };
 		AC8022A92B3761F400715F1D /* PayoutTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */; };
 		AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AB2B3767F300715F1D /* NeonRect.swift */; };
 		AC8022AE2B37713E00715F1D /* PayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8022AD2B37713E00715F1D /* PayoutView.swift */; };
@@ -56,24 +58,12 @@
 		ACB8B2902B32256C00F41761 /* JackpotCasinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */; };
 		ACB8B2942B32256D00F41761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2932B32256D00F41761 /* Assets.xcassets */; };
 		ACB8B2972B32256D00F41761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2962B32256D00F41761 /* Preview Assets.xcassets */; };
-		ACB8B2B12B3225C700F41761 /* RobotoCondensed-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B29F2B3225C700F41761 /* RobotoCondensed-Thin.ttf */; };
 		ACB8B2B22B3225C700F41761 /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A02B3225C700F41761 /* RobotoCondensed-Bold.ttf */; };
-		ACB8B2B32B3225C700F41761 /* RobotoCondensed-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A12B3225C700F41761 /* RobotoCondensed-SemiBoldItalic.ttf */; };
-		ACB8B2B42B3225C700F41761 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A22B3225C700F41761 /* RobotoCondensed-Light.ttf */; };
-		ACB8B2B52B3225C700F41761 /* RobotoCondensed-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A32B3225C700F41761 /* RobotoCondensed-ExtraBoldItalic.ttf */; };
-		ACB8B2B62B3225C700F41761 /* RobotoCondensed-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A42B3225C700F41761 /* RobotoCondensed-ThinItalic.ttf */; };
-		ACB8B2B72B3225C700F41761 /* RobotoCondensed-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A52B3225C700F41761 /* RobotoCondensed-ExtraLight.ttf */; };
-		ACB8B2B82B3225C700F41761 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A62B3225C700F41761 /* RobotoCondensed-Italic.ttf */; };
 		ACB8B2B92B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A72B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf */; };
-		ACB8B2BA2B3225C700F41761 /* RobotoCondensed-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A82B3225C700F41761 /* RobotoCondensed-SemiBold.ttf */; };
 		ACB8B2BB2B3225C700F41761 /* RobotoCondensed-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2A92B3225C700F41761 /* RobotoCondensed-Medium.ttf */; };
 		ACB8B2BC2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2AA2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf */; };
 		ACB8B2BD2B3225C700F41761 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2AB2B3225C700F41761 /* RobotoCondensed-Regular.ttf */; };
 		ACB8B2BE2B3225C700F41761 /* RobotoCondensed-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2AC2B3225C700F41761 /* RobotoCondensed-MediumItalic.ttf */; };
-		ACB8B2BF2B3225C700F41761 /* RobotoCondensed-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2AD2B3225C700F41761 /* RobotoCondensed-ExtraLightItalic.ttf */; };
-		ACB8B2C02B3225C700F41761 /* RobotoCondensed-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2AE2B3225C700F41761 /* RobotoCondensed-ExtraBold.ttf */; };
-		ACB8B2C12B3225C700F41761 /* RobotoCondensed-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2AF2B3225C700F41761 /* RobotoCondensed-Black.ttf */; };
-		ACB8B2C22B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACB8B2B02B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf */; };
 		ACB8B2C62B32262700F41761 /* View+InnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */; };
 		ACB8B2C92B32269C00F41761 /* BrightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB8B2C82B32269C00F41761 /* BrightButton.swift */; };
 		ACBF205F2B34F38B00FDA48C /* AllRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF205E2B34F38B00FDA48C /* AllRewardsView.swift */; };
@@ -85,8 +75,6 @@
 		ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF206C2B3591D900FDA48C /* TaskTutorialView.swift */; };
 		ACBF20702B35A74000FDA48C /* KnowledgeBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF206F2B35A74000FDA48C /* KnowledgeBaseView.swift */; };
 		ACBF20722B35D31A00FDA48C /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20712B35D31A00FDA48C /* WinView.swift */; };
-		ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20732B35D96100FDA48C /* CoinAnimation.swift */; };
-		ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */; };
 		ACC939722B35FBE7002BC3A9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939712B35FBE7002BC3A9 /* MenuView.swift */; };
 		ACC939742B360A03002BC3A9 /* LightningRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939732B360A03002BC3A9 /* LightningRect.swift */; };
 		ACC939762B361570002BC3A9 /* DashedMenuBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */; };
@@ -94,7 +82,6 @@
 		ACE4E99C2B39E5F1005C2872 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */; };
 		ACE4E99E2B39F3C8005C2872 /* PauseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */; };
 		ACE4E9A02B3A17C8005C2872 /* GameModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4E99F2B3A17C8005C2872 /* GameModeView.swift */; };
-		ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD02B34970F00626B74 /* ProAnimation.swift */; };
 		ACF44CD42B34E09600626B74 /* RewardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF44CD32B34E09600626B74 /* RewardsModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +97,8 @@
 		AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScreenModel.swift; sourceTree = "<group>"; };
 		AC43BD452B3D775F008EE66D /* PlayTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTutorialView.swift; sourceTree = "<group>"; };
 		AC43BD472B3DAA5A008EE66D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
+		AC43BD492B3DB1B6008EE66D /* CoinAnimationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimationModel.swift; sourceTree = "<group>"; };
+		AC43BD4B2B3DB1F6008EE66D /* DollarAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarAnimatableProperties.swift; sourceTree = "<group>"; };
 		AC8022A82B3761F400715F1D /* PayoutTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutTutorialView.swift; sourceTree = "<group>"; };
 		AC8022AB2B3767F300715F1D /* NeonRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonRect.swift; sourceTree = "<group>"; };
 		AC8022AD2B37713E00715F1D /* PayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutView.swift; sourceTree = "<group>"; };
@@ -149,24 +138,12 @@
 		ACB8B28F2B32256C00F41761 /* JackpotCasinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackpotCasinoApp.swift; sourceTree = "<group>"; };
 		ACB8B2932B32256D00F41761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACB8B2962B32256D00F41761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		ACB8B29F2B3225C700F41761 /* RobotoCondensed-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Thin.ttf"; sourceTree = "<group>"; };
 		ACB8B2A02B3225C700F41761 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
-		ACB8B2A12B3225C700F41761 /* RobotoCondensed-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		ACB8B2A22B3225C700F41761 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
-		ACB8B2A32B3225C700F41761 /* RobotoCondensed-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		ACB8B2A42B3225C700F41761 /* RobotoCondensed-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-ThinItalic.ttf"; sourceTree = "<group>"; };
-		ACB8B2A52B3225C700F41761 /* RobotoCondensed-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-ExtraLight.ttf"; sourceTree = "<group>"; };
-		ACB8B2A62B3225C700F41761 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		ACB8B2A72B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-BoldItalic.ttf"; sourceTree = "<group>"; };
-		ACB8B2A82B3225C700F41761 /* RobotoCondensed-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-SemiBold.ttf"; sourceTree = "<group>"; };
 		ACB8B2A92B3225C700F41761 /* RobotoCondensed-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Medium.ttf"; sourceTree = "<group>"; };
 		ACB8B2AA2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		ACB8B2AB2B3225C700F41761 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		ACB8B2AC2B3225C700F41761 /* RobotoCondensed-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-MediumItalic.ttf"; sourceTree = "<group>"; };
-		ACB8B2AD2B3225C700F41761 /* RobotoCondensed-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		ACB8B2AE2B3225C700F41761 /* RobotoCondensed-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-ExtraBold.ttf"; sourceTree = "<group>"; };
-		ACB8B2AF2B3225C700F41761 /* RobotoCondensed-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Black.ttf"; sourceTree = "<group>"; };
-		ACB8B2B02B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ACB8B2C32B3225F900F41761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		ACB8B2C52B32262700F41761 /* View+InnerShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+InnerShadow.swift"; sourceTree = "<group>"; };
 		ACB8B2C82B32269C00F41761 /* BrightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightButton.swift; sourceTree = "<group>"; };
@@ -179,8 +156,6 @@
 		ACBF206C2B3591D900FDA48C /* TaskTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTutorialView.swift; sourceTree = "<group>"; };
 		ACBF206F2B35A74000FDA48C /* KnowledgeBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeBaseView.swift; sourceTree = "<group>"; };
 		ACBF20712B35D31A00FDA48C /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
-		ACBF20732B35D96100FDA48C /* CoinAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimation.swift; sourceTree = "<group>"; };
-		ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAnimatableProperties.swift; sourceTree = "<group>"; };
 		ACC939712B35FBE7002BC3A9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		ACC939732B360A03002BC3A9 /* LightningRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningRect.swift; sourceTree = "<group>"; };
 		ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedMenuBtn.swift; sourceTree = "<group>"; };
@@ -188,7 +163,6 @@
 		ACE4E99B2B39E5F1005C2872 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseCell.swift; sourceTree = "<group>"; };
 		ACE4E99F2B3A17C8005C2872 /* GameModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeView.swift; sourceTree = "<group>"; };
-		ACF44CD02B34970F00626B74 /* ProAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProAnimation.swift; sourceTree = "<group>"; };
 		ACF44CD32B34E09600626B74 /* RewardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -336,25 +310,13 @@
 		ACB8B29E2B3225C700F41761 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				ACB8B29F2B3225C700F41761 /* RobotoCondensed-Thin.ttf */,
 				ACB8B2A02B3225C700F41761 /* RobotoCondensed-Bold.ttf */,
-				ACB8B2A12B3225C700F41761 /* RobotoCondensed-SemiBoldItalic.ttf */,
 				ACA635172B33845F001FCDE4 /* Roboto-Bold.ttf */,
-				ACB8B2A22B3225C700F41761 /* RobotoCondensed-Light.ttf */,
-				ACB8B2A32B3225C700F41761 /* RobotoCondensed-ExtraBoldItalic.ttf */,
-				ACB8B2A42B3225C700F41761 /* RobotoCondensed-ThinItalic.ttf */,
-				ACB8B2A52B3225C700F41761 /* RobotoCondensed-ExtraLight.ttf */,
-				ACB8B2A62B3225C700F41761 /* RobotoCondensed-Italic.ttf */,
-				ACB8B2A72B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf */,
-				ACB8B2A82B3225C700F41761 /* RobotoCondensed-SemiBold.ttf */,
 				ACB8B2A92B3225C700F41761 /* RobotoCondensed-Medium.ttf */,
-				ACB8B2AA2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf */,
+				ACB8B2A72B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf */,
 				ACB8B2AB2B3225C700F41761 /* RobotoCondensed-Regular.ttf */,
+				ACB8B2AA2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf */,
 				ACB8B2AC2B3225C700F41761 /* RobotoCondensed-MediumItalic.ttf */,
-				ACB8B2AD2B3225C700F41761 /* RobotoCondensed-ExtraLightItalic.ttf */,
-				ACB8B2AE2B3225C700F41761 /* RobotoCondensed-ExtraBold.ttf */,
-				ACB8B2AF2B3225C700F41761 /* RobotoCondensed-Black.ttf */,
-				ACB8B2B02B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -380,8 +342,8 @@
 			children = (
 				AC874F252B33C2E900036B28 /* CustomShapes */,
 				ACA635132B33569D001FCDE4 /* BackgroundView.swift */,
-				AC43BD472B3DAA5A008EE66D /* CoinsView.swift */,
 				AC874F262B345ADF00036B28 /* LogoView.swift */,
+				AC43BD3F2B3C6D6E008EE66D /* StrokedBgRect.swift */,
 				ACB8B2C82B32269C00F41761 /* BrightButton.swift */,
 				ACA32D152B32292700872C51 /* StrokedNeonText.swift */,
 				ACE4E9992B39E11A005C2872 /* GameHeaderCell.swift */,
@@ -389,13 +351,12 @@
 				ACE4E99D2B39F3C8005C2872 /* PauseCell.swift */,
 				AC8022D92B3830F500715F1D /* StatCell.swift */,
 				ACBF20602B34F95600FDA48C /* RewardCell.swift */,
-				ACF44CD02B34970F00626B74 /* ProAnimation.swift */,
 				ACA32D3B2B3256CB00872C51 /* NeonRectangle.swift */,
 				AC8022AB2B3767F300715F1D /* NeonRect.swift */,
 				ACC939732B360A03002BC3A9 /* LightningRect.swift */,
-				AC43BD3F2B3C6D6E008EE66D /* StrokedBgRect.swift */,
 				ACA32D3D2B3265DA00872C51 /* DashedButton.swift */,
 				ACC939752B361570002BC3A9 /* DashedMenuBtn.swift */,
+				AC43BD472B3DAA5A008EE66D /* CoinsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -437,9 +398,9 @@
 				ACF44CD32B34E09600626B74 /* RewardsModel.swift */,
 				AC8022ED2B396C7600715F1D /* InfoScreenModel.swift */,
 				AC43BD432B3D6C95008EE66D /* TutorialScreenModel.swift */,
-				ACBF20732B35D96100FDA48C /* CoinAnimation.swift */,
-				ACBF20752B35D9AF00FDA48C /* CoinAnimatableProperties.swift */,
 				AC43BD322B3A2EDB008EE66D /* GameMode.swift */,
+				AC43BD492B3DB1B6008EE66D /* CoinAnimationModel.swift */,
+				AC43BD4B2B3DB1F6008EE66D /* DollarAnimatableProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -503,26 +464,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACB8B2BE2B3225C700F41761 /* RobotoCondensed-MediumItalic.ttf in Resources */,
-				ACB8B2BA2B3225C700F41761 /* RobotoCondensed-SemiBold.ttf in Resources */,
-				ACB8B2B72B3225C700F41761 /* RobotoCondensed-ExtraLight.ttf in Resources */,
-				ACB8B2B62B3225C700F41761 /* RobotoCondensed-ThinItalic.ttf in Resources */,
 				ACB8B2BD2B3225C700F41761 /* RobotoCondensed-Regular.ttf in Resources */,
 				ACB8B2972B32256D00F41761 /* Preview Assets.xcassets in Resources */,
-				ACB8B2B52B3225C700F41761 /* RobotoCondensed-ExtraBoldItalic.ttf in Resources */,
 				ACB8B2942B32256D00F41761 /* Assets.xcassets in Resources */,
-				ACB8B2B32B3225C700F41761 /* RobotoCondensed-SemiBoldItalic.ttf in Resources */,
 				ACB8B2B22B3225C700F41761 /* RobotoCondensed-Bold.ttf in Resources */,
 				ACB8B2BB2B3225C700F41761 /* RobotoCondensed-Medium.ttf in Resources */,
-				ACB8B2C02B3225C700F41761 /* RobotoCondensed-ExtraBold.ttf in Resources */,
 				ACB8B2B92B3225C700F41761 /* RobotoCondensed-BoldItalic.ttf in Resources */,
-				ACB8B2B42B3225C700F41761 /* RobotoCondensed-Light.ttf in Resources */,
 				ACA635182B33845F001FCDE4 /* Roboto-Bold.ttf in Resources */,
-				ACB8B2B12B3225C700F41761 /* RobotoCondensed-Thin.ttf in Resources */,
 				ACB8B2BC2B3225C700F41761 /* RobotoCondensed-LightItalic.ttf in Resources */,
-				ACB8B2BF2B3225C700F41761 /* RobotoCondensed-ExtraLightItalic.ttf in Resources */,
-				ACB8B2C12B3225C700F41761 /* RobotoCondensed-Black.ttf in Resources */,
-				ACB8B2B82B3225C700F41761 /* RobotoCondensed-Italic.ttf in Resources */,
-				ACB8B2C22B3225C700F41761 /* RobotoCondensed-BlackItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,8 +488,8 @@
 				AC8022E72B388DAC00715F1D /* DillerDropDelegate.swift in Sources */,
 				AC43BD462B3D775F008EE66D /* PlayTutorialView.swift in Sources */,
 				AC8022AC2B3767F300715F1D /* NeonRect.swift in Sources */,
+				AC43BD4A2B3DB1B6008EE66D /* CoinAnimationModel.swift in Sources */,
 				AC80230C2B39A75D00715F1D /* ContentView.swift in Sources */,
-				ACF44CD12B34970F00626B74 /* ProAnimation.swift in Sources */,
 				ACA32D402B32687100872C51 /* View+Neon.swift in Sources */,
 				ACE4E99A2B39E11A005C2872 /* GameHeaderCell.swift in Sources */,
 				ACA6350F2B3341DA001FCDE4 /* Color+Ext.swift in Sources */,
@@ -560,7 +509,6 @@
 				AC8022DA2B3830F500715F1D /* StatCell.swift in Sources */,
 				AC8022EC2B38E79B00715F1D /* ArticleView.swift in Sources */,
 				ACBF20632B350A0600FDA48C /* InfoWelcome.swift in Sources */,
-				ACBF20762B35D9AF00FDA48C /* CoinAnimatableProperties.swift in Sources */,
 				ACA32D3A2B324EAE00872C51 /* View+Glow.swift in Sources */,
 				ACA6350D2B33419D001FCDE4 /* View+InnerNeonShadow.swift in Sources */,
 				ACA32D3C2B3256CB00872C51 /* NeonRectangle.swift in Sources */,
@@ -586,7 +534,6 @@
 				AC8022E12B38764B00715F1D /* PictureView.swift in Sources */,
 				ACA32D162B32292700872C51 /* StrokedNeonText.swift in Sources */,
 				AC43BD3C2B3C3399008EE66D /* FiredView.swift in Sources */,
-				ACBF20742B35D96100FDA48C /* CoinAnimation.swift in Sources */,
 				ACBF206B2B3589A800FDA48C /* MenTypeView.swift in Sources */,
 				ACBF20612B34F95600FDA48C /* RewardCell.swift in Sources */,
 				AC43BD422B3D69A6008EE66D /* TutorialView.swift in Sources */,
@@ -599,6 +546,7 @@
 				ACA32D3E2B3265DA00872C51 /* DashedButton.swift in Sources */,
 				AC874F272B345ADF00036B28 /* LogoView.swift in Sources */,
 				AC8022E52B38771400715F1D /* CardView.swift in Sources */,
+				AC43BD4C2B3DB1F6008EE66D /* DollarAnimatableProperties.swift in Sources */,
 				AC43BD332B3A2EDB008EE66D /* GameMode.swift in Sources */,
 				ACBF206D2B3591D900FDA48C /* TaskTutorialView.swift in Sources */,
 			);

@@ -1,5 +1,8 @@
 //
-//  CoinAnimatableProperties.swift
+//  DollarAnimatableProperties.swift
+//  JackpotCasino
+//
+//  Created by Artem on 28.12.2023.
 //
 
 import Foundation

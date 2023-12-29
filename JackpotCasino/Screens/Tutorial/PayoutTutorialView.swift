@@ -64,8 +64,6 @@ struct PayoutTutorial: View {
                     .scaledToFit()
                     .scaleEffect(0.35)
                     .offset(x: -80, y: 150)
-                    
-                    
             }
         }
         .preferredColorScheme(.dark)

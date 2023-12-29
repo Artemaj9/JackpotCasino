@@ -35,7 +35,9 @@ struct PlayTutorialView: View {
                     })
             VStack() {
                 Button {
-                    screen += 1
+                    withAnimation {
+                        screen += 1
+                    }
                 } label: {
                     BrightButton(text: "CONTINUE", fontSize: 24)
                         .padding(.horizontal, 64)

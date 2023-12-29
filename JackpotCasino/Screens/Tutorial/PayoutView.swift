@@ -31,8 +31,9 @@ struct PayoutView: View {
                 .offset(y: 150)
             VStack() {
                 Button {
-                    gm.isTutorialShown = true
-                    
+                    withAnimation {
+                        gm.isTutorialShown = true
+                    }
                 } label: {
                     BrightButton(text: "CONTINUE", fontSize: 28)
                         .padding(.horizontal, 64)

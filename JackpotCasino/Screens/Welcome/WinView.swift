@@ -6,7 +6,6 @@ import SwiftUI
 
 struct WinView: View {
     
-    @StateObject var vm = CoinAnimation()
     @EnvironmentObject var logicModel: LogicModel
     @State var radians: Double = 0.5
     @State var saturation: Double = 0
@@ -22,6 +21,8 @@ struct WinView: View {
     var body: some View {
         ZStack {
             BackgroundView()
+            CoinsView()
+                .ignoresSafeArea()
  
             VStack(spacing: 24) {
                 Image("star")
@@ -59,15 +60,8 @@ struct WinView: View {
                 }
             }
             .padding()
-            ForEach(vm.backCoins, id: \.self) { coins in
-                Image("coin")
-                    .offset(y: CGFloat(coins.number * 100))
-            }
         }
-       // .drawingGroup()
         .onAppear {
-            vm.updateCoins()
-            print(vm.backCoins.count)
             radians = 1
             saturation = 1
             degrees = -45

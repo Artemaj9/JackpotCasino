@@ -136,8 +136,12 @@ struct PlayView: View {
                                     if gm.isDeal {
                                         if newValue == 2 && dillerDrop.draggedCards.count == 2 {
                                             print("Success")
-                                            // gm.isDeal = false
                                             standOrHit()
+                                        }
+                                        
+                                        if newValue == 3 {
+                                            gm.setUpDeadTimer()
+                                            gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                                         }
                                     }
                                 }
@@ -189,16 +193,18 @@ struct PlayView: View {
                                 gm.setUpDeadTimer()
                                 gm.isDouble = false
                                 gm.notAbleToBring = false
-                                gm.setUpAnimation(whoWin: "Wrong action! 1", isTimeOut: true)
+                                gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                             }
                             
                             if gm.isDeal {
                                 if newValue == 2 && vm.draggedCards.count == 2 {
                                     print("Success")
-                                    // gm.isDeal = false
-                                    // gm.liveTimer?.cancel()
-                                    //gm.setUpLiveTimer()
                                     standOrHit()
+                                }
+                                
+                                if newValue == 3 {
+                                    gm.setUpDeadTimer()
+                                    gm.setUpAnimation(whoWin: "Wrong action!", isTimeOut: true)
                                 }
                             }
                             
@@ -311,6 +317,7 @@ struct PlayView: View {
             .preferredColorScheme(.dark)
             .onAppear {
                 gm.resetToDefault()
+                gm.animTimer?.cancel()
                 vm.addCards()
                 vm.allDeckCards.shuffle()
                 gm.remainingTime = 180

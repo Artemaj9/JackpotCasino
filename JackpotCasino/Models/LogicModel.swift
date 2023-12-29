@@ -65,7 +65,7 @@ class LogicModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private var animTimer: AnyCancellable?
+    var animTimer: AnyCancellable?
     var liveTimer: AnyCancellable?
     var deadTimer: AnyCancellable?
     

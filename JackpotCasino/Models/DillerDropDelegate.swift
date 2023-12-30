@@ -10,6 +10,7 @@ class DillerDropDelegate: ObservableObject,DropDelegate {
     @Published var dillerSum = 0
     @Published var draggedCards = [CardModel]()
     @Published var aces = 0
+    let chips = ["chip1", "chip5", "chip100", "chip500"]
     
     func performDrop(info: DropInfo) -> Bool {
         for provider in info.itemProviders(for: [UTType.url]) {
@@ -17,14 +18,16 @@ class DillerDropDelegate: ObservableObject,DropDelegate {
                 let _ = provider.loadObject(ofClass: URL.self) { (url, error) in
                     DispatchQueue.main.async {
                         withAnimation(.easeOut) {
-                            self.draggedCards.append(CardModel(id: UUID(), image: "\(url!)", isFlipped: false))
-                            self.dillerSum += self.draggedCards.last?.number ?? 0
-                            if ["Acec", "Aceh", "Aced", "Aces"].contains("\(url!)") {
-                                self.aces += 1
-                            }
-                            if self.dillerSum > 21 && self.aces >= 1 {
-                                self.dillerSum -= 10
-                                self.aces -= 1
+                            if !self.chips.contains("\(url!)") {
+                                self.draggedCards.append(CardModel(id: UUID(), image: "\(url!)", isFlipped: false))
+                                self.dillerSum += self.draggedCards.last?.number ?? 0
+                                if ["Acec", "Aceh", "Aced", "Aces"].contains("\(url!)") {
+                                    self.aces += 1
+                                }
+                                if self.dillerSum > 21 && self.aces >= 1 {
+                                    self.dillerSum -= 10
+                                    self.aces -= 1
+                                }
                             }
                         }
                     }

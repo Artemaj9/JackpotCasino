@@ -41,8 +41,6 @@ struct CardView: View {
         ZStack {
             PictureView(width: width, height: height,image: image, degree: $frontDegree)
             BackView(width: width, height: height, degree: $backDegree)
-        }.onTapGesture {
-            flipCard ()
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
